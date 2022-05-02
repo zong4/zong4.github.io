@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Pytorch | Zong's blog</title><meta name="keywords" content="Pytorch, Machine Learning, Deep learning"><meta name="author" content="Zong,huyihan84@gmail.com"><meta name="copyright" content="Zong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="The basic of Pytorch you need to learn.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pytorch">
+<meta property="og:url" content="http://example.com/2021/11/18/Pytorch/index.html">
+<meta property="og:site_name" content="Zong&#39;s blog">
+<meta property="og:description" content="The basic of Pytorch you need to learn.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/Pytorch/Pytorch.jpg">
+<meta property="article:published_time" content="2021-11-18T15:39:45.000Z">
+<meta property="article:modified_time" content="2022-05-02T02:55:00.144Z">
+<meta property="article:author" content="Zong">
+<meta property="article:tag" content="Zong">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/Pytorch/Pytorch.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/11/18/Pytorch/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Pytorch',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-02 10:55:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Zong's blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Pytorch</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-11-18T15:39:45.000Z" title="Created 2021-11-18 23:39:45">2021-11-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-05-02T02:55:00.144Z" title="Updated 2022-05-02 10:55:00">2022-05-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Learning/">Learning</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Pytorch/">Pytorch</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Pytorch"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="Two-useful-functions"><a href="#Two-useful-functions" class="headerlink" title="Two useful functions"></a>Two useful functions</h1><p>After import torch, you can use these functions to realize pytorch quickly and deeply.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dir()</span><br><span class="line">help()</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>if you input dir(torch) in the Python Console, the machine will output messages like these:</p>
+<blockquote><p>[‘AVG’,<br>…<br>‘cuda’,<br>…<br>‘rsqrt_’,<br> …]</p>
+</blockquote>
+
+<p>However, if you want to get more about AVG, you can input dir(torch.AVG).<br>Well, you can use help() to scan the details about any functions.</p>
+<h1 id="Overwrite-Dataset"><a href="#Overwrite-Dataset" class="headerlink" title="Overwrite Dataset"></a>Overwrite Dataset</h1><p>Always, the first thing is scanning it’s offical explanation. You can input these codes in the jupyter notebook. </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from torch.utils.data import Dataset</span><br><span class="line">help(Dataset)</span><br></pre></td></tr></table></figure>
+
+<p>And you will get some messages which need you to overwrite the class like this:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class My_Dataset(Dataset):</span><br><span class="line"></span><br><span class="line">    def __init__(self, root_dir, sub_dir):</span><br><span class="line">        self.root_dir = root_dir</span><br><span class="line">        self.sub_dir = sub_dir</span><br><span class="line">        self.path = os.path.join(self.root_dir, self.sub_dir)# the self.path will be self.root_dir//self.sub_dir</span><br><span class="line">        # if you want to learn more about os, you can go to xxx</span><br><span class="line">        self.img_path = os.listdir(self.path)# create a list of the image with the No.</span><br><span class="line"></span><br><span class="line">    def __getitem__(self, idx):</span><br><span class="line">        img_name = self.img_path[idx]</span><br><span class="line">        img_item_path = os.path.join(self.root_dir, self.label_dir, img_name)</span><br><span class="line">        img = Image.open(img_item_path)</span><br><span class="line">        label = self.(label_dir)</span><br><span class="line">        return img, label</span><br><span class="line"></span><br><span class="line">    def __len__(self):</span><br><span class="line">        return len(self.img_path)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Use-SummaryWriter"><a href="#Use-SummaryWriter" class="headerlink" title="Use SummaryWriter"></a>Use SummaryWriter</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install tensorboard</span><br><span class="line">from torch.utils.tensorboard import SummaryWriter</span><br><span class="line">help(SummaryWriter)</span><br></pre></td></tr></table></figure>
+
+<p>And then, you can see this message:</p>
+<blockquote><p>SummaryWriter(log_dir&#x3D;None, comment&#x3D;’’, purge_step&#x3D;None, max_queue&#x3D;10, flush_secs&#x3D;120, filename_suffix&#x3D;’’)</p>
+</blockquote>
+
+<p>The log_dir is the name of file which is for showing.</p>
+<h2 id="add-scalar"><a href="#add-scalar" class="headerlink" title="add_scalar()"></a>add_scalar()</h2><p>Well, you can see the offical explanation of add_scalar, that’s a useful function to summary data.</p>
+<blockquote><p>add_scalar(tag, scalar_value, global_step&#x3D;None, walltime&#x3D;None, new_style&#x3D;False, double_precision&#x3D;False)</p>
+<ul>
+<li><p>tag (string): Data identifier</p>
+</li>
+<li><p>scalar_value (float or string&#x2F;blobname): Value to save</p>
+</li>
+<li><p>global_step (int): Global step value to record</p>
+</li>
+</ul>
+</blockquote>
+
+<p>Let’s try to use it:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import math</span><br><span class="line">writer = SummaryWriter(&quot;log&quot;)</span><br><span class="line">precision = 1000# you can edit it to adjust the resolution of the image, but remember higher resolution means more time will be taken</span><br><span class="line">for theta in range(0,2*precision*314):</span><br><span class="line">    theta = theta / precision / 100</span><br><span class="line">    a = 3 # Cardioid</span><br><span class="line">    r = a*(1 - math.sin(theta))</span><br><span class="line">    x = r*math.cos(theta)</span><br><span class="line">    y = r*math.sin(theta)</span><br><span class="line">    writer.add_scalar(&quot;Cardioid&quot;, y, x)# the scalar_value is before the global_step</span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
+
+<p>Now, you will find a floder named log and let’s open terminal to input this:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensorboard --logdir=log</span><br></pre></td></tr></table></figure>
+
+<p>The terminal will output this message, which show you a local port, click it.</p>
+<blockquote><p>TensorBoard 2.7.0 at <a target="_blank" rel="noopener" href="http://localhost:6006/">http://localhost:6006/</a> (Press CTRL+C to quit)</p>
+</blockquote>
+
+<p>Also, you can define the port like this:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensorboard --logdir=log --port=6000</span><br></pre></td></tr></table></figure>
+
+<h2 id="add-image"><a href="#add-image" class="headerlink" title="add_image()"></a>add_image()</h2><p>Look at the offical explanation of add_image.</p>
+<blockquote><p>add_images(self, tag, img_tensor, global_step&#x3D;None, walltime&#x3D;None, dataformats&#x3D;’NCHW’)</p>
+<ul>
+<li><p>tag (string): Data identifier</p>
+</li>
+<li><p>img_tensor (torch.Tensor, numpy.array, or string&#x2F;blobname): Image data</p>
+</li>
+<li><p>global_step (int): Global step value to record</p>
+</li>
+<li><p>img_tensor: Default is :math:<code>(N, 3, H, W)</code>. If <code>dataformats</code> is specified, other shape will be accepted. e.g. NCHW or NHWC.</p>
+</li>
+</ul>
+</blockquote>
+
+<p>Take care of the type of the image when you use it, img_tensor need the type of images must be torch.Tensor or numpy.array or string&#x2F;blobname.</p>
+<p>However, if we use the PIL to transform the image, we will find ths type of the image which is transformed is this:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from PIL import Image</span><br><span class="line">img = Image.open(sub_path)</span><br><span class="line">print(type(img))</span><br></pre></td></tr></table></figure>
+
+<blockquote><p>&lt;class ‘PIL.JpegImagePlugin.JpegImageFile’&gt;</p>
+</blockquote>
+
+<p>Obviously, this is substandard.<br>So you need use the opencv to transform the image to numpy, for example:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">img_array = np.array(sub_path)</span><br><span class="line">print(type(img_array))</span><br></pre></td></tr></table></figure>
+
+<p>The machine will output like this which will be useful.</p>
+<blockquote><p>&lt;class ‘numpy.ndarray’&gt;</p>
+</blockquote>
+
+<p>Moreover, you should define the dataformats as HWC, if the machine output the shape of the img_array is HWC. Usually, it will be useful and correct. The code is in here:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">img_pil = Image.open(sub_path)</span><br><span class="line">img_array = np.array(img_pil)</span><br><span class="line">print(type(img_array))</span><br><span class="line">print(img_array.shape)</span><br><span class="line"></span><br><span class="line">writer.add_images(&quot;img&quot;, img_array, 1, dataformats=&#x27;HWC&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>Oh, don’t forget this code like me:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
+
+<p>Now. if you click the port, you will see sth. like this:</p>
+<p><img src="/images/add_images1.png" alt="alt"></p>
+<p>Well, this picture is download from <a target="_blank" rel="noopener" href="https://www.pixiv.net/en/artworks/94235874">pixiv</a>. You can also download this if you are lazy.</p>
+<p><img src="/images/zone.jpg" alt="alt"></p>
+<p>Let’s return to the main subject, you can change the codes like these:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- img_pil = Image.open(sub_path)</span><br><span class="line">+ img_pil = Image.open(another_sub_path)</span><br><span class="line"></span><br><span class="line">- writer.add_images(&quot;img&quot;, img_array, 1, dataformats=&#x27;HWC&#x27;)</span><br><span class="line">+ writer.add_images(&quot;img&quot;, img_array, 2, dataformats=&#x27;HWC&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>And then, you will watch like this picture:</p>
+<p><img src="/images/add_images2.png" alt="alt"></p>
+<p>If you slide the block on the top to the left, you will get this:</p>
+<p><img src="/images/add_images3.png" alt="alt"></p>
+<p>This function can help us to scan the train data when you train your AI.</p>
+<h1 id="Learn-transforms"><a href="#Learn-transforms" class="headerlink" title="Learn transforms"></a>Learn transforms</h1><p>Firstly, read it’s document.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from torchvision import transforms</span><br><span class="line">help(transforms.transforms)</span><br></pre></td></tr></table></figure>
+
+<p>Also, you can right click the transforms.transforms to go to it’s implementation.<br>In it’s implementation, you will find a lot of classes.</p>
+<h2 id="ToTensor"><a href="#ToTensor" class="headerlink" title="ToTensor"></a>ToTensor</h2><p>You can use it to transform the type of image form PIL Image and numpy.ndarray to sensor:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">img_pil = Image.open(sub_path)</span><br><span class="line">tensor = transforms.ToTensor()</span><br><span class="line">img_tensor = tensor(img_pil)</span><br><span class="line">print(img_tensor)</span><br></pre></td></tr></table></figure>
+
+<p>Now, you can try to use the port to show the img_tensor by add_image().</p>
+<h2 id="Normalize"><a href="#Normalize" class="headerlink" title="Normalize"></a>Normalize</h2><p>This function can normalize a tensor image with mean and standard deviation, but it does not support PIL Image.<br>And you should input the mean and std. However you should input three mean and std if the picture will be dealt with has three channels, for example:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">norm = transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])</span><br><span class="line">img_norm = norm(img_tensor)</span><br></pre></td></tr></table></figure>
+
+<blockquote><p>output &#x3D; (input - mean) &#x2F; std</p>
+</blockquote>
+
+<p>Well, if you print the img_norm and the img_tensor, you will find they are different.<br>You can do it by yourself, or you may can go to <a href="www.github.com/zong4">my github</a> to search the code you want.</p>
+<h2 id="Resize"><a href="#Resize" class="headerlink" title="Resize"></a>Resize</h2><p>This funtion need two inputs, which are the height and width of new image. The image you want to resize must be PIL.<br>Also, you can just input one number which will be defaulted by the system as the height of new image, and then the system will calculate the corresponding width.<br>Let’s try it:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(img_pil.size)</span><br><span class="line">resize = transforms.Resize(512)</span><br><span class="line">img_resize = trans_resize(img_pil)</span><br><span class="line">print(img_resize)</span><br></pre></td></tr></table></figure>
+
+<p>The size of image which be input is (1280,720), and the output is (910,512) and the type of image is same.</p>
+<h2 id="Compose"><a href="#Compose" class="headerlink" title="Compose"></a>Compose</h2><p>This function is block in which you can put such as Resize, Normalize, ToTensor and so on. If you input an image, it will be managed orderly.<br>Be careful about requirements of the output and input of every function written in the Compose.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">compose = transforms.Compose([resize, tensor, norm])# resize = transforms.Resize(512) tensor = transforms.ToTensor() norm = transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="RandomCrop"><a href="#RandomCrop" class="headerlink" title="RandomCrop"></a>RandomCrop</h2><p>Crop the given PIL Image at a random location(the offical document).<br>You can try these codes:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">random = transforms.RandomCrop(512)</span><br><span class="line">compose = transforms.Compose([random, tensor])</span><br><span class="line">for i in range(5):</span><br><span class="line">    img_crop = compose(sub_path)</span><br><span class="line">    writer.add_image(&quot;log&quot;, img_crop, i) # writer = SummaryWriter(&quot;log&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>Also you can change the 512 to two numbers, and the first will be the height of new image, the second will be the width. Otherwise, the height will be as same as the width if you just inout one number like me.<br>Click the port, try to understand the output by yourself.</p>
+<h2 id="Moreover"><a href="#Moreover" class="headerlink" title="Moreover"></a>Moreover</h2><p>There are more classer you may use in the future, the most thing you should keep in mind is that care for requirements of the input and output of the function when you learn them.<br>You can use this funtion to sure the output of every function.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(type(img))</span><br><span class="line">print(img.size)</span><br><span class="line">print(img)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Know-some-data-sets"><a href="#Know-some-data-sets" class="headerlink" title="Know some data sets"></a>Know some data sets</h1><p>You can find many useful datasets in the offical document in the <a target="_blank" rel="noopener" href="https://pytorch.org/">Pytorch</a>.<br>For example, you can go to <a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/datasets.html#cifar">here</a>, and find the datasets named CIFAR.<br>You can see these:</p>
+<blockquote><p>torchvision.datasets.CIFAR10(root: str, train: bool &#x3D; True, transform: Optional[Callable] &#x3D; None, target_transform: Optional[Callable] &#x3D; None, download: bool &#x3D; False)</p>
+<ul>
+<li><p>root (string) – Root directory of dataset where directory cifar-10-batches-py exists or will be saved to if download is set to True.</p>
+</li>
+<li><p>train (bool, optional) – If True, creates dataset from training set, otherwise creates from test set.</p>
+</li>
+<li><p>transform (callable, optional) – A function&#x2F;transform that takes in an PIL image and returns a transformed version. E.g, transforms.RandomCrop</p>
+</li>
+<li><p>target_transform (callable, optional) – A function&#x2F;transform that takes in the target and transforms it.</p>
+</li>
+<li><p>download (bool, optional) – If true, downloads the dataset from the internet and puts it in root directory. If dataset is already downloaded, it is not downloaded again.</p>
+</li>
+</ul>
+</blockquote>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import torchvision</span><br><span class="line"></span><br><span class="line">train = torchvision.datasets.CIFAR10(root = &quot;./dataset&quot;, train = True, download = True)</span><br><span class="line">val = torchvision.datasets.CIFAR10(root = &quot;./dataset&quot;, train = False, download = True)</span><br><span class="line"></span><br><span class="line">print(val[0])# it will output the message of the first image of the val. </span><br></pre></td></tr></table></figure>
+
+<p>You will see the machine output the type of this message and a number(3) which means the forth(3+1) class includes the image.<br>Moreover, you can define a compose as the  transform by yourself, or you can go to <a href="www.github.com/zong4">my github</a> to find the code.</p>
+<h1 id="DataLoader"><a href="#DataLoader" class="headerlink" title="DataLoader"></a>DataLoader</h1><p>You can go to the document of <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/index.html">Pytorch</a> and search it.<br>Click the first(<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/data.html?highlight=dataloader#torch.utils.data.DataLoader">torch.utils.data.DataLoader (Python class, in torch.utils.data)</a>).<br>Also, you can see some details here:</p>
+<blockquote><p>torch.utils.data.DataLoader(dataset, batch_size&#x3D;1, shuffle&#x3D;False, sampler&#x3D;None, batch_sampler&#x3D;None, num_workers&#x3D;0, collate_fn&#x3D;None, pin_memory&#x3D;False, drop_last&#x3D;False, timeout&#x3D;0, worker_init_fn&#x3D;None, multiprocessing_context&#x3D;None, generator&#x3D;None, *, prefetch_factor&#x3D;2, persistent_workers&#x3D;False)</p>
+<ul>
+<li><p>dataset (Dataset) – dataset from which to load the data.</p>
+</li>
+<li><p>batch_size (int, optional) – how many samples per batch to load (default: 1).</p>
+</li>
+<li><p>shuffle (bool, optional) – set to True to have the data reshuffled at every epoch (default: False).</p>
+</li>
+<li><p>num_workers (int, optional) – how many subprocesses to use for data loading. 0 means that the data will be loaded in the main process. (default: 0)</p>
+</li>
+<li><p>drop_last (bool, optional) – set to True to drop the last incomplete batch, if the dataset size is not divisible by the batch size. If False and the size of dataset is not divisible by the batch size, then the last batch will be smaller. (default: False)</p>
+</li>
+<li><p>timeout (numeric, optional) – if positive, the timeout value for collecting a batch from workers. Should always be non-negative. (default: 0)</p>
+</li>
+</ul>
+</blockquote>
+
+<p>Try to use it, for example:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import torchvision</span><br><span class="line">from torch.utils.data import DataLoader</span><br><span class="line">from torch.utils.tensorboard import SummaryWriter</span><br><span class="line"></span><br><span class="line">train = torchvision.datasets.CIFAR10(root = &quot;./dataset&quot;, train = True, download = True)</span><br><span class="line">val = torchvision.datasets.CIFAR10(root = &quot;./dataset&quot;, train = False, download = True)</span><br><span class="line"></span><br><span class="line">loader = DataLoader(dataset = val, batch_size = 128, shuffle = True)</span><br><span class="line"></span><br><span class="line">writer = SummaryWriter(&quot;data_loader&quot;)</span><br><span class="line"></span><br><span class="line">step = 0</span><br><span class="line">for data in val:</span><br><span class="line">    imgs, targets = data</span><br><span class="line">    writer.add_images(&quot;img&quot;, imgs, step)</span><br><span class="line">    step = step1+ 1</span><br><span class="line"></span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
+
+<p>Then, you can go to the local port to view them, is wanderful it?<br>Moreover, you can change the img to another name, like this:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- writer.add_images(&quot;img&quot;, imgs, step)</span><br><span class="line">+ writer.add_images(&quot;img_again&quot;, imgs, step)</span><br></pre></td></tr></table></figure>
+
+<p>Click the port to view them, you will find they are so different, that’s because you define the shuffle as True.</p>
+<h1 id="Rewrite-nn-Module"><a href="#Rewrite-nn-Module" class="headerlink" title="Rewrite nn.Module"></a>Rewrite nn.Module</h1><p>Always, go to <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module">the offical document</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import torch.nn as nn</span><br><span class="line">import torch.nn.functional as F</span><br><span class="line"></span><br><span class="line">class Model(nn.Module):</span><br><span class="line">    def __init___(self,):# I write three underlines(_), because the two underlines mean will strong the font</span><br><span class="line">        super(Model, self).__init___()# here is also</span><br><span class="line">        self.conv1 = nn.Conv2d(1, 20, 5)</span><br><span class="line">        self.conv2 = nn.Conv2d(20, 20, 5)</span><br><span class="line"></span><br><span class="line">    def forward(self, x):</span><br><span class="line">        x = F.relu(self.conv1(x))</span><br><span class="line">        return F.relu(self.conv2(x))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- self.conv1 = nn.Conv2d(1, 20, 5)</span><br><span class="line">+ self.conv1 = nn.Conv2d(2, 20, 5)# the image has two dimension</span><br><span class="line"></span><br><span class="line">model = Model()</span><br><span class="line">input = torch.tensor(img)# the type of input of model must be tensor</span><br><span class="line">output = model(input)</span><br><span class="line">print(output)</span><br></pre></td></tr></table></figure>
+
+<p>You can input these codes to test the Model. </p>
+<h1 id="Understand-torch-nn-functional"><a href="#Understand-torch-nn-functional" class="headerlink" title="Understand torch.nn.functional"></a>Understand torch.nn.functional</h1><p>You can scan them <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/nn.functional.html">here</a> and try to understand them.<br>There are many mathematic formulas, so it will be better to watch some videos about the kernel rather than read an article.</p>
+<p><img src="/images/CONV2D.png" alt="alt"></p>
+<p>This is the formulas of CONV2D.</p>
+<h1 id="About-torch-reshape"><a href="#About-torch-reshape" class="headerlink" title="About torch.reshape"></a>About torch.reshape</h1><p>The standard form:</p>
+<blockquote><p>torch.reshape(input, batch_size, channels, height, width)</p>
+</blockquote>
+
+<p>If you want to use it to change the image to the size(channels &#x3D; 10, height &#x3D; 564, width &#x3D; 1028), you can write this:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">output = torch.reshape(input, -1, 10, 564, 1028)</span><br></pre></td></tr></table></figure>
+
+<p>Define the batch_size equal one<br>The machine will count the corresponding batch_size automatically, if you define batch_size equal -1.<br>Also, you can try to use the <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.flatten.html?highlight=flatten#torch.flatten">torch.flatten</a>.</p>
+<h1 id="Some-other-torch-nn"><a href="#Some-other-torch-nn" class="headerlink" title="Some other torch.nn"></a>Some other torch.nn</h1><p>Just write some useful functions, and try to understand them.</p>
+<h2 id="Pooling-Layers"><a href="#Pooling-Layers" class="headerlink" title="Pooling Layers"></a>Pooling Layers</h2><p>Go <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/nn.html#pooling-layers">here</a>.<br>However, the function which used most frequently is the <a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.MaxPool2d.html#torch.nn.MaxPool2d">nn.MaxPool2d</a>.</p>
+<blockquote><p>torch.nn.MaxPool2d(kernel_size, stride&#x3D;None, padding&#x3D;0, dilation&#x3D;1, return_indices&#x3D;False, ceil_mode&#x3D;False)</p>
+<ul>
+<li><p>kernel_size – the size of the window to take a max over</p>
+</li>
+<li><p>stride – the stride of the window. Default value is kernel_size</p>
+</li>
+<li><p>padding – implicit zero padding to be added on both sides</p>
+</li>
+<li><p>dilation – a parameter that controls the stride of elements in the window</p>
+</li>
+<li><p>return_indices – if True, will return the max indices along with the outputs. Useful for torch.nn.MaxUnpool2d later</p>
+</li>
+<li><p>ceil_mode – when True, will use ceil instead of floor to compute the output shape</p>
+</li>
+</ul>
+</blockquote>
+
+<p>However, the offical document always has the most details about functions.</p>
+<blockquote><p>The parameters kernel_size, stride, padding, dilation can either be:</p>
+<ul>
+<li><p>a single int – in which case the same value is used for the height and width dimension</p>
+</li>
+<li><p>a tuple of two ints – in which case, the first int is used for the height dimension, and the second int for the width dimension</p>
+</li>
+</ul>
+</blockquote>
+
+<h2 id="Padding-Layers"><a href="#Padding-Layers" class="headerlink" title="Padding Layers"></a>Padding Layers</h2><h2 id="Non-linear-Activations-weighted-sum-nonlinearity"><a href="#Non-linear-Activations-weighted-sum-nonlinearity" class="headerlink" title="Non-linear Activations (weighted sum, nonlinearity)"></a>Non-linear Activations (weighted sum, nonlinearity)</h2><h2 id="Normalization-Layers"><a href="#Normalization-Layers" class="headerlink" title="Normalization Layers"></a>Normalization Layers</h2><h2 id="Linear-Layers"><a href="#Linear-Layers" class="headerlink" title="Linear Layers"></a>Linear Layers</h2><h2 id="LOSS-function"><a href="#LOSS-function" class="headerlink" title="LOSS function"></a><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/nn.html#loss-functions">LOSS function</a></h2><h3 id="L1Loss"><a href="#L1Loss" class="headerlink" title="L1Loss"></a>L1Loss</h3><h3 id="MSELOSS"><a href="#MSELOSS" class="headerlink" title="MSELOSS"></a>MSELOSS</h3><h3 id="CrossEntropyLoss"><a href="#CrossEntropyLoss" class="headerlink" title="CrossEntropyLoss"></a>CrossEntropyLoss</h3><h1 id="Watch-your-model"><a href="#Watch-your-model" class="headerlink" title="Watch your model"></a>Watch your model</h1><p>You can use these codes to view your model on the local website:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">writer.add_graph(your_model, input)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Command-Torch-optim"><a href="#Command-Torch-optim" class="headerlink" title="Command Torch.optim"></a>Command Torch.optim</h1><p>Try to find the offical document by yourself, and I will give an example:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">optimizer = optim.SGD(model.parameters(), lr=learning_rate, weight_decay=wt_decay)</span><br><span class="line">for epoch in range(epochs):</span><br><span class="line">    # loss_rate = 0# Record loss value</span><br><span class="line">    model.train()</span><br><span class="line">    for images, labels in train_loader:</span><br><span class="line">        optimizer.zero_grad()# Record loss value</span><br><span class="line">        output = model.forward(images)# The forward propagation</span><br><span class="line">        loss_rate = loss_function(output, labels)# Error calculation</span><br><span class="line">        loss_rate.backward()# Error back propagation</span><br><span class="line">        optimizer.step()# Update parameter</span><br></pre></td></tr></table></figure>
+
+<h1 id="Download-and-revise-models"><a href="#Download-and-revise-models" class="headerlink" title="Download and revise models"></a>Download and revise models</h1><p>Firstly, you can go <a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/models.html">here</a> to find some finished models. You can download and revise it like these:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vgg_16 = torchvision.models.vgg16(pretrained = &quot;True&quot;)</span><br><span class="line"></span><br><span class="line">vgg_16.classifier[5].add_module(&quot;name&quot;, layers)</span><br></pre></td></tr></table></figure>
+
+<p>Then, the local vgg_16 will be added layers after the sixth layer of model named classifier.</p>
+<h1 id="Save-and-load-your-model"><a href="#Save-and-load-your-model" class="headerlink" title="Save and load your model"></a>Save and load your model</h1><p>There is two methods to save and load the model:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">torch.save(model, &quot;model.pth&quot;) # save all(structure and parameters) the model</span><br><span class="line">model = torch.load(&quot;model.pth&quot;)</span><br><span class="line"></span><br><span class="line">torch.save(model.state_dict(), &quot;model.pth&quot;) # save parameters of the model</span><br><span class="line">model.load_state_dict(torch.load(&quot;model.pth&quot;))</span><br></pre></td></tr></table></figure>
+
+<p>However, you need from model_save import * when you use the first method.</p>
+<h1 id="Use-GPU"><a href="#Use-GPU" class="headerlink" title="Use GPU"></a>Use GPU</h1><p>You should transfer four parts to GPU through these codes:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">model = Model()</span><br><span class="line">model = model.cuda()# model</span><br><span class="line"></span><br><span class="line">loss = nn.CrossEntropyLoss()</span><br><span class="line">loss = loss.cuda()# loss</span><br><span class="line"></span><br><span class="line">for data in train:</span><br><span class="line">    imgs, targets = data</span><br><span class="line">    imgs = imgs.cuda()# data</span><br><span class="line">    targets = targets.cuda()# object</span><br><span class="line"></span><br><span class="line">for data in val:</span><br><span class="line">    imgs, targets = data</span><br><span class="line">    imgs = imgs.cuda()</span><br><span class="line">    targets = targets.cuda()</span><br></pre></td></tr></table></figure>
+
+<p>Well, it’s very necessary to sure that your computer has a cuda before you use them.<br>Also, you can use another method:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">device = torch.device(&quot;cuda&quot;)</span><br><span class="line"></span><br><span class="line">model = Model()</span><br><span class="line">model = model.to(device)# model</span><br><span class="line"></span><br><span class="line">loss = nn.CrossEntropyLoss()</span><br><span class="line">loss = loss.to(device)# loss</span><br><span class="line"></span><br><span class="line">for data in train:</span><br><span class="line">    imgs, targets = data</span><br><span class="line">    imgs = imgs.to(device)# data</span><br><span class="line">    targets = targets.to(device)# object</span><br><span class="line"></span><br><span class="line">for data in val:</span><br><span class="line">    imgs, targets = data</span><br><span class="line">    imgs = imgs.to(device)</span><br><span class="line">    targets = targets.to(device)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Try"><a href="#Try" class="headerlink" title="Try"></a>Try</h1></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:huyihan84@gmail.com">Zong</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://zong4.github.io">https://zong4.github.io</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/Pytorch/Pytorch.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2021/12/26/Redirect%20websites/"><img class="prev-cover" src="/img/Flask/Redirect%20websites.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Redirect websites</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zong</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Two-useful-functions"><span class="toc-number">1.</span> <span class="toc-text">Two useful functions</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Overwrite-Dataset"><span class="toc-number">2.</span> <span class="toc-text">Overwrite Dataset</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Use-SummaryWriter"><span class="toc-number">3.</span> <span class="toc-text">Use SummaryWriter</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#add-scalar"><span class="toc-number">3.1.</span> <span class="toc-text">add_scalar()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#add-image"><span class="toc-number">3.2.</span> <span class="toc-text">add_image()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Learn-transforms"><span class="toc-number">4.</span> <span class="toc-text">Learn transforms</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ToTensor"><span class="toc-number">4.1.</span> <span class="toc-text">ToTensor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Normalize"><span class="toc-number">4.2.</span> <span class="toc-text">Normalize</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Resize"><span class="toc-number">4.3.</span> <span class="toc-text">Resize</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Compose"><span class="toc-number">4.4.</span> <span class="toc-text">Compose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RandomCrop"><span class="toc-number">4.5.</span> <span class="toc-text">RandomCrop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Moreover"><span class="toc-number">4.6.</span> <span class="toc-text">Moreover</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Know-some-data-sets"><span class="toc-number">5.</span> <span class="toc-text">Know some data sets</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DataLoader"><span class="toc-number">6.</span> <span class="toc-text">DataLoader</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Rewrite-nn-Module"><span class="toc-number">7.</span> <span class="toc-text">Rewrite nn.Module</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Understand-torch-nn-functional"><span class="toc-number">8.</span> <span class="toc-text">Understand torch.nn.functional</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#About-torch-reshape"><span class="toc-number">9.</span> <span class="toc-text">About torch.reshape</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Some-other-torch-nn"><span class="toc-number">10.</span> <span class="toc-text">Some other torch.nn</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pooling-Layers"><span class="toc-number">10.1.</span> <span class="toc-text">Pooling Layers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Padding-Layers"><span class="toc-number">10.2.</span> <span class="toc-text">Padding Layers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Non-linear-Activations-weighted-sum-nonlinearity"><span class="toc-number">10.3.</span> <span class="toc-text">Non-linear Activations (weighted sum, nonlinearity)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Normalization-Layers"><span class="toc-number">10.4.</span> <span class="toc-text">Normalization Layers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linear-Layers"><span class="toc-number">10.5.</span> <span class="toc-text">Linear Layers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LOSS-function"><span class="toc-number">10.6.</span> <span class="toc-text">LOSS function</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#L1Loss"><span class="toc-number">10.6.1.</span> <span class="toc-text">L1Loss</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MSELOSS"><span class="toc-number">10.6.2.</span> <span class="toc-text">MSELOSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CrossEntropyLoss"><span class="toc-number">10.6.3.</span> <span class="toc-text">CrossEntropyLoss</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Watch-your-model"><span class="toc-number">11.</span> <span class="toc-text">Watch your model</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Command-Torch-optim"><span class="toc-number">12.</span> <span class="toc-text">Command Torch.optim</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Download-and-revise-models"><span class="toc-number">13.</span> <span class="toc-text">Download and revise models</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Save-and-load-your-model"><span class="toc-number">14.</span> <span class="toc-text">Save and load your model</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Use-GPU"><span class="toc-number">15.</span> <span class="toc-text">Use GPU</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Try"><span class="toc-number">16.</span> <span class="toc-text">Try</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/2022/05/02/hello-world/" title="Hello World">Hello World</a><time datetime="2022-05-02T07:00:45.397Z" title="Created 2022-05-02 15:00:45">2022-05-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/23/HMOS/" title="尝试在手机锁屏上显示每日留言"><img src="/img/HMOS/top_img.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="尝试在手机锁屏上显示每日留言"/></a><div class="content"><a class="title" href="/2022/01/23/HMOS/" title="尝试在手机锁屏上显示每日留言">尝试在手机锁屏上显示每日留言</a><time datetime="2022-01-23T12:22:26.000Z" title="Created 2022-01-23 20:22:26">2022-01-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/21/Network-Science/" title="社团检测"><img src="/img/Network%20Science/top_img.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="社团检测"/></a><div class="content"><a class="title" href="/2022/01/21/Network-Science/" title="社团检测">社团检测</a><time datetime="2022-01-21T05:17:33.000Z" title="Created 2022-01-21 13:17:33">2022-01-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/05/Ctypes%20class/" title="Ctypes调用C++的类"><img src="/img/Ctypes/Ctypes.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Ctypes调用C++的类"/></a><div class="content"><a class="title" href="/2022/01/05/Ctypes%20class/" title="Ctypes调用C++的类">Ctypes调用C++的类</a><time datetime="2022-01-05T03:13:34.000Z" title="Created 2022-01-05 11:13:34">2022-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/05/Ctypes/" title="Ctypes"><img src="/img/Ctypes/Ctypes.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Ctypes"/></a><div class="content"><a class="title" href="/2022/01/05/Ctypes/" title="Ctypes">Ctypes</a><time datetime="2022-01-05T02:34:20.000Z" title="Created 2022-01-05 10:34:20">2022-01-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Zong</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

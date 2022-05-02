@@ -1,0 +1,353 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Flask学习指南 | Zong's blog</title><meta name="keywords" content="Flask, Client, Website"><meta name="author" content="Zong,huyihan84@gmail.com"><meta name="copyright" content="Zong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="从零开始理解Flask">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flask学习指南">
+<meta property="og:url" content="http://example.com/2021/12/26/Flask/index.html">
+<meta property="og:site_name" content="Zong&#39;s blog">
+<meta property="og:description" content="从零开始理解Flask">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/Flask/Flask.png">
+<meta property="article:published_time" content="2021-12-26T12:21:29.000Z">
+<meta property="article:modified_time" content="2022-05-02T02:59:31.494Z">
+<meta property="article:author" content="Zong">
+<meta property="article:tag" content="Zong">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/Flask/Flask.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/12/26/Flask/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Flask学习指南',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-02 10:59:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Zong's blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Flask学习指南</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-12-26T12:21:29.000Z" title="Created 2021-12-26 20:21:29">2021-12-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-05-02T02:59:31.494Z" title="Updated 2022-05-02 10:59:31">2022-05-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Learning/">Learning</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Flask/">Flask</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Flask学习指南"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h1><h2 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h2><ul>
+<li>网络是怎样连接的 by 户根勤</li>
+<li>图解HTTP by 上野宣</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1Mro5wx18BmkqsQEAzbdIdg">Baidu Cloud(Key:1111)</a></p>
+<p><a target="_blank" rel="noopener" href="https://drive.google.com/drive/folders/1XqdlXwLXzeeJCNdRw_SKHsrg9tPO9lW_?usp=sharing">Google Drive</a></p>
+<p>你也可以去<a target="_blank" rel="noopener" href="https://3lib.net/">Z-library</a>上查找。</p>
+<h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><p>你可以通过以下这篇文章选择你的模拟器软件：</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhengrui0452/p/5284048.html">对比网络模拟器软件——Cisco Packet Tracer、华为eNSP、H3C Cloud Lab</a></p>
+<p>然后跟着这个视频实践：</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1At411f7hJ">计算机网络 思科Cisco Packet Tracer仿真实验</a></p>
+<!-- 关系数据库 -->
+<!-- 迁移和更新数据库 -->
+
+<h1 id="基本认知"><a href="#基本认知" class="headerlink" title="基本认知"></a>基本认知</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/43929790">Flask是什么？</a></p>
+<h1 id="相关书籍"><a href="#相关书籍" class="headerlink" title="相关书籍"></a>相关书籍</h1><ul>
+<li>Flask Web开发：基于Python的Web应用开发实战</li>
+<li>Flask Web Development Developing Web Applications With Python</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/18Is5rTj9OSiLwXv8VAU37Q">Baidu Cloud(Key:1111)</a></p>
+<p><a target="_blank" rel="noopener" href="https://drive.google.com/drive/folders/1oATWRsokV3G6D73QAKxaWKV0VCXxLXgD?usp=sharing">Google Drive</a></p>
+<p>你也可以去<a target="_blank" rel="noopener" href="https://3lib.net/">Z-library</a>上查找。</p>
+<h1 id="相关网址"><a href="#相关网址" class="headerlink" title="相关网址"></a>相关网址</h1><p><a target="_blank" rel="noopener" href="https://flask.palletsprojects.com/en/2.0.x/">官网</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.w3cschool.cn/flask/">W3Cschool（一些实例）</a></p>
+<h1 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h1><h2 id="创建Flask应用"><a href="#创建Flask应用" class="headerlink" title="创建Flask应用"></a>创建Flask应用</h2><p>所有Flask程序都必须创建一个程序实例，Web服务器使用一种名为Web服务器网关接口（<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/95942024">Web Server Gateway Interface，WSGI</a>）的协议，把接收自客户端的所有请求都转交给这个对象处理。</p>
+<p>程序实例是Flask类的对象，你可以通过以下方式创建：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br></pre></td></tr></table></figure>
+
+<p>客户端（例如Web浏览器）把请求发送给Web服务器，Web服务器再把请求发送给Flask程序实例。</p>
+<p>程序实例需要知道对每个URL请求运行哪些代码，所以保存了一个URL到Python函数的映射关系。</p>
+<p>处理URL和函数之间关系的程序称为路由，如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br></pre></td></tr></table></figure>
+
+<p>如此运行代码之后，点开端口页面 <a target="_blank" rel="noopener" href="http://127.0.0.1:5000/">http://127.0.0.1:5000/</a> ，此时你若增加如下代码，即可看到“Hello!”。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Hello!&#x27;</span></span><br><span class="line"></span><br><span class="line">app.run(debug=<span class="string">&#x27;true&#x27;</span>) <span class="comment"># 运行app并打开debug，不然只会exit code 0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h2><h3 id="redirect"><a href="#redirect" class="headerlink" title="redirect"></a>redirect</h3><p>你可以使用它将页面重定向，如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">return</span> flask.redirect(<span class="string">&quot;www.bing.com&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>你也可以通过如下代码将页面重定向到该域名下的其他页面，如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">return</span> flask.redirect(<span class="string">&#x27;/index&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>具体应用可以参考<a target="_blank" rel="noopener" href="https://zong4.github.io/2021/12/26/Redirect%20websites/">该文章</a>。</p>
+<h3 id="abort"><a href="#abort" class="headerlink" title="abort"></a>abort</h3><p>该响应用于处理错误。</p>
+<p>在下面这个例子中，如果URL中动态参数id对应的用户不存在，就会返回状态码404。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> abort </span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/user/&lt;id&gt;&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_user</span>(<span class="params"><span class="built_in">id</span></span>):</span><br><span class="line">    user = load_user(<span class="built_in">id</span>) <span class="comment"># 在load_user中查找是否有此id</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> user:</span><br><span class="line">        abort(<span class="number">404</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&lt;h1&gt;Hello, &#123;&#125;&lt;/h1&gt;&#x27;</span>.<span class="built_in">format</span>(user.name)</span><br></pre></td></tr></table></figure>
+
+<p>但是请注意，abort不会把控制权交还给调用它的函数，而是抛出异常把控制权交给Web服务器。</p>
+<h2 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h2><h3 id="Jinja2"><a href="#Jinja2" class="headerlink" title="Jinja2"></a>Jinja2</h3><p>Flask采用的渲染引擎是<a target="_blank" rel="noopener" href="http://docs.jinkan.org/docs/jinja2/">Jinja2</a>。</p>
+<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><p>在Flask中我们通常用如下方式渲染模板：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">begin</span>():</span><br><span class="line">    <span class="keyword">return</span> flask.render_template(<span class="string">&#x27;index.html&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>此时它就会在你的本地端口 <a target="_blank" rel="noopener" href="http://127.0.0.1:5000/">http://127.0.0.1:5000/</a> 上返回index.html。</p>
+<p>你可以尝试在index.html和Python文件中分别添加如下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> flask.render_template(<span class="string">&#x27;index.html&#x27;</span>, message=<span class="string">&quot;Hello!&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>再次运行后点开本地端口即可看到“Hello!”。</p>
+<p>你也可以直接在Python中编写HTML文件，详细内容请参阅Jinja2的<a target="_blank" rel="noopener" href="http://docs.jinkan.org/docs/jinja2/">官方文档</a>。</p>
+<h3 id="文件存放"><a href="#文件存放" class="headerlink" title="文件存放"></a>文件存放</h3><p>由于Flask中默认从templates文件夹里查找html文件，从static中查找css和js文件，因此我一般采用如下目录存放文件</p>
+<pre><code>your_folder/
+    static/
+        css/
+            *.css
+        js/
+            *.js
+        img/
+            *.*
+    templates/
+        *.html
+    *.py
+</code></pre>
+<h3 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h3><p>服务器总是需要统一时间单位，这和用户所在的地理位置无关，所以一般使用协调世界时<br>（Coordinated Universal Time，UTC）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">app=Flask(__name__)</span><br><span class="line">app.debug=<span class="literal">True</span></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;&#123;&#125;&quot;</span>.<span class="built_in">format</span>(datetime.utcnow()) <span class="comment"># 获取utc时间</span></span><br></pre></td></tr></table></figure>
+
+<p>但是用户看到UTC格式的时间会感到困惑，他们更希望看到当地时间，而且采用当地惯用的格式。</p>
+<p>你可以通过翻阅Jinja2的<a target="_blank" rel="noopener" href="http://docs.jinkan.org/docs/jinja2/">官方文档</a>来解决这一问题。</p>
+<h2 id="Web表单"><a href="#Web表单" class="headerlink" title="Web表单"></a>Web表单</h2><h3 id="跨站保护"><a href="#跨站保护" class="headerlink" title="跨站保护"></a>跨站保护</h3><p>默认情况下，Flask-WTF能保护所有表单免受跨站请求伪造（Cross-Site Request Forgery，CSRF）的攻击。</p>
+<p>为了实现 CSRF保护，Flask-WTF需要程序设置一个密钥，Flask-WTF将使用这个密钥生成加密令牌，再用令牌验证请求中表单数据的真伪。</p>
+<p>设置密钥的方法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.config[<span class="string">&#x27;SECRET_KEY&#x27;</span>] = <span class="string">&#x27;hard to guess string&#x27;</span></span><br><span class="line">app.secret_key = <span class="string">&#x27;hard to guess string&#x27;</span></span><br><span class="line"><span class="comment"># 以上两种方法都可以</span></span><br></pre></td></tr></table></figure>
+
+<p>app.config字典可用来存储框架、扩展和程序本身的配置变量，你可以用它来给app增加一些全局限制。</p>
+<h3 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h3><p>其实在<a target="_blank" rel="noopener" href="https://zong4.github.io/2021/12/26/Redirect%20websites/">redirect的应用</a>。中已经出现了表单——通过GET获取表单中的数据。</p>
+<p>你也可以在<a target="_blank" rel="noopener" href="https://zong4.github.io/2021/12/31/Login%20and%20upload/">这篇文章</a>中理解表单的应用——利用GET制作登录系统和利用POST上传文件。</p>
+<h3 id="Flash消息"><a href="#Flash消息" class="headerlink" title="Flash消息"></a>Flash消息</h3><p>请求完成后，有时需要让用户知道状态发生了变化，此时可以使用确认消息、警告或者错误提醒。</p>
+<p>一个典型例子是，用户提交了有一项错误的登录表单后，服务器发回的响应重新渲染了登录表单，并在表单上面显示一个消息，提示用户用户名或密码错误——<a target="_blank" rel="noopener" href="https://www.w3cschool.cn/flask/flask_message_flashing.html">W3Cschool中相关的例子</a>。</p>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>你可以在《Flask Web开发：基于Python的Web应用开发实战》中第44页找到这些内容，但考虑到有些人懒得下载PDF，故在此粘贴出。</p>
+<pre><code>    数据库按照一定规则保存程序数据，程序再发起查询取回所需的数据。Web 程序最常用基于关系模型的数据库，这种数据库也称为 SQL 数据库，因为它们使用结构化查询语言。不过最近几年文档数据库和键值对数据库成了流行的替代选择，这两种数据库合称 NoSQL数据库。
+
+5.1 SQL数据库
+
+    关系型数据库把数据存储在表中，表模拟程序中不同的实体。例如，订单管理程序的数据库中可能有表 customers、products 和 orders。
+
+    表的列数是固定的，行数是可变的。列定义表所表示的实体的数据属性。例如，customers 表中可能有 name、address、phone 等列。表中的行定义各列对应的真实数据。
+
+    表中有个特殊的列，称为主键，其值为表中各行的唯一标识符。表中还可以有称为外键的列，引用同一个表或不同表中某行的主键。行之间的这种联系称为关系，这是关系型数据库模型的基础。
+
+    下图展示了一个简单数据库的关系图。这个数据库中有两个表，分别存储用户和用户角色。连接两个表的线代表两个表之间的关系。
+</code></pre>
+<p><img src="/img/Flask/Book1.png"></p>
+<pre><code>    在这个数据库关系图中，roles 表存储所有可用的用户角色，每个角色都使用一个唯一的id 值（即表的主键）进行标识。
+
+    users 表包含用户列表，每个用户也有唯一的 id 值。除了id 主键之外，roles 表中还有 name 列，users 表中还有 username 列和 password 列。users表中的 role_id 列是外键，引用角色的 id，通过这种方式为每个用户指定角色。
+
+    从这个例子可以看出，关系型数据库存储数据很高效，而且避免了重复。将这个数据库中的用户角色重命名也很简单，因为角色名只出现在一个地方。一旦在 roles 表中修改完角色名，所有通过 role_id 引用这个角色的用户都能立即看到更新。
+
+    但从另一方面来看，把数据分别存放在多个表中还是很复杂的。生成一个包含角色的用户列表会遇到一个小问题，因为在此之前要分别从两个表中读取用户和用户角色，再将其联结起来。关系型数据库引擎为联结操作提供了必要的支持。
+
+5.2 NoSQL数据库
+
+    所有不遵循上节所述的关系模型的数据库统称为 NoSQL 数据库。NoSQL 数据库一般使用集合代替表，使用文档代替记录。NoSQL 数据库采用的设计方式使联结变得困难，所以大多数数据库根本不支持这种操作。
+    
+    对于结构如图所示的 NoSQL 数据库，若要列出各用户及其角色，就需要在程序中执行联结操作，即先读取每个用户的 role_id，再在 roles表中搜索对应的记录。
+
+    NoSQL 数据库更适合设计成如下图所示的结构。这是执行反规范化操作得到的结果，它减少了表的数量，却增加了数据重复量。
+</code></pre>
+<p><img src="/img/Flask/Book2.png"></p>
+<pre><code>    这种结构的数据库要把角色名存储在每个用户中。如此一来，将角色重命名的操作就变得很耗时，可能需要更新大量文档。
+
+    使用 NoSQL 数据库当然也有好处。数据重复可以提升查询速度。列出用户及其角色的操作很简单，因为无需联结。
+</code></pre>
+<h3 id="数据库的选择"><a href="#数据库的选择" class="headerlink" title="数据库的选择"></a>数据库的选择</h3><pre><code>    选择数据库框架时，主要考虑如下因素：
+
+（1）易用性
+
+    如果直接比较数据库引擎和数据库抽象层，显然后者取胜。抽象层，也称为对象关系映射（Object-Relational Mapper，ORM）或对象文档映射（Object-Document Mapper，ODM），在用户不知觉的情况下把高层的面向对象操作转换成低层的数据库指令。
+
+（2）性能
+
+    ORM 和 ODM 把对象业务转换成数据库业务会有一定的损耗。大多数情况下，这种性能的降低微不足道，但也不一定都是如此。一般情况下，ORM 和 ODM 对生产率的提升远远超过了这一丁点儿的性能降低，所以性能降低这个理由不足以说服用户完全放弃ORM 和 ODM。真正的关键点在于如何选择一个能直接操作低层数据库的抽象层，以防特定的操作需要直接使用数据库原生指令优化。
+
+（3）可移植性
+
+    选择数据库时，必须考虑其是否能在你的开发平台和生产平台中使用。例如，如果你打算利用云平台托管程序，就要知道这个云服务提供了哪些数据库可供选择。
+
+    可移植性还针对 ORM 和 ODM。尽管有些框架只为一种数据库引擎提供抽象层，但其他框架可能做了更高层的抽象，它们支持不同的数据库引擎，而且都使用相同的面向对象接口。SQLAlchemy ORM 就是一个很好的例子，它支持很多关系型数据库引擎，包括流行的 MySQL、Postgres 和 SQLite。
+
+（4）FLask集成度
+
+    选择框架时，你不一定非得选择已经集成了 Flask 的框架，但选择这些框架可以节省你编写集成代码的时间。使用集成了 Flask 的框架可以简化配置和操作，所以专门为Flask 开发的扩展是你的首选。
+
+    故选择Flask-SQLAlchemy。
+</code></pre>
+<h3 id="操作数据库"><a href="#操作数据库" class="headerlink" title="操作数据库"></a>操作数据库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span> SQLAlchemy</span><br><span class="line"></span><br><span class="line">basedir = os.path.abspath(os.path.dirname(__file__))</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.config[<span class="string">&#x27;SQLALCHEMY_DATABASE_URI&#x27;</span>] = \</span><br><span class="line">    <span class="string">&#x27;sqlite:///&#x27;</span> + os.path.join(basedir, <span class="string">&#x27;data.db&#x27;</span>)</span><br><span class="line">app.config[<span class="string">&#x27;SQLALCHEMY_COMMIT_ON_TEARDOWN&#x27;</span>] = <span class="literal">True</span>  <span class="comment"># 每次请求结束后会自动提交数据库中的变动</span></span><br><span class="line">app.config[<span class="string">&#x27;SQLALCHEMY_TRACK_MODIFICATIONS&#x27;</span>] = <span class="literal">False</span>  <span class="comment"># 禁止数据库跟踪对象修改（跟踪需要额外内存）</span></span><br><span class="line"></span><br><span class="line">db = SQLAlchemy(app)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Role</span>(db.Model):</span><br><span class="line">    __tablename__ = <span class="string">&#x27;roles&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">id</span> = db.Column(db.Integer, primary_key=<span class="literal">True</span>)  <span class="comment"># 主键值</span></span><br><span class="line">    name = db.Column(db.String(<span class="number">64</span>), unique=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__repr__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&lt;Role %r&gt;&#x27;</span> % self.name</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>(db.Model):</span><br><span class="line">    __tablename__ = <span class="string">&#x27;users&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">id</span> = db.Column(db.Integer, primary_key=<span class="literal">True</span>)</span><br><span class="line">    username = db.Column(db.String(<span class="number">64</span>), unique=<span class="literal">True</span>, index=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__repr__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&lt;User %r&gt;&#x27;</span> % self.username</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">db.drop_all()  <span class="comment"># 删除数据库</span></span><br><span class="line">db.create_all()  <span class="comment"># 生成数据库</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加Role</span></span><br><span class="line">admin_role = Role(name=<span class="string">&#x27;name&#x27;</span>)  <span class="comment"># 添加单条记录</span></span><br><span class="line"><span class="built_in">print</span>(admin_role.<span class="built_in">id</span>)  <span class="comment"># 此时记录还没有提交给数据库，故输出None</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加User</span></span><br><span class="line">users1 = User(username=<span class="string">&#x27;xiaoming&#x27;</span>)</span><br><span class="line">users2 = User(username=<span class="string">&#x27;xiaohong&#x27;</span>)</span><br><span class="line"></span><br><span class="line">db.session.add_all([admin_role, users1, users2])  <span class="comment"># 添加全部记录</span></span><br><span class="line">db.session.commit()  <span class="comment"># 提交记录</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(admin_role.<span class="built_in">id</span>)  <span class="comment"># 输出1（第一条）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改并提交记录</span></span><br><span class="line">admin_role.name = <span class="string">&quot;new name&quot;</span></span><br><span class="line">db.session.add_all([admin_role])</span><br><span class="line">db.session.commit()</span><br><span class="line"><span class="built_in">print</span>(admin_role.name)  <span class="comment"># 输出new name</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除记录</span></span><br><span class="line">db.session.delete(admin_role)</span><br><span class="line">db.session.commit()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询记录</span></span><br><span class="line"><span class="comment"># 查询全部</span></span><br><span class="line">results = User.query.<span class="built_in">all</span>()</span><br><span class="line"><span class="built_in">print</span>(results) <span class="comment"># 输出全部记录</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 精确查找</span></span><br><span class="line">results = User.query.filter_by(username=<span class="string">&quot;xiaoming&quot;</span>).<span class="built_in">all</span>()</span><br><span class="line"><span class="built_in">print</span>(results) <span class="comment"># 输出xiaoming</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 模糊查找</span></span><br><span class="line">results = User.query.<span class="built_in">filter</span>(User.username.like(<span class="string">&quot;%&quot;</span> + <span class="string">&quot;hon&quot;</span> + <span class="string">&quot;%&quot;</span>)).<span class="built_in">all</span>()</span><br><span class="line"><span class="built_in">print</span>(results) <span class="comment"># 输出xiaohong</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="迁移数据库"><a href="#迁移数据库" class="headerlink" title="迁移数据库"></a>迁移数据库</h3><h2 id="邮件"><a href="#邮件" class="headerlink" title="邮件"></a>邮件</h2><p>你可以去W3Cschool中查找<a target="_blank" rel="noopener" href="https://www.w3cschool.cn/flask/flask_mail.html">相关文章和应用</a>。</p>
+<h2 id="大型程序"><a href="#大型程序" class="headerlink" title="大型程序"></a>大型程序</h2><h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><pre><code>flasky
+    app/
+        templates/
+        static/
+        main/
+            __init__.py
+            errors.py
+            forms.py
+            views.py
+        __init__.py
+        email.py
+        models.py
+    migrations/
+    tests/
+        __init__.py
+        test*.py
+    venv/
+    environment.yml
+    requirements.txt
+    config.py
+    manage.py
+</code></pre>
+<ul>
+<li>Flask 程序一般都保存在名为 app 的包中；</li>
+<li>和之前一样，migrations 文件夹包含数据库迁移脚本；</li>
+<li>单元测试编写在 tests 包中；</li>
+<li>和之前一样，venv 文件夹包含 Python 虚拟环境。</li>
+<li>requirements.txt和environment.yml 均列出了所有依赖包，便于在其他电脑中重新生成相同的虚拟环境，第一个适用于pip，第二个适用于conda；</li>
+<li>config.py 存储配置；</li>
+<li>manage.py 用于启动程序以及其他的程序任务。</li>
+</ul>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight python"><figcaption><span>config.py</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">basedir = os.path.abspath(os.path.dirname(__file__))</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Config</span>:</span><br><span class="line">    SECRET_KEY = os.environ.get(<span class="string">&#x27;SECRET_KEY&#x27;</span>) <span class="keyword">or</span> <span class="string">&#x27;hard to guess string&#x27;</span></span><br><span class="line">    SQLALCHEMY_COMMIT_ON_TEARDOWN = <span class="literal">True</span></span><br><span class="line">    SQLALCHEMY_TRACK_MODIFICATIONS = <span class="literal">False</span></span><br><span class="line">    FLASKY_MAIL_SUBJECT_PREFIX = <span class="string">&#x27;[Flasky]&#x27;</span></span><br><span class="line">    FLASKY_MAIL_SENDER = <span class="string">&#x27;Flasky Admin &lt;flasky@example.com&gt;&#x27;</span></span><br><span class="line">    FLASKY_ADMIN = os.environ.get(<span class="string">&#x27;FLASKY_ADMIN&#x27;</span>)</span><br><span class="line">    </span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">init_app</span>(<span class="params">app</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DevelopmentConfig</span>(<span class="title class_ inherited__">Config</span>):</span><br><span class="line">    DEBUG = <span class="literal">True</span></span><br><span class="line">    MAIL_SERVER = <span class="string">&#x27;smtp.googlemail.com&#x27;</span></span><br><span class="line">    MAIL_PORT = <span class="number">587</span></span><br><span class="line">    MAIL_USE_TLS = <span class="literal">True</span></span><br><span class="line">    MAIL_USERNAME = os.environ.get(<span class="string">&#x27;MAIL_USERNAME&#x27;</span>)</span><br><span class="line">    MAIL_PASSWORD = os.environ.get(<span class="string">&#x27;MAIL_PASSWORD&#x27;</span>)</span><br><span class="line">    SQLALCHEMY_DATABASE_URI = os.environ.get(<span class="string">&#x27;DEV_DATABASE_URL&#x27;</span>) <span class="keyword">or</span> \</span><br><span class="line"> <span class="string">&#x27;sqlite:///&#x27;</span> + os.path.join(basedir, <span class="string">&#x27;data-dev.sqlite&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestingConfig</span>(<span class="title class_ inherited__">Config</span>):</span><br><span class="line">    TESTING = <span class="literal">True</span></span><br><span class="line">    SQLALCHEMY_DATABASE_URI = os.environ.get(<span class="string">&#x27;TEST_DATABASE_URL&#x27;</span>) <span class="keyword">or</span> \</span><br><span class="line"> <span class="string">&#x27;sqlite:///&#x27;</span> + os.path.join(basedir, <span class="string">&#x27;data-test.sqlite&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ProductionConfig</span>(<span class="title class_ inherited__">Config</span>):</span><br><span class="line">    SQLALCHEMY_DATABASE_URI = os.environ.get(<span class="string">&#x27;DATABASE_URL&#x27;</span>) <span class="keyword">or</span> \</span><br><span class="line"> <span class="string">&#x27;sqlite:///&#x27;</span> + os.path.join(basedir, <span class="string">&#x27;data.sqlite&#x27;</span>)</span><br><span class="line"></span><br><span class="line">config = &#123;</span><br><span class="line"> <span class="string">&#x27;development&#x27;</span>: DevelopmentConfig,</span><br><span class="line"> <span class="string">&#x27;testing&#x27;</span>: TestingConfig,</span><br><span class="line"> <span class="string">&#x27;production&#x27;</span>: ProductionConfig,</span><br><span class="line">    </span><br><span class="line"> <span class="string">&#x27;default&#x27;</span>: DevelopmentConfig</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>    基类 Config 中包含通用配置，子类分别定义专用的配置。如果需要，你还可添加其他配置类。
+
+    为了让配置方式更灵活且更安全，某些配置可以从环境变量中导入。例如，SECRET_KEY 的值，这是个敏感信息，可以在环境中设定，但系统也提供了一个默认值，以防环境中没有定义。
+
+    在 3 个子类中，SQLALCHEMY_DATABASE_URI 变量都被指定了不同的值。这样程序就可在不同的配置环境中运行，每个环境都使用不同的数据库。
+    
+    配置类可以定义 init_app() 类方法，其参数是程序实例。在这个方法中，可以执行对当前环境的配置初始化。现在，基类 Config 中的 init_app() 方法为空。
+    
+    在这个配置脚本末尾，config 字典中注册了不同的配置环境，而且还注册了一个默认配置。
+</code></pre>
+<h3 id="工厂函数"><a href="#工厂函数" class="headerlink" title="工厂函数"></a>工厂函数</h3><pre><code>    把创建过程移到可显式调用的工厂函数中。这种方法不仅可以给脚本留出配置程序的时间，还能够创建多个程序实例。
+
+    构造文件导入了大多数正在使用的 Flask 扩展。由于尚未初始化所需的程序实例，所以没有初始化扩展，创建扩展类时没有向构造函数传入参数。
+    
+    create_app() 函数就是程序的工厂函数，接受一个参数，是程序使用的配置名。配置类在 config.py 文件中定义，其中保存的配置可以使用 Flask app.config 配置对象提供的 from_object() 方法直接导入程序。至于配置对象，则可以通过名字从 config 字典中选择。程序创建并配置好后，就能初始化扩展了。在之前创建的扩展对象上调用 init_app() 可以完成初始化过程。
+</code></pre>
+<figure class="highlight python"><figcaption><span>app/__init__.py</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, Config</span><br><span class="line"><span class="keyword">from</span> flask_bootstrap <span class="keyword">import</span> Bootstrap</span><br><span class="line"><span class="keyword">from</span> flask_mail <span class="keyword">import</span> Mail</span><br><span class="line"><span class="keyword">from</span> flask_moment <span class="keyword">import</span> Moment</span><br><span class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span> SQLAlchemy</span><br><span class="line"></span><br><span class="line">bootstrap = Bootstrap()</span><br><span class="line">mail = Mail()</span><br><span class="line">moment = Moment()</span><br><span class="line">db = SQLAlchemy()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_app</span>(<span class="params">config_name</span>):</span><br><span class="line">    app = Flask(__name__)</span><br><span class="line">    app.config.from_object(Config[config_name])</span><br><span class="line">    Config[config_name].init_app(app)</span><br><span class="line"></span><br><span class="line">    bootstrap.init_app(app)</span><br><span class="line">    mail.init_app(app)</span><br><span class="line">    moment.init_app(app)</span><br><span class="line">    db.init_app(app)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 附加路由和自定义的错误页面</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> app</span><br></pre></td></tr></table></figure>
+
+<h3 id="蓝图"><a href="#蓝图" class="headerlink" title="蓝图"></a>蓝图</h3><p>也许你在[W3Cschool]中能获得更加清晰的理解。(<a target="_blank" rel="noopener" href="https://www.w3cschool.cn/flask/flask-3hef3h83.html">https://www.w3cschool.cn/flask/flask-3hef3h83.html</a>)</p>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight python"><figcaption><span>manage.py</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> app <span class="keyword">import</span> create_app, db</span><br><span class="line"><span class="keyword">from</span> app.models <span class="keyword">import</span> User, Role</span><br><span class="line"><span class="keyword">from</span> flask_migrate <span class="keyword">import</span> Migrate</span><br><span class="line"><span class="keyword">from</span> flask_script <span class="keyword">import</span> Manager, Shell</span><br><span class="line"></span><br><span class="line">app = create_app(os.getenv(<span class="string">&#x27;FLASK_CONFIG&#x27;</span>) <span class="keyword">or</span> <span class="string">&#x27;default&#x27;</span>)</span><br><span class="line">manager = Manager(app)</span><br><span class="line">migrate = Migrate(app, db)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_shell_context</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">dict</span>(app=app, db=db, User=User, Role=Role)</span><br><span class="line"></span><br><span class="line">manager.add_command(<span class="string">&quot;shell&quot;</span>, Shell(make_context=make_shell_context))</span><br><span class="line">manager.add_command(<span class="string">&#x27;db&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    manager.run()</span><br></pre></td></tr></table></figure>
+
+<h1 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h1><ul>
+<li>看书</li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vK4y177nP?p=20">看视频</a></li>
+<li><a target="_blank" rel="noopener" href="http://zong4.github.io/2022/01/05/Two%20buttons/">Flask控制HTML双按钮</a></li>
+</ul>
+<h1 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h1><h1 id="自己动手做一个项目吧！"><a href="#自己动手做一个项目吧！" class="headerlink" title="自己动手做一个项目吧！"></a>自己动手做一个项目吧！</h1><h1 id="补充资料"><a href="#补充资料" class="headerlink" title="补充资料"></a>补充资料</h1><p><a target="_blank" rel="noopener" href="https://cizixs.com/2017/01/10/flask-insight-introduction/">Flask source code analysis</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:huyihan84@gmail.com">Zong</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://zong4.github.io">https://zong4.github.io</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/Flask/Flask.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/12/31/Login%20and%20upload/"><img class="prev-cover" src="/img/Flask/User%20login.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">用户登录与文件上传</div></div></a></div><div class="next-post pull-right"><a href="/2021/12/26/Build%20a%20blog/"><img class="next-cover" src="/img/blog.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Build a blog</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zong</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">10</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">前置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E8%AE%BA"><span class="toc-number">1.1.</span> <span class="toc-text">理论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98"><span class="toc-number">1.2.</span> <span class="toc-text">实战</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AE%A4%E7%9F%A5"><span class="toc-number">2.</span> <span class="toc-text">基本认知</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E4%B9%A6%E7%B1%8D"><span class="toc-number">3.</span> <span class="toc-text">相关书籍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E7%BD%91%E5%9D%80"><span class="toc-number">4.</span> <span class="toc-text">相关网址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%A5%E9%97%A8"><span class="toc-number">5.</span> <span class="toc-text">入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAFlask%E5%BA%94%E7%94%A8"><span class="toc-number">5.1.</span> <span class="toc-text">创建Flask应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%8D%E5%BA%94"><span class="toc-number">5.2.</span> <span class="toc-text">响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#redirect"><span class="toc-number">5.2.1.</span> <span class="toc-text">redirect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#abort"><span class="toc-number">5.2.2.</span> <span class="toc-text">abort</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93"><span class="toc-number">5.3.</span> <span class="toc-text">渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Jinja2"><span class="toc-number">5.3.1.</span> <span class="toc-text">Jinja2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF"><span class="toc-number">5.3.2.</span> <span class="toc-text">模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%AD%98%E6%94%BE"><span class="toc-number">5.3.3.</span> <span class="toc-text">文件存放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4"><span class="toc-number">5.3.4.</span> <span class="toc-text">时间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web%E8%A1%A8%E5%8D%95"><span class="toc-number">5.4.</span> <span class="toc-text">Web表单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%A8%E7%AB%99%E4%BF%9D%E6%8A%A4"><span class="toc-number">5.4.1.</span> <span class="toc-text">跨站保护</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95"><span class="toc-number">5.4.2.</span> <span class="toc-text">表单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Flash%E6%B6%88%E6%81%AF"><span class="toc-number">5.4.3.</span> <span class="toc-text">Flash消息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">5.5.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">5.5.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-number">5.5.2.</span> <span class="toc-text">数据库的选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">5.5.3.</span> <span class="toc-text">操作数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">5.5.4.</span> <span class="toc-text">迁移数据库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%82%AE%E4%BB%B6"><span class="toc-number">5.6.</span> <span class="toc-text">邮件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E5%9E%8B%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.7.</span> <span class="toc-text">大型程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="toc-number">5.7.1.</span> <span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">5.7.2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0"><span class="toc-number">5.7.3.</span> <span class="toc-text">工厂函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%93%9D%E5%9B%BE"><span class="toc-number">5.7.4.</span> <span class="toc-text">蓝图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8"><span class="toc-number">5.7.5.</span> <span class="toc-text">启动</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6"><span class="toc-number">6.</span> <span class="toc-text">进阶</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE"><span class="toc-number">7.</span> <span class="toc-text">项目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E5%81%9A%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE%E5%90%A7%EF%BC%81"><span class="toc-number">8.</span> <span class="toc-text">自己动手做一个项目吧！</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E8%B5%84%E6%96%99"><span class="toc-number">9.</span> <span class="toc-text">补充资料</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/2022/05/02/hello-world/" title="Hello World">Hello World</a><time datetime="2022-05-02T07:00:45.397Z" title="Created 2022-05-02 15:00:45">2022-05-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/23/HMOS/" title="尝试在手机锁屏上显示每日留言"><img src="/img/HMOS/top_img.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="尝试在手机锁屏上显示每日留言"/></a><div class="content"><a class="title" href="/2022/01/23/HMOS/" title="尝试在手机锁屏上显示每日留言">尝试在手机锁屏上显示每日留言</a><time datetime="2022-01-23T12:22:26.000Z" title="Created 2022-01-23 20:22:26">2022-01-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/21/Network-Science/" title="社团检测"><img src="/img/Network%20Science/top_img.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="社团检测"/></a><div class="content"><a class="title" href="/2022/01/21/Network-Science/" title="社团检测">社团检测</a><time datetime="2022-01-21T05:17:33.000Z" title="Created 2022-01-21 13:17:33">2022-01-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/05/Ctypes%20class/" title="Ctypes调用C++的类"><img src="/img/Ctypes/Ctypes.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Ctypes调用C++的类"/></a><div class="content"><a class="title" href="/2022/01/05/Ctypes%20class/" title="Ctypes调用C++的类">Ctypes调用C++的类</a><time datetime="2022-01-05T03:13:34.000Z" title="Created 2022-01-05 11:13:34">2022-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/05/Ctypes/" title="Ctypes"><img src="/img/Ctypes/Ctypes.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Ctypes"/></a><div class="content"><a class="title" href="/2022/01/05/Ctypes/" title="Ctypes">Ctypes</a><time datetime="2022-01-05T02:34:20.000Z" title="Created 2022-01-05 10:34:20">2022-01-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Zong</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
