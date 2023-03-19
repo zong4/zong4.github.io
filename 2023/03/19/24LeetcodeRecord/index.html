@@ -1,0 +1,407 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Leetcode 每日一题 | Zong's blog</title><meta name="keywords" content="Leetcode"><meta name="author" content="Zong,zzoonng@163.com"><meta name="copyright" content="Zong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Leetcode 每日一题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode 每日一题">
+<meta property="og:url" content="http://example.com/2023/03/19/24LeetcodeRecord/index.html">
+<meta property="og:site_name" content="Zong&#39;s blog">
+<meta property="og:description" content="Leetcode 每日一题">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/Leetcode/Leetcode.jpg">
+<meta property="article:published_time" content="2023-03-19T09:07:49.000Z">
+<meta property="article:modified_time" content="2023-03-19T04:33:14.832Z">
+<meta property="article:author" content="Zong">
+<meta property="article:tag" content="Zong">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/Leetcode/Leetcode.jpg"><link rel="shortcut icon" href="/img/favicon_small.png"><link rel="canonical" href="http://example.com/2023/03/19/24LeetcodeRecord/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?7fd6ea50e4716e880e05917bf7f94429";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"templates/search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":730,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":10,"languages":{"author":"Author: Zong","link":"Link: ","source":"Source: Zong's blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Leetcode 每日一题',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-19 12:33:14'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">12</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fa-solid fa-images"></i><span> Gallery</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-feather-pointed"></i><span> Projects</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Zong's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fa-solid fa-images"></i><span> Gallery</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-feather-pointed"></i><span> Projects</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Leetcode 每日一题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon fas fa-history"></i><span class="post-meta-label">Updated</span><time datetime="2023-03-19T04:33:14.832Z" title="Updated 2023-03-19 12:33:14">2023-03-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C/">C++</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">3.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>10min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Leetcode 每日一题"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>虽然平时自己也都是一天一题，但是感觉做完就忘，所以准备留下一些东西，以后可以方便复习和整理。</p>
+<p>为了保证质量，将不会做简单题，如果当天是简单题，会另找一道中等或困难的题作为代替。</p>
+<h1 id="2023-3-19"><a href="#2023-3-19" class="headerlink" title="2023-3-19"></a>2023-3-19</h1><h2 id="1625-执行操作后字典序最小的字符串"><a href="#1625-执行操作后字典序最小的字符串" class="headerlink" title="1625. 执行操作后字典序最小的字符串"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/lexicographically-smallest-string-after-applying-operations/">1625. 执行操作后字典序最小的字符串</a></h2><h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">findLexSmallestString</span><span class="params">(string s, <span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="type">int</span> strSize = s.<span class="built_in">size</span>();</span><br><span class="line"></span><br><span class="line">        unordered_set&lt;string&gt; uSet;</span><br><span class="line">        uSet.<span class="built_in">insert</span>(s);</span><br><span class="line">        queue&lt;string&gt; stringQueue;</span><br><span class="line">        stringQueue.<span class="built_in">push</span>(s);</span><br><span class="line"></span><br><span class="line">        string minString = s;</span><br><span class="line"></span><br><span class="line">        string str;</span><br><span class="line">        string tempStr;</span><br><span class="line">        <span class="type">int</span> tempInt;</span><br><span class="line">        <span class="keyword">while</span>(!stringQueue.<span class="built_in">empty</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            str = stringQueue.<span class="built_in">front</span>();</span><br><span class="line"></span><br><span class="line">            tempStr = str.<span class="built_in">substr</span>(b, strSize-b) + str.<span class="built_in">substr</span>(<span class="number">0</span>, b);</span><br><span class="line">            <span class="keyword">if</span>(!uSet.<span class="built_in">count</span>(tempStr))</span><br><span class="line">            &#123;</span><br><span class="line">                uSet.<span class="built_in">insert</span>(tempStr);</span><br><span class="line">                stringQueue.<span class="built_in">push</span>(tempStr);</span><br><span class="line">                minString = <span class="built_in">min</span>(minString, tempStr);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; strSize; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(i &amp; <span class="number">1</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    str[i] = str[i] + a;</span><br><span class="line">                    <span class="keyword">if</span>(str[i] &gt; <span class="string">&#x27;9&#x27;</span>)</span><br><span class="line">                        str[i] -= <span class="number">10</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(!uSet.<span class="built_in">count</span>(str))</span><br><span class="line">            &#123;</span><br><span class="line">                uSet.<span class="built_in">insert</span>(str);</span><br><span class="line">                stringQueue.<span class="built_in">push</span>(str);</span><br><span class="line">                minString = <span class="built_in">min</span>(minString, str);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// cout&lt;&lt;tempStr&lt;&lt;endl;</span></span><br><span class="line"></span><br><span class="line">            stringQueue.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> minString; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<pre><code>执行用时：188 ms, 在所有 C++ 提交中击败了30.00%的用户
+内存消耗：74.3 MB, 在所有 C++ 提交中击败了28.00%的用户
+</code></pre>
+<p>把广搜改成了深搜（容器从 <strong>queue</strong> 变成了 <strong>stack</strong>）。</p>
+<pre><code>执行用时：180 ms, 在所有 C++ 提交中击败了30.00%的用户
+内存消耗：74.5 MB, 在所有 C++ 提交中击败了26.00%的用户
+</code></pre>
+<p>速度变快，但是内存消耗变大了。</p>
+<h3 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h3><p>感觉优化方向更多的是通过分奇偶讨论，就不在此赘述了。</p>
+<h2 id="探索"><a href="#探索" class="headerlink" title="探索"></a>探索</h2><h3 id="queue-和-stack-的底层区别"><a href="#queue-和-stack-的底层区别" class="headerlink" title="queue 和 stack 的底层区别"></a>queue 和 stack 的底层区别</h3><pre><code>底层容器的选择会影响 queue 和 stack 的性能和空间占用。queue 默认使用 deque 作为底层容器，而 stack 默认使用 deque 或 vector 作为底层容器。使用不同的底层容器会影响到 queue 和 stack 的内存占用和执行时间。
+
+deque 是一个双端队列，支持在两端高效地插入和删除元素。由于它的内存分配方式比较特殊，可以避免元素的频繁拷贝，因此在插入和删除元素时比较快，但是会占用一定的额外空间。如果使用 deque 作为底层容器，queue 和 stack 的性能表现通常比使用 vector 好，但是会占用更多的内存。
+
+vector 是一个动态数组，支持在末尾高效地插入和删除元素，但在头部插入和删除元素比较慢。由于它的内存分配方式比较简单，只需要一块连续的内存区域，因此它的空间占用比较紧凑。如果使用 vector 作为底层容器，queue 和 stack 的性能表现可能会比 deque 差一些，但是会占用更少的内存。
+</code></pre>
+<p>说实话这个 <strong>stack</strong> 底层在 <strong>vector</strong> 和 <strong>deque</strong> 中的切换，就像 <strong>mysql</strong> 底层在 <strong>vector</strong> 和 <strong>map</strong> 间的切换。</p>
+<h3 id="string-转-int"><a href="#string-转-int" class="headerlink" title="string 转 int"></a>string 转 int</h3><p>想把 <strong>string</strong> 强转成 <strong>int</strong>，结果报错了。</p>
+<pre><code>reinterpret_cast from &#39;std::string&#39; (aka &#39;basic_string&lt;char&gt;&#39;) to &#39;int&#39; is not allowed
+</code></pre>
+<p>去查了一下 <strong>string</strong> 的源码，不过就是都是用模板写的，阅读起来太麻烦了，下次再拜读吧，看了一下别人实现的 <strong>string</strong>，感觉并不是不能再加个 <strong>operator int</strong>。</p>
+<p>问了一下 <strong>chatGPT</strong>，给的答案还是很中肯的。</p>
+<pre><code>使用reinterpret_cast将std::string转换为int是不安全的，因为它涉及到类型的不同。std::string是一个类类型，而int是一个基本数据类型。reinterpret_cast运算符可以强制转换指针或引用类型到任何其他类型的指针或引用，但是如果指针或引用指向的内存没有正确对齐或者指向的数据类型与目标类型不匹配，那么可能会导致未定义行为。
+
+对于std::string类型，它的实现方式可能因编译器和库而异，因此不能保证在所有情况下使用reinterpret_cast将std::string转换为int是安全的。另外，std::string类型可能包含指向堆内存的指针，这意味着如果你尝试将std::string对象强制转换为int，那么可能会得到指针的值，而不是字符串表示的整数值。
+
+相反，C++标准库提供了std::stoi函数来将字符串转换为整数类型，它是一种更安全和可靠的方法。使用std::stoi，你可以将字符串转换为整数值，并在转换失败时抛出异常，因此你可以轻松地处理转换错误的情况。
+
+reinterpret_cast是C++中一种强制类型转换运算符，用于将一个指针或引用类型转换为另一种指针或引用类型，或将指针或引用类型转换为整数类型。它的实现原理取决于编译器和平台的具体实现，但通常会将指针或引用的值重新解释为其他类型的值，而不进行任何转换。
+
+在将指针或引用转换为整数类型时，reinterpret_cast通常将指针或引用的值视为一个无符号整数，并将其强制转换为目标类型。这种转换可能会导致未定义行为，因为它依赖于指针或引用的值的内部表示方式。如果指针或引用指向的内存没有正确对齐或者指向的数据类型与目标类型不匹配，那么将会产生未定义行为。
+
+总之，reinterpret_cast的实现原理是将指针或引用的值重新解释为其他类型的值，它的行为取决于指针或引用的值的内部表示方式，并且可能会导致未定义行为。因此，建议在使用reinterpret_cast时谨慎操作，并确保转换的类型之间存在充分的兼容性和正确性。
+</code></pre>
+<p>所以说 <strong>std::stoi</strong> 只是包装了转换算法，顺便问一下用了什么算法吧。</p>
+<p>算法复杂度是 **O(n)**，当时它说用了高效的状态机算法，这让我想起了这个学期的课《编译原理》。</p>
+<pre><code>高效的状态机算法是指一种利用状态机的概念来处理输入序列的算法。状态机是一种计算模型，它包含一个有限状态集合和一组转移函数，可以对输入序列进行解析和处理。
+
+在状态机算法中，输入序列被看作是状态机的输入，状态机根据当前的输入字符和当前状态，执行状态转移，直到达到某个终止状态为止。这种算法具有快速、高效、可扩展性强等特点，通常可以用于解析和处理大规模的文本、数据流、网络数据等。
+
+对于字符串转换为整数的问题，状态机算法可以将字符串中的每个字符看作状态机的输入字符，并根据不同的状态来处理不同的输入字符。例如，当输入字符是数字时，状态机将其解释为整数位，并根据当前状态来计算结果。当输入字符是非数字字符或字符串结束符时，状态机停止运行，并返回最终结果。
+
+在实现std::stoi函数时，使用状态机算法可以避免遍历字符串多次，从而提高了算法的效率。状态机算法的复杂度通常为O(n)，其中n是输入序列的长度，因此具有很好的性能和可扩展性。
+</code></pre>
+<p>其实我在学习状态机的时候也一直有个疑问，就是。</p>
+<pre><code>状态机的实现难道不就是switch吗，我通过for遍历字符串，对每一位进行switch操作，不也能达到一样的效果吗
+</code></pre>
+<p>说实话，一说状态机我就想到了文法和语法（目前也只学到这），目前据它的回答来看，状态机主要的优点在于可以模块化处理，方便管理。</p>
+<pre><code>实际上，状态机的实现并不一定是用 switch 语句来完成，虽然 switch 语句可以实现状态转移，但是 switch 语句的嵌套层数会随着状态数的增加而增加，从而导致代码难以阅读和维护。
+
+状态机的实现通常需要利用指针、函数指针、函数对象等技术，将状态和转移函数抽象出来，从而实现状态转移和处理。这样可以将状态机的代码模块化，易于理解和维护。
+
+在字符串转换为整数的问题中，状态机算法的实现可以使用一个状态指针和一组转移函数来完成。状态指针指向当前状态，转移函数根据当前状态和输入字符的不同，执行相应的操作，并更新状态指针。这样可以将状态转移和操作分离开来，从而实现代码的模块化和复用。
+
+使用 for 循环遍历字符串，对每一位进行 switch 操作，也可以实现字符串转换为整数的功能，但是这种实现方式会使代码变得复杂，难以阅读和维护。相比之下，使用状态机算法可以将代码模块化，易于理解和维护，从而提高代码的可读性和可维护性。
+</code></pre>
+<p>看了它给我写的代码，我大概能懂它什么意思了，不过具体的可以等之后上课再看看。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">strToInt</span><span class="params">(string str)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = str.<span class="built_in">size</span>();</span><br><span class="line">    <span class="type">int</span> sign = <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义状态转移函数</span></span><br><span class="line">    <span class="keyword">enum</span> <span class="title class_">State</span> &#123; kStart, kSign, kNumber, kEnd &#125;;</span><br><span class="line">    State state = kStart;</span><br><span class="line">    <span class="keyword">auto</span> get_state = [&amp;](<span class="type">char</span> c) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">isspace</span>(c)) <span class="keyword">return</span> kStart;</span><br><span class="line">        <span class="keyword">if</span> (c == <span class="string">&#x27;+&#x27;</span> || c == <span class="string">&#x27;-&#x27;</span>) <span class="keyword">return</span> kSign;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">isdigit</span>(c)) <span class="keyword">return</span> kNumber;</span><br><span class="line">        <span class="keyword">return</span> kEnd;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义状态转移过程</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; n &amp;&amp; state != kEnd) &#123;</span><br><span class="line">        <span class="type">char</span> c = str[i];</span><br><span class="line">        state = <span class="built_in">get_state</span>(c);</span><br><span class="line">        <span class="keyword">switch</span> (state) &#123;</span><br><span class="line">            <span class="keyword">case</span> kStart:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> kSign:</span><br><span class="line">                sign = (c == <span class="string">&#x27;-&#x27;</span>) ? <span class="number">-1</span> : <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> kNumber:</span><br><span class="line">                ans = ans * <span class="number">10</span> + (c - <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">                ans = (sign == <span class="number">1</span>) ? <span class="built_in">min</span>(ans, INT_MAX) : <span class="built_in">min</span>(ans, -(<span class="type">long</span> <span class="type">long</span>)INT_MIN);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> kEnd:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ++i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans * sign;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="将临时对象绑定至非常量左值引用"><a href="#将临时对象绑定至非常量左值引用" class="headerlink" title="将临时对象绑定至非常量左值引用"></a>将临时对象绑定至非常量左值引用</h3><p>例行报错，忘加 <strong>const</strong> 了，因为左值引用不能被改，没有 <strong>const</strong> 不安全，但是印象中还可以用 <strong>forawrd</strong> 和 <strong>move</strong> 实现（虽然我没用过），正好试试。</p>
+<p>刚刚把 <strong>move</strong> 过来的右值保存到右值引用里了，还给它存数组里了，结果又报错了。</p>
+<pre><code>右值引用本身可以保存到数组中，但需要注意的是，保存的右值引用对象必须还存在于其声明周期中。因为右值引用实际上是一个对象的别名，如果被引用的对象在其声明周期结束后被销毁了，那么对于这个右值引用的访问就是未定义的行为。
+</code></pre>
+<p>正好问问右值引用的底层原理，为什么不能改数。</p>
+<pre><code>右值引用在底层硬件上的实现原理并不是通过向寄存器取数来实现的。在 C++ 中，引用的实现基于指针，引用被编译器翻译成指针，在内部使用时，编译器会把引用替换成指向所引用对象的指针。因此，右值引用也是被编译器实现成一个指向右值的指针。在底层硬件上，它和指针的实现方式是相同的。
+
+在计算机体系结构中，寄存器是比内存更快的存储器件，但是寄存器数量有限，因此通常只有少量的变量会存储在寄存器中。对于大部分的变量和数据结构，它们通常存储在内存中。
+
+在 C++ 中，右值引用是一种语法机制，用于表示可以移动的对象，但是在底层实现中，右值引用是指针的一种形式，是用于访问对象的地址。因此，它的实现方式与指针相同，不涉及到向寄存器取数的操作。
+</code></pre>
+<p>不过说实话仔细想想，不能改数不是底层上能不能做到的问题，而是这样不安全。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:zzoonng@163.com">Zong</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://zong4.github.io">https://zong4.github.io</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="/img/Leetcode/Leetcode.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/03/19/23LearnGraphics/"><img class="prev-cover" src="/img/LANTPSGame/LANTPSGame.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">学习图形学</div></div></a></div><div class="next-post pull-right"><a href="/2023/03/19/25LeedcodeConclude/"><img class="next-cover" src="/img/Leetcode/Leetcode.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">C++ 总结</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zong</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">12</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zong4"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zong4" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:huyihan84@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://www.zhihu.com/people/shi-wang-93-56" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is Zong's Blog used to record my life. And if you have any question or want to cooperate with me, please contact with me (more details in Project). Moreover, if you have a dream and want to meet people who have same goals, please write a comment in the Dream with your contact information, I hope you can find your partners.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2023-3-19"><span class="toc-number">2.</span> <span class="toc-text">2023-3-19</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1625-%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E5%90%8E%E5%AD%97%E5%85%B8%E5%BA%8F%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.1.</span> <span class="toc-text">1625. 执行操作后字典序最小的字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3"><span class="toc-number">2.2.</span> <span class="toc-text">题解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80"><span class="toc-number">2.2.1.</span> <span class="toc-text">基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6"><span class="toc-number">2.2.2.</span> <span class="toc-text">进阶</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A2%E7%B4%A2"><span class="toc-number">2.3.</span> <span class="toc-text">探索</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#queue-%E5%92%8C-stack-%E7%9A%84%E5%BA%95%E5%B1%82%E5%8C%BA%E5%88%AB"><span class="toc-number">2.3.1.</span> <span class="toc-text">queue 和 stack 的底层区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-%E8%BD%AC-int"><span class="toc-number">2.3.2.</span> <span class="toc-text">string 转 int</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E4%B8%B4%E6%97%B6%E5%AF%B9%E8%B1%A1%E7%BB%91%E5%AE%9A%E8%87%B3%E9%9D%9E%E5%B8%B8%E9%87%8F%E5%B7%A6%E5%80%BC%E5%BC%95%E7%94%A8"><span class="toc-number">2.3.3.</span> <span class="toc-text">将临时对象绑定至非常量左值引用</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/03/19/25LeedcodeConclude/" title="C++ 总结"><img src="/img/Leetcode/Leetcode.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++ 总结"/></a><div class="content"><a class="title" href="/2023/03/19/25LeedcodeConclude/" title="C++ 总结">C++ 总结</a><time datetime="2023-03-19T11:07:49.000Z" title="Created 2023-03-19 19:07:49">2023-03-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/19/24LeetcodeRecord/" title="Leetcode 每日一题"><img src="/img/Leetcode/Leetcode.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Leetcode 每日一题"/></a><div class="content"><a class="title" href="/2023/03/19/24LeetcodeRecord/" title="Leetcode 每日一题">Leetcode 每日一题</a><time datetime="2023-03-19T09:07:49.000Z" title="Created 2023-03-19 17:07:49">2023-03-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/19/23LearnGraphics/" title="学习图形学"><img src="/img/LANTPSGame/LANTPSGame.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学习图形学"/></a><div class="content"><a class="title" href="/2023/03/19/23LearnGraphics/" title="学习图形学">学习图形学</a><time datetime="2023-03-19T07:07:49.000Z" title="Created 2023-03-19 15:07:49">2023-03-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/03/22FPSGame/" title="LAN TPS Game"><img src="/img/LANTPSGame/LANTPSGame.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LAN TPS Game"/></a><div class="content"><a class="title" href="/2022/08/03/22FPSGame/" title="LAN TPS Game">LAN TPS Game</a><time datetime="2022-08-03T07:07:49.000Z" title="Created 2022-08-03 15:07:49">2022-08-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/24/21OpenGL/" title="OpenGL"><img src="/img/OpenGL/OpenGL.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenGL"/></a><div class="content"><a class="title" href="/2022/07/24/21OpenGL/" title="OpenGL">OpenGL</a><time datetime="2022-07-23T18:52:40.000Z" title="Created 2022-07-24 02:52:40">2022-07-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By Zong</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://example.com/2023/03/19/24LeetcodeRecord/'
+    this.page.identifier = '2023/03/19/24LeetcodeRecord/'
+    this.page.title = 'Leetcode 每日一题'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+}
+
+if ('Disqus' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><div class="aplayer no-destroy" data-id="897784673" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="1" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/shuoshuo/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
