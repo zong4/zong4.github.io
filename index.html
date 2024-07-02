@@ -1,273 +1,543 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Zong's blog - Record my life</title><meta name="keywords" content="Zong"><meta name="author" content="Zong,zzoonng@163.com"><meta name="copyright" content="Zong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Zong&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="Zong&#39;s blog">
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="Zong&#39;s blog">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/img/head.jpg">
 <meta property="article:author" content="Zong">
 <meta property="article:tag" content="Zong">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/img/head.jpg"><link rel="shortcut icon" href="/img/favicon_small.png"><link rel="canonical" href="http://example.com/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?7fd6ea50e4716e880e05917bf7f94429";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: {"path":"templates/search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
-  translate: undefined,
-  noticeOutdate: {"limitDay":730,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
-  copy: {
-    success: 'Copy successfully',
-    error: 'Copy error',
-    noSupport: 'The browser does not support'
-  },
-  relativeDate: {
-    homepage: true,
-    post: true
-  },
-  runtime: 'days',
-  date_suffix: {
-    just: 'Just',
-    min: 'minutes ago',
-    hour: 'hours ago',
-    day: 'days ago',
-    month: 'months ago'
-  },
-  copyright: {"limitCount":10,"languages":{"author":"Author: Zong","link":"Link: ","source":"Source: Zong's blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
-  lightbox: 'fancybox',
-  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
-    }
-  },
-  isPhotoFigcaption: true,
-  islazyload: false,
-  isAnchor: true
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'Zong\'s blog',
-  isPost: false,
-  isHome: true,
-  isHighlightShrink: false,
-  isToc: false,
-  postUpdate: '2024-07-02 23:05:22'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
   
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
+    <link rel="alternate" href="/atom.xml" title="Zong's blog" type="application/atom+xml">
   
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
     
-          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
-          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
-          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
 
-          if (t === undefined) {
-            if (isLightMode) activateLightMode()
-            else if (isDarkMode) activateDarkMode()
-            else if (isNotSpecified || hasNoSupport) {
-              const now = new Date()
-              const hour = now.getHours()
-              const isNight = hour <= 6 || hour >= 18
-              isNight ? activateDarkMode() : activateLightMode()
-            }
-            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
-              if (saveToLocal.get('theme') === undefined) {
-                e.matches ? activateDarkMode() : activateLightMode()
-              }
-            })
-          } else if (t === 'light') activateLightMode()
-          else activateDarkMode()
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zong&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Record my life</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/records/"><i class="fa-fw fas fa-book"></i><span> Records</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-feather-pointed"></i><span> Projects</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/1.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Zong's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/records/"><i class="fa-fw fas fa-book"></i><span> Records</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-feather-pointed"></i><span> Projects</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Zong's blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/zong4" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:huyihan84@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://www.zhihu.com/people/shi-wang-93-56" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2024/02/18/38%E6%B8%B8%E6%88%8F%E7%81%B5%E6%84%9F/" title="游戏灵感"><img class="post_bg" src="/img/38%E6%B8%B8%E6%88%8F%E7%81%B5%E6%84%9F/22.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="游戏灵感"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/02/18/38%E6%B8%B8%E6%88%8F%E7%81%B5%E6%84%9F/" title="游戏灵感">游戏灵感</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-02-18T12:40:14.448Z" title="Created 2024-02-18 20:40:14">2024-02-18</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-07-02T11:59:33.465Z" title="Updated 2024-07-02 19:59:33">2024-07-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F/">游戏</a></span></div><div class="content">游戏灵感</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/06/17/37C++%E5%9B%BE%E5%BD%A2%E7%AE%97%E6%B3%95%E5%BA%95%E5%B1%82%E6%A1%86%E6%9E%B6/" title="C++ 图形算法底层框架"><img class="post_bg" src="/img/37C++%E5%9B%BE%E5%BD%A2%E7%AE%97%E6%B3%95%E5%BA%95%E5%B1%82%E6%A1%86%E6%9E%B6/22.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++ 图形算法底层框架"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/06/17/37C++%E5%9B%BE%E5%BD%A2%E7%AE%97%E6%B3%95%E5%BA%95%E5%B1%82%E6%A1%86%E6%9E%B6/" title="C++ 图形算法底层框架">C++ 图形算法底层框架</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-06-17T01:44:54.157Z" title="Created 2023-06-17 09:44:54">2023-06-17</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-07-09T02:22:12.121Z" title="Updated 2023-07-09 10:22:12">2023-07-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/">C++</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C/%E5%85%A8%E5%B9%B3%E5%8F%B0/">全平台</a></span></div><div class="content">C++ 图形算法底层框架</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/06/12/35%E6%89%AB%E6%8F%8F%E7%BA%BF%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/" title="扫描线算法研究报告"><img class="post_bg" src="/img/35%E6%89%AB%E6%8F%8F%E7%BA%BF%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/head.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="扫描线算法研究报告"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/06/12/35%E6%89%AB%E6%8F%8F%E7%BA%BF%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/" title="扫描线算法研究报告">扫描线算法研究报告</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-06-12T12:46:51.413Z" title="Created 2023-06-12 20:46:51">2023-06-12</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-07-09T02:11:08.745Z" title="Updated 2023-07-09 10:11:08">2023-07-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/">C++</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C/%E5%B8%83%E5%B0%94%E8%BF%90%E7%AE%97/">布尔运算</a></span></div><div class="content">扫描线算法研究报告</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/06/11/34C++%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BC%96%E7%A8%8B/" title="C++ 可视化编程"><img class="post_bg" src="/img/34C++%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BC%96%E7%A8%8B/qt.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++ 可视化编程"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/06/11/34C++%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BC%96%E7%A8%8B/" title="C++ 可视化编程">C++ 可视化编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-06-11T01:25:29.401Z" title="Created 2023-06-11 09:25:29">2023-06-11</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-07-02T11:19:34.449Z" title="Updated 2024-07-02 19:19:34">2024-07-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/C/">C++</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C/Qt/">Qt</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/C/Qt/Widgets/">Widgets</a></span></div><div class="content">C++ 可视化编程</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/01/07/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/" title="研究像素画"><img class="post_bg" src="/img/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/EditPicture.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="研究像素画"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/01/07/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/" title="研究像素画">研究像素画</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-01-06T16:49:19.062Z" title="Created 2023-01-07 00:49:19">2023-01-07</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-07-02T11:18:56.603Z" title="Updated 2024-07-02 19:18:56">2024-07-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%94%BB/">画</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E7%94%BB/%E5%83%8F%E7%B4%A0/">像素</a></span></div><div class="content">研究像素画</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zong</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zong4"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zong4" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:huyihan84@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://www.zhihu.com/people/shi-wang-93-56" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is Zong's Blog used to record my life. And if you have any question or want to cooperate with me, please contact with me (more details in Project). Moreover, if you have a dream and want to meet people who have same goals, please write a comment in the Dream with your contact information, I hope you can find your partners.</div></div><div class="sticky_layout"><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">5</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2021-08-25T16:00:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">2.5k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-07-02T15:05:22.506Z"></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/1.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2024 By Zong</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
-  endLoading: () => {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loading-box').classList.add("loaded")
-  },
-  initLoading: () => {
-    document.body.style.overflow = '';
-    document.getElementById('loading-box').classList.remove("loaded")
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
 
-  }
-}
-window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function subtitleType () {
-  if (true) { 
-    window.typed = new Typed("#subtitle", {
-      strings: ["Do what you want&#44; learn what you like.","If not now&#44; when? If not me&#44; who?"],
-      startDelay: 300,
-      typeSpeed: 150,
-      loop: true,
-      backSpeed: 50
-    })
-  } else {
-    document.getElementById("subtitle").innerHTML = 'Do what you want&#44; learn what you like.'
-  }
-}
-
-if (true) {
-  if (typeof Typed === 'function') {
-    subtitleType()
-  } else {
-    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
-  }
-} else {
-  subtitleType()
-}</script></div><div class="aplayer no-destroy" data-id="897784673" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="1" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
-POWERMODE.shake = false;
-POWERMODE.mobile = false;
-document.body.addEventListener('input', POWERMODE);
-</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
-
-var pjax = new Pjax({
-  elements: 'a:not([target="_blank"]):not([href="/shuoshuo/"])',
-  selectors: pjaxSelectors,
-  cacheBust: false,
-  analytics: false,
-  scrollRestoration: false
-})
-
-document.addEventListener('pjax:send', function () {
-
-  // removeEventListener scroll 
-  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
-  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
-
-  typeof preloader === 'object' && preloader.initLoading()
-  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+      <div class="outer">
+        <section id="main">
   
-  if (window.aplayers) {
-    for (let i = 0; i < window.aplayers.length; i++) {
-      if (!window.aplayers[i].options.fixed) {
-        window.aplayers[i].destroy()
-      }
-    }
-  }
+    <article id="post-38游戏灵感" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/18/38%E6%B8%B8%E6%88%8F%E7%81%B5%E6%84%9F/" class="article-date">
+  <time class="dt-published" datetime="2024-02-18T12:40:14.448Z" itemprop="datePublished">2024-02-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%B8%B8%E6%88%8F/">游戏</a>
+  </div>
 
-  typeof typed === 'object' && typed.destroy()
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/18/38%E6%B8%B8%E6%88%8F%E7%81%B5%E6%84%9F/">游戏灵感</a>
+    </h1>
+  
 
-  //reset readmode
-  const $bodyClassList = document.body.classList
-  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="细胞进化"><a href="#细胞进化" class="headerlink" title="细胞进化"></a>细胞进化</h1><h2 id="类以撒"><a href="#类以撒" class="headerlink" title="类以撒"></a>类以撒</h2><h3 id="背景故事"><a href="#背景故事" class="headerlink" title="背景故事"></a>背景故事</h3><p>大灭绝。</p>
+<h3 id="多人物多结局"><a href="#多人物多结局" class="headerlink" title="多人物多结局"></a>多人物多结局</h3><h3 id="多道具"><a href="#多道具" class="headerlink" title="多道具"></a>多道具</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/18/38%E6%B8%B8%E6%88%8F%E7%81%B5%E6%84%9F/" data-id="cly4ioxet00054kcm0udw3ipg" data-title="游戏灵感" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
 
-})
 
-document.addEventListener('pjax:complete', function () {
-  window.refreshFn()
 
-  document.querySelectorAll('script[data-pjax]').forEach(item => {
-    const newScript = document.createElement('script')
-    const content = item.text || item.textContent || item.innerHTML || ""
-    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
-    newScript.appendChild(document.createTextNode(content))
-    item.parentNode.replaceChild(newScript, item)
-  })
+  
+    <article id="post-37C++图形算法底层框架" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/06/17/37C++%E5%9B%BE%E5%BD%A2%E7%AE%97%E6%B3%95%E5%BA%95%E5%B1%82%E6%A1%86%E6%9E%B6/" class="article-date">
+  <time class="dt-published" datetime="2023-06-17T01:44:54.157Z" itemprop="datePublished">2023-06-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C++</a>►<a class="article-category-link" href="/categories/C/%E5%85%A8%E5%B9%B3%E5%8F%B0/">全平台</a>
+  </div>
 
-  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/06/17/37C++%E5%9B%BE%E5%BD%A2%E7%AE%97%E6%B3%95%E5%BA%95%E5%B1%82%E6%A1%86%E6%9E%B6/">C++ 图形算法底层框架</a>
+    </h1>
+  
 
-  typeof chatBtnFn === 'function' && chatBtnFn()
-  typeof panguInit === 'function' && panguInit()
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>为了提高<a target="_blank" rel="noopener" href="http://zong4.github.io/2023/06/12/35%E6%89%AB%E6%8F%8F%E7%BA%BF%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/">算法</a>性能，所以决定自己写个底层图形框架。</p>
+<h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><ul>
+<li>项目构建：XMake。</li>
+<li>版本控制：Github。</li>
+<li>文档生成：Doxygen。</li>
+</ul>
+<h2 id="XMake-需知"><a href="#XMake-需知" class="headerlink" title="XMake 需知"></a>XMake 需知</h2><h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">xmake config -m debug # 设置 debug 模式</span><br><span class="line"></span><br><span class="line">xmake f --debugger=gdb # 在 linux 下设置 gdb 做为调试器</span><br><span class="line"></span><br><span class="line">xmake build</span><br><span class="line"></span><br><span class="line">xmake run</span><br><span class="line"></span><br><span class="line">xmake project -k vsxmake -a x64 # 生成 Visual Studio 项目文件，直接用 Visual Studio 打开的项目依赖是有问题的（切记）</span><br><span class="line"></span><br><span class="line">xmake install -P . -o install # 构建项目，生成 .exe</span><br></pre></td></tr></table></figure>
 
-  // google analytics
-  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+<h3 id="常用脚本"><a href="#常用脚本" class="headerlink" title="常用脚本"></a>常用脚本</h3><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 添加包，被下载到 AppData/Local 里了</span></span><br><span class="line"><span class="comment">-- 官方相关文档：https://xmake.io/#/package/remote_package，官方远程包库地址：https://github.com/xmake-io/xmake-repo/tree/master/packages</span></span><br><span class="line">add_requires(<span class="string">&quot;spdlog 1.11.0&quot;</span>) </span><br></pre></td></tr></table></figure>
 
-  // baidu analytics
-  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+<h2 id="Doxygen-需知"><a href="#Doxygen-需知" class="headerlink" title="Doxygen 需知"></a>Doxygen 需知</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lipenghui0804/article/details/112005439">Doxygen C&#x2F;C++代码注释格式</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014213012/article/details/123064358">Doxygen 生成类图</a>。</p>
+<h1 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h1><p>直接看 Doxygen 生成的文档吧。</p>
+<p>求交的部分可以看<a target="_blank" rel="noopener" href="https://github.com/zong4/Cpp_Character/tree/main/structure/geometry_intersection">这里</a>。</p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><h3 id="1-Point-and-Vector"><a href="#1-Point-and-Vector" class="headerlink" title="1. Point and Vector"></a>1. Point and Vector</h3><p>Vector 作为辅助结构，不应该引用 Point.h，不然会造成结构的混乱。</p>
+<h3 id="2-template"><a href="#2-template" class="headerlink" title="2. template"></a>2. template</h3><p>虽然很想都写成模板，屏蔽 value_type 层，但有点难做到，所以暂时不考虑。</p>
 
-  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/06/17/37C++%E5%9B%BE%E5%BD%A2%E7%AE%97%E6%B3%95%E5%BA%95%E5%B1%82%E6%A1%86%E6%9E%B6/" data-id="cly4ioxev00084kcmg70x3r1k" data-title="C++ 图形算法底层框架" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
 
-  // prismjs
-  typeof Prism === 'object' && Prism.highlightAll()
 
-  typeof preloader === 'object' && preloader.endLoading()
-})
 
-document.addEventListener('pjax:error', (e) => {
-  if (e.request.status === 404) {
-    pjax.loadUrl('/404.html')
-  }
-})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+  
+    <article id="post-35扫描线算法研究报告" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/06/12/35%E6%89%AB%E6%8F%8F%E7%BA%BF%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/" class="article-date">
+  <time class="dt-published" datetime="2023-06-12T12:46:51.413Z" itemprop="datePublished">2023-06-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C++</a>►<a class="article-category-link" href="/categories/C/%E5%B8%83%E5%B0%94%E8%BF%90%E7%AE%97/">布尔运算</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/06/12/35%E6%89%AB%E6%8F%8F%E7%BA%BF%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/">扫描线算法研究报告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Bentley-Ottmann-扫描线法"><a href="#Bentley-Ottmann-扫描线法" class="headerlink" title="Bentley Ottmann 扫描线法"></a>Bentley Ottmann 扫描线法</h1><p>比较传统的老办法，只能求交不能布尔。</p>
+<p>目前最好的文章是<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45716328/article/details/126405650?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-126405650-blog-129640718.235%5Ev36%5Epc_relevant_default_base&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-126405650-blog-129640718.235%5Ev36%5Epc_relevant_default_base&utm_relevant_index=2">这篇</a>。</p>
+<p>建议先依据该算法把扫描线的结构搭出来。</p>
+<h1 id="Martinez-扫描线法"><a href="#Martinez-扫描线法" class="headerlink" title="Martinez 扫描线法"></a>Martinez 扫描线法</h1><p><a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S0965997813000379?via=ihub">相关论文</a>。</p>
+<p>还可以看一下 Boost::polygon 的源码，虽然我没看完，但是感觉用的就是 Martinez 扫描线法（流程很相似），而且它论文上也说它用的是扫描线。</p>
+<p>还在网上找到<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/544058724">唯一一篇讲解 Martinez 扫描线法的中文文章</a>。</p>
+<h2 id="求交"><a href="#求交" class="headerlink" title="求交"></a>求交</h2><p>求交不需要考虑特殊情况，唯有一些需要人为调控的精度误差，具体思路在论文中已经介绍的很详细了，就不赘述了。</p>
+<ol>
+<li>按照 Bentley Ottmann 扫描线法的逻辑将所有点事件加入优先队列中，并依次处理；</li>
+</ol>
+<blockquote>
+<p>点事件排序时，对于坐标值相同的节点事件，应把终点放在起点前面，其次如果都是起点再继续比较另一个端点（终点）的纵坐标（优先）和横坐标。</p>
+</blockquote>
+<ol start="2">
+<li>如果存在线段相交，应将其裁剪并将新的点事件加入优先队列，同时根据布尔规则选取有效线段加入集合中。</li>
+</ol>
+<h2 id="布尔"><a href="#布尔" class="headerlink" title="布尔"></a>布尔</h2><p>因为最近在忙别的任务，暂时只研究了一些。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a><a target="_blank" rel="noopener" href="https://github.com/zong4/Geometry_Structure">代码</a></h2><p><a target="_blank" rel="noopener" href="https://zong4.github.io/2023/06/17/37C++%E5%9B%BE%E5%BD%A2%E7%AE%97%E6%B3%95%E5%BA%95%E5%B1%82%E6%A1%86%E6%9E%B6/">代码讲解</a>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/06/12/35%E6%89%AB%E6%8F%8F%E7%BA%BF%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/" data-id="cly4ioxf300124kcm4yare1bj" data-title="扫描线算法研究报告" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-34C++可视化编程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/06/11/34C++%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2023-06-11T01:25:29.401Z" itemprop="datePublished">2023-06-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C++</a>►<a class="article-category-link" href="/categories/C/Qt/">Qt</a>►<a class="article-category-link" href="/categories/C/Qt/Widgets/">Widgets</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/06/11/34C++%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BC%96%E7%A8%8B/">C++ 可视化编程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="C-可视化编程"><a href="#C-可视化编程" class="headerlink" title="C++ 可视化编程"></a>C++ 可视化编程</h1><p>最近因为要 Debug 一个很复杂的图形操作，所以决定用 Qt 写一些接口进行可视化调试。</p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>选择使用 Qt::Widgets 开发，相比 Qt:QML 更成熟，相比 Qt::Gui 集成化程度更高。</p>
+<p>先用 Qt 创建项目，再在 VS 里编辑需要改成用 Qt 的 MingW 编译以及在 CMakeLists.txt 中设置 CMAKE_PREFIX_PATH。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set(CMAKE_PREFIX_PATH $ENV&#123;QT_DIR&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="类规范"><a href="#类规范" class="headerlink" title="类规范"></a>类规范</h2><ol>
+<li>类名加 Z；</li>
+<li>类成员变量 _ 开头；</li>
+<li>类成员函数首字母小写；</li>
+<li>类成员变量书写顺序：尽量内存对齐；</li>
+<li>类成员函数书写顺序，private -&gt; protected -&gt; public，构造 -&gt; 析构 -&gt; Get -&gt; Set -&gt; 重载运算符 -&gt; 其他功能，inline 的函数要尽量放前面</li>
+</ol>
+<h2 id="软件逻辑"><a href="#软件逻辑" class="headerlink" title="软件逻辑"></a>软件逻辑</h2><p>因为第一次做软件，所以还是好好梳理一下。</p>
+<p><img src="/img/34C++%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BC%96%E7%A8%8B/emptyMainWindow.jpg"></p>
+<ol>
+<li><p>一开始运行是空的，所以首先要让软件打开时默认最大化，缩小时应该默认占用 3&#x2F;4 个屏幕；</p>
+</li>
+<li><p>保存用户设置；</p>
+<p> 一直存取不了 json 文件，找了好久才发现要用绝对路径读取文件，因为那个相对路径时根据 .exe 的位置来的。</p>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ZMainWindow</span> : <span class="keyword">public</span> QMainWindow</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">bool</span> _isMaxShow;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">ZMainWindow</span>(QWidget* parent = <span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">isMaxShow</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> _isMaxShow; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">setIsMaxShow</span><span class="params">(<span class="type">bool</span> isMaxShow)</span> </span>&#123; _isMaxShow = isMaxShow; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">initialize</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<pre><code>扩展了一下 QMainWindow，不然做不到保存是否最大化的设置。
+</code></pre>
+<ol start="3">
+<li>很喜欢 Blender，所以界面也要尽量仿造；</li>
+</ol>
+<p><img src="/img/34C++%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BC%96%E7%A8%8B/blender.jpg"></p>
+<pre><code>除了最上面一排是固定的，剩下的都是 docker。
+
+说实话 Qt 的 QDockWidget有点过于垃圾了，干脆不用 Dock 了，以后用 Vulkun 重写。
+</code></pre>
+<p><img src="/img/34C++%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BC%96%E7%A8%8B/dock.jpg"></p>
+<ol start="4">
+<li><p>所有的图形应该共用一只画笔；</p>
+<p> 共用一支画笔需要在 MainWindow 里初始化静态函数，再在 GraphicsItem 里设置 Pen，最后在 paint() 里复制 pen，不知道这样性能怎么样。</p>
+</li>
+<li><p>在外部操作画图形；</p>
+<p> 基本上前面搞定，后面就是水到渠成了。</p>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取场景</span></span><br><span class="line">QGraphicsScene* scene = (mainWindow.<span class="built_in">views</span>()[mainWindow.<span class="built_in">currentViewindex</span>()])-&gt;<span class="built_in">scene</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加图形</span></span><br><span class="line">&#123;</span><br><span class="line">    ZGraphicsPathItem* item = <span class="keyword">new</span> <span class="built_in">ZGraphicsPathItem</span>();</span><br><span class="line">    item-&gt;<span class="built_in">setPen</span>(*mainWindow.<span class="built_in">pen</span>());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 需要注意坐标轴方向不一致，可能需要调整数据</span></span><br><span class="line">    item-&gt;<span class="built_in">addStartPoint</span>(<span class="built_in">QPointF</span>(<span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">    item-&gt;<span class="built_in">addLineSegment</span>(<span class="built_in">QPointF</span>(<span class="number">100</span>, <span class="number">100</span>));</span><br><span class="line">    item-&gt;<span class="built_in">addCubicCurve</span>(<span class="built_in">QPointF</span>(<span class="number">125</span>, <span class="number">125</span>), <span class="built_in">QPointF</span>(<span class="number">175</span>, <span class="number">125</span>), <span class="built_in">QPointF</span>(<span class="number">200</span>, <span class="number">100</span>));</span><br><span class="line"></span><br><span class="line">    scene-&gt;<span class="built_in">addItem</span>(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>如果想用按钮控制，著需要引入槽即可。
+</code></pre>
+<ol start="6">
+<li><p>画布拖拽；</p>
+<p> 一直没找到方法，懒得做了。</p>
+</li>
+<li><p>动态的画图形。</p>
+<p> 没想到什么好办法，应该要用多线程来做。</p>
+</li>
+</ol>
+<h2 id="项目框架"><a href="#项目框架" class="headerlink" title="项目框架"></a>项目框架</h2><p><img src="/img/34C++%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BC%96%E7%A8%8B/projectStructure.jpg"></p>
+<h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a><a target="_blank" rel="noopener" href="https://github.com/zong4/CPP_Visualization">项目地址</a></h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/06/11/34C++%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BC%96%E7%A8%8B/" data-id="cly4ioxeo00014kcm3ln56zy7" data-title="C++ 可视化编程" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-17研究像素画" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/01/07/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/" class="article-date">
+  <time class="dt-published" datetime="2023-01-06T16:49:19.062Z" itemprop="datePublished">2023-01-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%94%BB/">画</a>►<a class="article-category-link" href="/categories/%E7%94%BB/%E5%83%8F%E7%B4%A0/">像素</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/01/07/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/">研究像素画</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="画像素画"><a href="#画像素画" class="headerlink" title="画像素画"></a>画像素画</h1><h2 id="观察"><a href="#观察" class="headerlink" title="观察"></a>观察</h2><p>先看了会大佬的<a target="_blank" rel="noopener" href="https://dotown.maeda-design-room.net/">像素作品（32*32）</a>，感觉像素画主要就是把关键特征保留下来。</p>
+<h2 id="动手"><a href="#动手" class="headerlink" title="动手"></a>动手</h2><p>看了个<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1r7411Z7rT?spm_id_from=333.880.my_history.page.click">b站的视频</a>，感觉还不错，决定自己也动手临摹一下。</p>
+<p>找了张图。</p>
+<p><img src="/img/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/PixelPicture.jpg"></p>
+<p><img src="/img/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/Mine.png" alt="我临摹的"></p>
+<p>虽然很不甘心，但是我的美术功底好像确实也就到此为止了，实在是太丑了！</p>
+<h1 id="图片像素化"><a href="#图片像素化" class="headerlink" title="图片像素化"></a>图片像素化</h1><p>既然我自己画不行，那就只能让电脑来画了。</p>
+<h2 id="纯算法"><a href="#纯算法" class="headerlink" title="纯算法"></a>纯算法</h2><p>个人还是喜欢用纯算法的方式解决问题（可解释性强）。</p>
+<h3 id="改进图像缩放"><a href="#改进图像缩放" class="headerlink" title="改进图像缩放"></a>改进图像缩放</h3><p>从本质上来说，图像缩放就是去除冗余像素的过程，但是却无法生成一幅赏心悦目的像素画。</p>
+<p>其根本原因在于没有突出重要部位的颜色（色差不明显），而是一味的使用均值平滑缩放。</p>
+<p>因此，可以先按照缩放比例，将原图像分块，再剔除块内的偏离值，最后取平均值映射到新图像的相应位置。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Every channel</span></span><br><span class="line"><span class="keyword">for</span> page <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, channel):</span><br><span class="line">    mean = np.mean(block[:, :, page])</span><br><span class="line">    std = np.std(block[:, :, page])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 剔除2σ异常值</span></span><br><span class="line">    numMaxEdge = mean + <span class="number">1</span> * std</span><br><span class="line">    numMinEdge = mean - <span class="number">1</span> * std</span><br><span class="line">    usefulNum = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> blockRow <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, pixelBlockHeight):</span><br><span class="line">        <span class="keyword">for</span> blockCol <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, pixelBlockWidth):</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 如果在范围内，加入有效值数组内</span></span><br><span class="line">            <span class="keyword">if</span> (block[blockRow, blockCol, page] &lt;= numMaxEdge) <span class="keyword">and</span> (block[blockRow, blockCol, page] &gt;= numMinEdge):</span><br><span class="line">                usefulNum.append(block[blockRow, blockCol, page])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># print(len(usefulNum))</span></span><br><span class="line">    config<span class="number">.17</span>研究像素画[blockNumRow, blockNumCol, page] = np.mean(usefulNum)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/Shrink2.jpg" alt="偏移量为2σ"></p>
+<p><img src="/img/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/Shrink1.png" alt="偏移量为1σ"></p>
+<p>感觉还是缺了点味道，像素画的魅力还是在于强烈的色差（尽量少的颜色）。</p>
+<h3 id="Kmeans"><a href="#Kmeans" class="headerlink" title="Kmeans"></a>Kmeans</h3><p>考虑到像素化的诞生应该是先选色，于是准备用 <strong>Kmeans</strong> 聚类算法先将要用的颜色挑出来。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 构造聚类器（基本都缺省）</span></span><br><span class="line">estimator = KMeans(config.keamsNum, init=<span class="string">&#x27;k-means++&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/ColorSegmentation.png" alt="色卡"></p>
+<p>效果其实并不理想，因为这张图像的眼睛和头发的颜色很相近，因此如果不能将眼睛单独识别成一个颜色，那生成的图像必然是不合格的。</p>
+<p>但是除非用 <strong>AI</strong> 识别脸部寻找眼睛，或者用脸部定义眼睛，不然几乎没有办法能单独分辨眼睛。</p>
+<p>看似陷入了僵局，但其实还有两种办法。</p>
+<ol>
+<li>让用户自己取色，数量不限。</li>
+<li>改进 <strong>Kmeans</strong> 算法，增加边缘算子，如果不在同一区域内，则大幅提高像素的色距，从而避免将其分为一类。</li>
+</ol>
+<h3 id="自主取色"><a href="#自主取色" class="headerlink" title="自主取色"></a>自主取色</h3><p>自主取色（不限数量），然后给每个像素判断离哪个颜色近，就用哪个替代（以下取色均为 <strong>8</strong> 种）。</p>
+<p><img src="/img/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/SelectColorBGR512.png" alt="BGR"></p>
+<p>由于 <strong>Opencv</strong> 默认是 <strong>BGR</strong>，不小心把 <strong>RGB</strong> 输进去了，所以色卡翻转了，不过意外的挺好看。</p>
+<p>再通过之前改进的图像缩放，即可实现如下效果。</p>
+<p><img src="/img/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/SelectColorBGR64.png" alt="BGR64"></p>
+<p><img src="/img/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/SelectColorRGB512.png" alt="RGB"></p>
+<p><img src="/img/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/SelectColorRGB64.png" alt="RGB64"></p>
+<p><img src="/img/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/SelectColorRGBColorCard.png" alt="RGB色卡"></p>
+<p><img src="/img/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/SelectColorRGB64Max.png" alt="缩放时采用最大池化"></p>
+<p>感觉和之前的平均池化差别并不是很明显，主要原因也是因为 <strong>64*64</strong> 太小了，不过这样可以保证选的颜色就是最终的颜色，不会被弱化掉。</p>
+<h3 id="改进-Kmeans"><a href="#改进-Kmeans" class="headerlink" title="改进 Kmeans"></a>改进 Kmeans</h3><h4 id="自定义初始点"><a href="#自定义初始点" class="headerlink" title="自定义初始点"></a>自定义初始点</h4><p>想想其实也可能基于自定义的初始点去执行聚类算法。</p>
+<p><img src="/img/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/KmeansOwnerPoint.png" alt="色卡"></p>
+<p>基于上述选用的八色进行聚类，得到如上的色卡，基本上与之前的色卡差别不大。</p>
+<h4 id="增加边缘距离"><a href="#增加边缘距离" class="headerlink" title="增加边缘距离"></a>增加边缘距离</h4><p>试了用 <strong>Sobel</strong> 算子进行边缘检测。</p>
+<p><img src="/img/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/SobelProcess.png" alt="Sobel算子"></p>
+<p>其实从这张图像中能看出不少的问题：</p>
+<ol>
+<li>有些边缘会由于不明显而被隐去</li>
+<li>有些地方有边缘但其实属于同一区域</li>
+<li>边缘的权值</li>
+<li>如何判断两点间是否连通（无边缘）</li>
+</ol>
+<p>其实给 <strong>Kmeans</strong> 增加边缘距离的辅助判断，本质上是从一维距离到二维距离的升维（色彩空间与距离空间），目前并没有合适的思路去配比权值。</p>
+<p>如果以后能找到相关论文再继续探索下去。</p>
+<h5 id="lt-2022-6-4-gt-多空间模式聚类"><a href="#lt-2022-6-4-gt-多空间模式聚类" class="headerlink" title="&lt;2022.6.4&gt; 多空间模式聚类"></a>&lt;2022.6.4&gt; 多空间模式聚类</h5><p>找了找相关论文，没什么太多的收获。个人感觉，如果单纯的用色彩欧几里得距离与空间欧几里得距离混合聚类的效果不会特别好。</p>
+<p>因为其本质是为了分离那些虽然是同一个颜色，但其实不是一个物体的东西（比如头发和衣服）。</p>
+<p>说到底，还是要加强边缘距离，但是又很难保证不同的图像被同一算子锐化后的特征大致相似（得先理解各个锐化算子的本质与区别）。</p>
+<h2 id="AI"><a href="#AI" class="headerlink" title="AI"></a>AI</h2><p>找到了一个利用 AI 将图片像素化的网站 <a target="_blank" rel="noopener" href="https://pixel-me.tokyo/en/">Pixelme</a> 。</p>
+<p><img src="/img/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/Pixelme.png" alt="Pixelme网站生成的"></p>
+<p>效果还是很不错的，不过由于他会自动裁切出人物所在区域以及会剔除背景，所以可能还需要后期自己微调一下。</p>
+<h1 id="修改像素化图像"><a href="#修改像素化图像" class="headerlink" title="修改像素化图像"></a>修改像素化图像</h1><p>把像素化后的图像导入 <strong>Aseprite</strong> 后即可自主编辑。</p>
+<p><img src="/img/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/EditPicture.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/01/07/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/" data-id="cly4ioxes00034kcma63e6cei" data-title="研究像素画" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/C/Qt/">Qt</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/C/Qt/Widgets/">Widgets</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/%E5%85%A8%E5%B9%B3%E5%8F%B0/">全平台</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/%E5%B8%83%E5%B0%94%E8%BF%90%E7%AE%97/">布尔运算</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B8%B8%E6%88%8F/">游戏</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%BB/">画</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%BB/%E5%83%8F%E7%B4%A0/">像素</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/18/38%E6%B8%B8%E6%88%8F%E7%81%B5%E6%84%9F/">游戏灵感</a>
+          </li>
+        
+          <li>
+            <a href="/2023/06/17/37C++%E5%9B%BE%E5%BD%A2%E7%AE%97%E6%B3%95%E5%BA%95%E5%B1%82%E6%A1%86%E6%9E%B6/">C++ 图形算法底层框架</a>
+          </li>
+        
+          <li>
+            <a href="/2023/06/12/35%E6%89%AB%E6%8F%8F%E7%BA%BF%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/">扫描线算法研究报告</a>
+          </li>
+        
+          <li>
+            <a href="/2023/06/11/34C++%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BC%96%E7%A8%8B/">C++ 可视化编程</a>
+          </li>
+        
+          <li>
+            <a href="/2023/01/07/17%E7%A0%94%E7%A9%B6%E5%83%8F%E7%B4%A0%E7%94%BB/">研究像素画</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 Zong<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
