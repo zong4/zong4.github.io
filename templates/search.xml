@@ -4,6 +4,63 @@
   
     
     <entry>
+      <title>Blender学习笔记</title>
+      <link href="/2024/11/18/15Blender/"/>
+      <url>/2024/11/18/15Blender/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>总所周知，美术是独立游戏很重要的一块，可以不好，但是不能没有，所以就开始学Blender啦。</p><p>然后油管上有个视频展示了一下他学了一周Blender的成果，看着还不错 <a href="https://www.youtube.com/watch?v=OrmKzaeoL2c%EF%BC%8C%E6%89%80%E4%BB%A5%E6%88%91%E4%B9%9F%E6%89%93%E7%AE%97%E5%85%88%E5%8A%AA%E5%8A%9B%E5%AD%A6%E4%B9%A0%E4%B8%80%E5%91%A8%EF%BC%8C%E8%87%B3%E5%B0%91%E5%BE%97%E5%81%9A%E5%88%B0%E5%8F%AF%E4%BB%A5%E8%87%AA%E5%B7%B1%E5%88%B6%E4%BD%9C%E6%83%B3%E8%A6%81%E7%9A%84%E5%9C%BA%E6%99%AF%E3%80%82">https://www.youtube.com/watch?v=OrmKzaeoL2c，所以我也打算先努力学习一周，至少得做到可以自己制作想要的场景。</a></p><h1 id="Day1-amp-Day2"><a href="#Day1-amp-Day2" class="headerlink" title="Day1 &amp; Day2"></a>Day1 &amp; Day2</h1><p>找了油管比较火的教程来看 <a href="https://www.youtube.com/watch?v=B0J27sf9N1Y%EF%BC%8C%E5%85%88%E5%81%9A%E4%B8%AA%E7%94%9C%E7%94%9C%E5%9C%88%EF%BC%8C%E7%86%9F%E6%82%89%E4%B8%80%E4%B8%8BBlender%E3%80%82">https://www.youtube.com/watch?v=B0J27sf9N1Y，先做个甜甜圈，熟悉一下Blender。</a></p><h2 id="Part1"><a href="#Part1" class="headerlink" title="Part1"></a>Part1</h2><p>Follow the part1, I make some caps&#x2F;hats for the monkey.</p><p><img src="/img/15Blender/PartyMonkey.png"></p><p><img src="/img/15Blender/AnotherMonkey.png"></p><h2 id="Part2-amp-Part3-Modelling"><a href="#Part2-amp-Part3-Modelling" class="headerlink" title="Part2 &amp; Part3: Modelling"></a>Part2 &amp; Part3: Modelling</h2><p>Before it, I try to place three simple torus, it is pretty interesting.</p><p><img src="/img/15Blender/ThreeTorus.png"></p><p>However, we should make our models a little strange, not prefect, or they are always fake.</p><h2 id="Part4-Sculpting"><a href="#Part4-Sculpting" class="headerlink" title="Part4: Sculpting"></a>Part4: Sculpting</h2><p>That is so interesting, sclupting, I want to do more about that next week.</p><h2 id="Part5-Shadering"><a href="#Part5-Shadering" class="headerlink" title="Part5: Shadering"></a>Part5: Shadering</h2><h2 id="Part6-amp-Part7-Geometry-Nodes"><a href="#Part6-amp-Part7-Geometry-Nodes" class="headerlink" title="Part6 &amp; Part7: Geometry Nodes"></a>Part6 &amp; Part7: Geometry Nodes</h2><p>挺有意思的，应该就是指渲染管线里的Geometry Shader，今天就先做到这样吧。</p><p><img src="/img/15Blender/Donuts.png"></p><h2 id="Part9-Layout"><a href="#Part9-Layout" class="headerlink" title="Part9: Layout"></a>Part9: Layout</h2><h2 id="Part10-Lighting"><a href="#Part10-Lighting" class="headerlink" title="Part10: Lighting"></a>Part10: Lighting</h2><p>还可以，学Blender主要目的也不是自己建模，重心还是在学习Blender的操作，可以基于现有模型修改出新模型和搭建想要的场景就行，最多人物要自己建，剩下的一般都网上找就行了。</p><p>目前就先这样的效果，盘子有点懒，等会再做。</p><p><img src="/img/15Blender/DonutsLight.png"></p><h2 id="Part11-Compositing"><a href="#Part11-Compositing" class="headerlink" title="Part11: Compositing"></a>Part11: Compositing</h2><p>有点类似于后期调色。</p><h2 id="Part12-Animation"><a href="#Part12-Animation" class="headerlink" title="Part12: Animation"></a>Part12: Animation</h2><h2 id="Part8-amp-Part13-Rendering"><a href="#Part8-amp-Part13-Rendering" class="headerlink" title="Part8 &amp; Part13: Rendering"></a>Part8 &amp; Part13: Rendering</h2><p>有很多检查要做，具体的话我觉得可以以后再看视频 <a href="https://www.youtube.com/watch?v=fSfFkh2sI4k&amp;list=PLjEaoINr3zgEPv5y--4MKpciLaoQYZB1Z&amp;index=14%E3%80%82">https://www.youtube.com/watch?v=fSfFkh2sI4k&amp;list=PLjEaoINr3zgEPv5y--4MKpciLaoQYZB1Z&amp;index=14。</a></p><ul><li>检查法线</li><li>开启运动模糊</li><li>……</li></ul><p>不过简单来说，可以渲染第一帧，中间帧，最后一帧，加上预览的动画，基本能解决大部分的问题了。</p><h2 id="Part14-Finale"><a href="#Part14-Finale" class="headerlink" title="Part14: Finale"></a>Part14: Finale</h2><p>不得不说，这就是做好的Blender入门教程。</p><h1 id="Day3"><a href="#Day3" class="headerlink" title="Day3"></a>Day3</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> 美术 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Time tracker</title>
+      <link href="/2024/11/16/14TimeTracker/"/>
+      <url>/2024/11/16/14TimeTracker/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天听博客知道了柳比歇夫时间管理法，感觉还不错，养一下。</p><p>今天是第一天，所以在这用博客记，之后应该会用番茄记。</p><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>08:35 ~ 11:07 听播客<br>11:40 ~ </p><p>Sorry, it’s too hard, but I decide to spend 6h in learning and 2h in preparing ielts.</p><p>And then, I can just do anything I want.</p><p>确实用番茄钟每次学习都计一下时，反正每天学到 6h，剩下时间都可以用来休息，这样就轻松多了。</p><p>不过貌似一天好像学不了太久，感觉五个小时基本就是极限了，明天再看看。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 自我成长 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Where is my life 我的人生在哪里</title>
+      <link href="/2024/11/15/12Life/"/>
+      <url>/2024/11/15/12Life/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>他，23岁，一事无成，但是找到了自己的路。</p><p>很久没有写文章了，前段时间一直很迷茫，我总是想为我所做的事情赋予一些意义，说服我自己去完成它，真让我感觉非常痛苦。</p><p>明知它是没有意义的，但我却要不停的相信它是有意义的，这甚至让我有点精神分裂。</p><p>直到昨天，我洗澡的时候在想，为什么我不干脆直接承认所有的一切都是无意义的呢？</p><p>将我的人生比作游戏，不断地发起挑战。</p><p>也许这样的人生态度可以支撑我走的更远。</p><p>这不禁让我想起了《西西弗斯神话》，加缪说我们应该想象西西弗斯是快乐的，在那一刻我终于理解了他，西西弗斯应该是快乐的，他也许就在不断地挑战着他自己。</p><p>更快，更高，更持久。</p><p>从今年2月到现在，9个月的时光，我一直在思考这个问题，很庆幸我现在终于有了自己的答案，终于可以更加坦然的面对自己。</p><p>为了纪念，于第二天（2024&#x2F;11&#x2F;15）写下这篇文章，同时也会在今年将其做成视频，希望能给有相同困境的朋友们一些启发。</p><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>What is the meaning of life? Everyone has their own answers, maybe eating everything, traveling around the world or just be a common and common person.</p><p>人生的意义是什么？我想每个人都有各自的答案：吃遍天下美食？旅游？事业？老有所终……</p><p>However, if i ask you does the life really has its meaning? Can you answer the same as you last reply?</p><p>但是如果换个问题，人生真的有意义吗？现在又还有多少人能做出与上个问题相同的回答呢？</p><p>当人生有意义这个大前提被移除，我们才能真正直面自己的人生，去思考我们所向往的人生意义是否真的是我们所向往的，还是说只是在活出别人向往的人生。</p><p>There is only one heroism in the world: to love life after having understood its true meaning.</p><p>正如罗曼罗兰所说，世界上只有一种真正的英雄主义，那就是在认清了生活的真相后还依然热爱它。</p><p>The only real thing in our lives is there is no meaning and only after you accept this terrible truth, you can find you own spirt.</p><p>同样的，也许只有当我们承认了人生的无意义，才能活出真正的人生。</p><p>Holy shit, 你知道承认人生的无意义意味着什么吗，这甚至在说我敲下这篇文章，你观看这个视频都是在浪费时间，根本就没有意义！</p><p>确实，承认人生的无意义是一件非常非常困难的事情，它会让你茫然，不知所措，甚至是恐惧，但是其实强迫自己，让自己坚信人生是有意义的又何尝不是一种酷刑。</p><p>不过我们还有一味解药，就是游戏人生，此游戏人生非彼游戏人生。</p><p>此游戏人生是要你像玩游戏一样过人生。</p><p>其实如果我们认真思考游戏，就会发现游戏也是无意义的，俄罗斯方块里的分数有什么意义吗，无伤通关Boss然后呢，包括我最爱的LOL，就算我有一天打到了王者又能怎么样呢？</p><p>但是我们为什么如此热衷于游戏呢？</p><p>其实，如果你读过游戏设计相关的书籍，你就会发现，游戏拆解到最后不过是，一个目标，一段曲折或者说是一场挑战。</p><p>所以，以自我为中心，尝试用挑战填满人生，不断地欢愉自己，这是人类在对抗荒谬时最后的倔强。</p><p>我想西西弗斯确实是快乐的。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 自我成长 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>游戏引擎开发</title>
       <link href="/2024/08/12/11%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%BC%80%E5%8F%91/"/>
       <url>/2024/08/12/11%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%BC%80%E5%8F%91/</url>
@@ -14,27 +71,6 @@
       <categories>
           
           <category> 游戏引擎 </category>
-          
-          <category> 开发 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>雅思</title>
-      <link href="/2024/08/08/09%E9%9B%85%E6%80%9D/"/>
-      <url>/2024/08/08/09%E9%9B%85%E6%80%9D/</url>
-      
-        <content type="html"><![CDATA[<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>背单词</p><ul><li>口语：多邻国</li><li>听力：多听</li><li>阅读：538 和多看</li><li>写作：先中文，再英文</li></ul><h1 id="词汇"><a href="#词汇" class="headerlink" title="词汇"></a>词汇</h1><p>Monday<br>Tuesday<br>Wednesday<br>Thursday<br>Friday<br>Saturday<br>Sunday</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 英语 </category>
           
       </categories>
       
@@ -55,8 +91,6 @@
           
           <category> 算法 </category>
           
-          <category> 底层框架 </category>
-          
       </categories>
       
       
@@ -75,8 +109,6 @@
       <categories>
           
           <category> 算法 </category>
-          
-          <category> 布尔运算 </category>
           
       </categories>
       
@@ -97,8 +129,6 @@
           
           <category> 游戏引擎 </category>
           
-          <category> 架构 </category>
-          
       </categories>
       
       
@@ -117,8 +147,6 @@
       <categories>
           
           <category> 游戏引擎 </category>
-          
-          <category> DirectX12 </category>
           
       </categories>
       
@@ -139,8 +167,6 @@
           
           <category> 游戏引擎 </category>
           
-          <category> 渲染 </category>
-          
       </categories>
       
       
@@ -159,8 +185,6 @@
       <categories>
           
           <category> 游戏引擎 </category>
-          
-          <category> 图形 </category>
           
       </categories>
       
@@ -198,9 +222,7 @@
       
       <categories>
           
-          <category> 画 </category>
-          
-          <category> 像素画 </category>
+          <category> 美术 </category>
           
       </categories>
       
