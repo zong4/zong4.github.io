@@ -1,0 +1,350 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>求证人类的本质是复读机 | Zong's blog</title><meta name="keywords" content="人工智能，机器学习，深度学习，学习AI，石头剪刀布，人类的本质是复读机，囚徒困境，囚徒博弈，博弈论，纳什均衡，合作，背叛，复读机，复读机博弈，复读机囚徒博弈"><meta name="author" content="Zong,zzoonng@163.com"><meta name="copyright" content="Zong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言啊哈，我又来更新了，原本是想结束了来着，但是又找到了几个好玩的题，所以来更新一下，顺便把之前欠的补了，完整代码见 https:&#x2F;&#x2F;github.com&#x2F;zong4&#x2F;AILearning。 石头剪刀布不知道当你看到这个题目的时候想到了什么策略，总之强化学习肯定是用不了的，因为纯概率游戏是没有最优策略的，给大家看看我写的三个策略。 策略1出能赢对手上次出的那一手。 123456789# Strat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="求证人类的本质是复读机">
+<meta property="og:url" content="http://example.com/2025/09/05/AI/AI%E5%AD%A6%E4%B9%A0/AI%E5%AD%A6%E4%B9%A017/index.html">
+<meta property="og:site_name" content="Zong&#39;s blog">
+<meta property="og:description" content="前言啊哈，我又来更新了，原本是想结束了来着，但是又找到了几个好玩的题，所以来更新一下，顺便把之前欠的补了，完整代码见 https:&#x2F;&#x2F;github.com&#x2F;zong4&#x2F;AILearning。 石头剪刀布不知道当你看到这个题目的时候想到了什么策略，总之强化学习肯定是用不了的，因为纯概率游戏是没有最优策略的，给大家看看我写的三个策略。 策略1出能赢对手上次出的那一手。 123456789# Strat">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/AI/AI%E5%AD%A6%E4%B9%A0/66.png">
+<meta property="article:published_time" content="2025-09-05T08:16:24.265Z">
+<meta property="article:modified_time" content="2025-09-05T08:30:16.155Z">
+<meta property="article:author" content="Zong">
+<meta property="article:tag" content="Zong">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/AI/AI%E5%AD%A6%E4%B9%A0/66.png"><link rel="shortcut icon" href="/img/favicon_small.png"><link rel="canonical" href="http://example.com/2025/09/05/AI/AI%E5%AD%A6%E4%B9%A0/AI%E5%AD%A6%E4%B9%A017/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?7fd6ea50e4716e880e05917bf7f94429";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"templates/search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":730,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":10,"languages":{"author":"Author: Zong","link":"Link: ","source":"Source: Zong's blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '求证人类的本质是复读机',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-09-05 10:30:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/ideas/"><i class="fa-fw fas fa-book"></i><span> Ideas</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fa-solid fa-feather-pointed"></i><span> Projects</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Zong's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/ideas/"><i class="fa-fw fas fa-book"></i><span> Ideas</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fa-solid fa-feather-pointed"></i><span> Projects</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">求证人类的本质是复读机</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon fas fa-history"></i><span class="post-meta-label">Updated</span><time datetime="2025-09-05T08:30:16.155Z" title="Updated 2025-09-05 10:30:16">2025-09-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>8min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="求证人类的本质是复读机"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>啊哈，我又来更新了，原本是想结束了来着，但是又找到了几个好玩的题，所以来更新一下，顺便把之前欠的补了，完整代码见 <a target="_blank" rel="noopener" href="https://github.com/zong4/AILearning%E3%80%82">https://github.com/zong4/AILearning。</a></p>
+<h1 id="石头剪刀布"><a href="#石头剪刀布" class="headerlink" title="石头剪刀布"></a>石头剪刀布</h1><p>不知道当你看到这个题目的时候想到了什么策略，总之强化学习肯定是用不了的，因为纯概率游戏是没有最优策略的，给大家看看我写的三个策略。</p>
+<h2 id="策略1"><a href="#策略1" class="headerlink" title="策略1"></a>策略1</h2><p>出能赢对手上次出的那一手。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Strategy1: play the winning move of the opponent&#x27;s last move</span></span><br><span class="line"><span class="keyword">if</span> prev_play == <span class="string">&#x27;R&#x27;</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;P&#x27;</span></span><br><span class="line"><span class="keyword">elif</span> prev_play == <span class="string">&#x27;P&#x27;</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;S&#x27;</span></span><br><span class="line"><span class="keyword">elif</span> prev_play == <span class="string">&#x27;S&#x27;</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;R&#x27;</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">return</span> random.choice([<span class="string">&#x27;R&#x27;</span>, <span class="string">&#x27;P&#x27;</span>, <span class="string">&#x27;S&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="策略2"><a href="#策略2" class="headerlink" title="策略2"></a>策略2</h2><p>出能赢对手最容易出的那一手。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Strategy2: play the winning move of the opponent&#x27;s most frequent move</span></span><br><span class="line"><span class="keyword">if</span> opponent_history.count(<span class="string">&#x27;R&#x27;</span>) &gt; opponent_history.count(<span class="string">&#x27;P&#x27;</span>) <span class="keyword">and</span> opponent_history.count(<span class="string">&#x27;R&#x27;</span>) &gt; opponent_history.count(<span class="string">&#x27;S&#x27;</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;P&#x27;</span></span><br><span class="line"><span class="keyword">elif</span> opponent_history.count(<span class="string">&#x27;P&#x27;</span>) &gt; opponent_history.count(<span class="string">&#x27;R&#x27;</span>) <span class="keyword">and</span> opponent_history.count(<span class="string">&#x27;P&#x27;</span>) &gt; opponent_history.count(<span class="string">&#x27;S&#x27;</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;S&#x27;</span></span><br><span class="line"><span class="keyword">elif</span> opponent_history.count(<span class="string">&#x27;S&#x27;</span>) &gt; opponent_history.count(<span class="string">&#x27;R&#x27;</span>) <span class="keyword">and</span> opponent_history.count(<span class="string">&#x27;S&#x27;</span>) &gt; opponent_history.count(<span class="string">&#x27;P&#x27;</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;R&#x27;</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">return</span> random.choice([<span class="string">&#x27;R&#x27;</span>, <span class="string">&#x27;P&#x27;</span>, <span class="string">&#x27;S&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="策略3"><a href="#策略3" class="headerlink" title="策略3"></a>策略3</h2><p>用马尔可夫链预测对手最容易出的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Strategy3: play the winning move through markov chain</span></span><br><span class="line">r2r_count = opponent_history.count(<span class="string">&#x27;RR&#x27;</span>)</span><br><span class="line">r2p_count = opponent_history.count(<span class="string">&#x27;RP&#x27;</span>)</span><br><span class="line">r2s_count = opponent_history.count(<span class="string">&#x27;RS&#x27;</span>)</span><br><span class="line"></span><br><span class="line">p2p_count = opponent_history.count(<span class="string">&#x27;PP&#x27;</span>)</span><br><span class="line">p2r_count = opponent_history.count(<span class="string">&#x27;PR&#x27;</span>)</span><br><span class="line">p2s_count = opponent_history.count(<span class="string">&#x27;PS&#x27;</span>)</span><br><span class="line"></span><br><span class="line">s2s_count = opponent_history.count(<span class="string">&#x27;SS&#x27;</span>)</span><br><span class="line">s2r_count = opponent_history.count(<span class="string">&#x27;SR&#x27;</span>)</span><br><span class="line">s2p_count = opponent_history.count(<span class="string">&#x27;SP&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> prev_play == <span class="string">&#x27;R&#x27;</span>:</span><br><span class="line">    <span class="keyword">if</span> r2r_count &gt; r2p_count <span class="keyword">and</span> r2r_count &gt; r2s_count:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;R&#x27;</span></span><br><span class="line">    <span class="keyword">elif</span> r2p_count &gt; r2r_count <span class="keyword">and</span> r2p_count &gt; r2s_count:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;P&#x27;</span></span><br><span class="line">    <span class="keyword">elif</span> r2s_count &gt; r2r_count <span class="keyword">and</span> r2s_count &gt; r2p_count:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;S&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> random.choice([<span class="string">&#x27;R&#x27;</span>, <span class="string">&#x27;P&#x27;</span>, <span class="string">&#x27;S&#x27;</span>])</span><br><span class="line">    </span><br><span class="line"><span class="keyword">elif</span> prev_play == <span class="string">&#x27;P&#x27;</span>:</span><br><span class="line">    <span class="keyword">if</span> p2p_count &gt; p2r_count <span class="keyword">and</span> p2p_count &gt; p2s_count:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;P&#x27;</span></span><br><span class="line">    <span class="keyword">elif</span> p2r_count &gt; p2p_count <span class="keyword">and</span> p2r_count &gt; p2s_count:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;R&#x27;</span></span><br><span class="line">    <span class="keyword">elif</span> p2s_count &gt; p2p_count <span class="keyword">and</span> p2s_count &gt; p2r_count:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;S&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> random.choice([<span class="string">&#x27;R&#x27;</span>, <span class="string">&#x27;P&#x27;</span>, <span class="string">&#x27;S&#x27;</span>])</span><br><span class="line">    </span><br><span class="line"><span class="keyword">elif</span> prev_play == <span class="string">&#x27;S&#x27;</span>:</span><br><span class="line">    <span class="keyword">if</span> s2s_count &gt; s2r_count <span class="keyword">and</span> s2s_count &gt; s2p_count:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;S&#x27;</span></span><br><span class="line">    <span class="keyword">elif</span> s2r_count &gt; s2s_count <span class="keyword">and</span> s2r_count &gt; s2p_count:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;R&#x27;</span></span><br><span class="line">    <span class="keyword">elif</span> s2p_count &gt; s2s_count <span class="keyword">and</span> s2p_count &gt; s2r_count:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;P&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> random.choice([<span class="string">&#x27;R&#x27;</span>, <span class="string">&#x27;P&#x27;</span>, <span class="string">&#x27;S&#x27;</span>])</span><br><span class="line">    </span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">return</span> random.choice([<span class="string">&#x27;R&#x27;</span>, <span class="string">&#x27;P&#x27;</span>, <span class="string">&#x27;S&#x27;</span>])</span><br></pre></td></tr></table></figure>
+
+<p>上面这些应该都挺简单的，大家随便过一下就行，来看下一趴。</p>
+<h1 id="人类的本质是复读机"><a href="#人类的本质是复读机" class="headerlink" title="人类的本质是复读机"></a>人类的本质是复读机</h1><p>不知道大家有没有听过这句话，“人的本质是复读机”，我们今天就来模拟一下。</p>
+<h2 id="生存游戏"><a href="#生存游戏" class="headerlink" title="生存游戏"></a>生存游戏</h2><p>因为是模拟人类社会，所以这个生存游戏肯定得有合作有竞争，所以就使用比较经典的囚徒困境就行了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define the pay - off matrix for the Prisoner&#x27;s Dilemma</span></span><br><span class="line">PAYOFF_MATRIX = &#123;</span><br><span class="line">    (<span class="string">&#x27;cooperate&#x27;</span>, <span class="string">&#x27;cooperate&#x27;</span>): (<span class="number">3</span>, <span class="number">3</span>),</span><br><span class="line">    (<span class="string">&#x27;cooperate&#x27;</span>, <span class="string">&#x27;defect&#x27;</span>): (-<span class="number">1</span>, <span class="number">3</span>),</span><br><span class="line">    (<span class="string">&#x27;defect&#x27;</span>, <span class="string">&#x27;cooperate&#x27;</span>): (<span class="number">3</span>, -<span class="number">1</span>),</span><br><span class="line">    (<span class="string">&#x27;defect&#x27;</span>, <span class="string">&#x27;defect&#x27;</span>): (-<span class="number">3</span>, -<span class="number">3</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="生存策略"><a href="#生存策略" class="headerlink" title="生存策略"></a>生存策略</h2><p>这边的话就先来四个策略，第三个就是所谓的复读机（重复遇到的上一个玩家的策略），最后应该会再放一个 AI 进去学。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define different strategies</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">always_cooperate</span>(<span class="params">history</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;cooperate&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">always_defect</span>(<span class="params">history</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;defect&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">tit_for_tat</span>(<span class="params">history</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> history:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;cooperate&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> history[-<span class="number">1</span>][<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">random_choice</span>(<span class="params">history</span>):</span><br><span class="line">    <span class="keyword">return</span> random.choice([<span class="string">&#x27;cooperate&#x27;</span>, <span class="string">&#x27;defect&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Player class</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Player</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, strategy</span>):</span><br><span class="line">        self.strategy = strategy</span><br><span class="line">        self.score = <span class="number">10</span></span><br><span class="line">        self.history = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">make_choice</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.strategy(self.history)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">update_score</span>(<span class="params">self, payoff</span>):</span><br><span class="line">        self.score += payoff</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">update_history</span>(<span class="params">self, own_choice, other_choice</span>):</span><br><span class="line">        self.history.append((own_choice, other_choice))</span><br></pre></td></tr></table></figure>
+
+<h2 id="模拟"><a href="#模拟" class="headerlink" title="模拟"></a>模拟</h2><p>因为是生存模拟，所以肯定得淘汰低于0分的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Function to run the simulation</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">run_simulation</span>(<span class="params">num_players_per_strategy, num_rounds</span>):</span><br><span class="line">    strategies = [always_cooperate, always_defect, tit_for_tat, random_choice]</span><br><span class="line">    players = []</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create players with equal distribution of strategies</span></span><br><span class="line">    <span class="keyword">for</span> strategy <span class="keyword">in</span> strategies:</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(num_players_per_strategy):</span><br><span class="line">            players.append(Player(strategy))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> round_num <span class="keyword">in</span> <span class="built_in">range</span>(num_rounds):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;round_num: &quot;</span> + <span class="built_in">str</span>(round_num))</span><br><span class="line"></span><br><span class="line">        random.shuffle(players)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(players), <span class="number">2</span>):</span><br><span class="line">            <span class="keyword">if</span> i + <span class="number">1</span> &lt; <span class="built_in">len</span>(players):</span><br><span class="line">                play_round(players[i], players[i + <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Remove players with score &lt;= 0</span></span><br><span class="line">        players = [player <span class="keyword">for</span> player <span class="keyword">in</span> players <span class="keyword">if</span> player.score &gt; <span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">        always_cooperate_count = <span class="built_in">sum</span>(<span class="number">1</span> <span class="keyword">for</span> player <span class="keyword">in</span> players <span class="keyword">if</span> player.strategy == always_cooperate)</span><br><span class="line">        always_defect_count = <span class="built_in">sum</span>(<span class="number">1</span> <span class="keyword">for</span> player <span class="keyword">in</span> players <span class="keyword">if</span> player.strategy == always_defect)</span><br><span class="line">        tit_for_tat_count = <span class="built_in">sum</span>(<span class="number">1</span> <span class="keyword">for</span> player <span class="keyword">in</span> players <span class="keyword">if</span> player.strategy == tit_for_tat)</span><br><span class="line">        random_choice_count = <span class="built_in">sum</span>(<span class="number">1</span> <span class="keyword">for</span> player <span class="keyword">in</span> players <span class="keyword">if</span> player.strategy == random_choice)</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;always_cooperate: &quot;</span> + <span class="built_in">str</span>(always_cooperate_count))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;always_defect: &quot;</span> + <span class="built_in">str</span>(always_defect_count))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;tit_for_tat: &quot;</span> + <span class="built_in">str</span>(tit_for_tat_count))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;random_choice: &quot;</span> + <span class="built_in">str</span>(random_choice_count))</span><br><span class="line">        <span class="built_in">print</span>()</span><br></pre></td></tr></table></figure>
+
+<h2 id="优化1"><a href="#优化1" class="headerlink" title="优化1"></a>优化1</h2><p>看一下这个结果，总是合作的竟然一个都没被淘汰，说明囚徒困境的得分设置的不合理。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">round_num: 9999</span><br><span class="line">always_cooperate: 10</span><br><span class="line">always_defect: 6</span><br><span class="line">tit_for_tat: 10</span><br><span class="line">random_choice: 8</span><br></pre></td></tr></table></figure>
+
+<p>可以调整成下面这样，这样的话对于任何策略的得分期望就是0了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PAYOFF_MATRIX = &#123;</span><br><span class="line">    (<span class="string">&#x27;cooperate&#x27;</span>, <span class="string">&#x27;cooperate&#x27;</span>): (<span class="number">3</span>, <span class="number">3</span>),</span><br><span class="line">    (<span class="string">&#x27;cooperate&#x27;</span>, <span class="string">&#x27;defect&#x27;</span>): (-<span class="number">3</span>, <span class="number">3</span>),</span><br><span class="line">    (<span class="string">&#x27;defect&#x27;</span>, <span class="string">&#x27;cooperate&#x27;</span>): (<span class="number">3</span>, -<span class="number">3</span>),</span><br><span class="line">    (<span class="string">&#x27;defect&#x27;</span>, <span class="string">&#x27;defect&#x27;</span>): (-<span class="number">3</span>, -<span class="number">3</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="优化2"><a href="#优化2" class="headerlink" title="优化2"></a>优化2</h2><p>结果全死光了，就剩一个复读机。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">round_num: 9999</span><br><span class="line">always_cooperate: 0</span><br><span class="line">always_defect: 0</span><br><span class="line">tit_for_tat: 1</span><br><span class="line">random_choice: 0</span><br></pre></td></tr></table></figure>
+
+<p>所以得再每次淘汰的时候添加新生儿，直接copy一份就好了（无性繁殖hhh）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="built_in">len</span>(players) &lt; <span class="built_in">len</span>(strategies) * num_players_per_strategy):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Copy players&quot;</span>)</span><br><span class="line">    players_copy = players.copy()</span><br><span class="line">    <span class="keyword">for</span> player <span class="keyword">in</span> players_copy:</span><br><span class="line">        players.append(Player(player.strategy, player.score))</span><br></pre></td></tr></table></figure>
+
+<h2 id="优化3"><a href="#优化3" class="headerlink" title="优化3"></a>优化3</h2><p>跑了两趟，结果还是差别挺大的，毕竟跟谁玩是完全随机的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Round: 99</span><br><span class="line">Always cooperate: 21.21212121212121%</span><br><span class="line">Always defect: 31.818181818181817%</span><br><span class="line">Tit for tat: 15.151515151515152%</span><br><span class="line">Random choice: 31.818181818181817%</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Round: 99</span><br><span class="line">Always cooperate: 28.169014084507044%</span><br><span class="line">Always defect: 22.535211267605636%</span><br><span class="line">Tit for tat: 29.577464788732392%</span><br><span class="line">Random choice: 19.718309859154928%</span><br></pre></td></tr></table></figure>
+
+<p>应该让玩家随机出生在一个位置，然后围成一个圆，只会跟附近的人进行囚徒博弈，所以只在一开始 shuffle 一下，后面就相邻的人玩。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">random.shuffle(players)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> round_num <span class="keyword">in</span> <span class="built_in">range</span>(num_rounds):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Round: &quot;</span> + <span class="built_in">str</span>(round_num))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(players)):</span><br><span class="line">        play_round(players[i], (players[(i + <span class="number">1</span>) % <span class="built_in">len</span>(players)]))</span><br></pre></td></tr></table></figure>
+
+<h2 id="优化4"><a href="#优化4" class="headerlink" title="优化4"></a>优化4</h2><p>看了一眼结果，看起来好麻烦，所以再加一下图形化。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Round: 99</span><br><span class="line">Always cooperate: 7</span><br><span class="line">Always defect: 2</span><br><span class="line">Tit for tat: 7</span><br><span class="line">Random choice: 5</span><br><span class="line">&lt;function random_choice at 0x1029860c0&gt;</span><br><span class="line">&lt;function always_defect at 0x102987100&gt;</span><br><span class="line">&lt;function always_cooperate at 0x102986f20&gt;</span><br><span class="line">&lt;function tit_for_tat at 0x102986e80&gt;</span><br><span class="line">&lt;function always_cooperate at 0x102986f20&gt;</span><br><span class="line">&lt;function tit_for_tat at 0x102986e80&gt;</span><br><span class="line">&lt;function always_defect at 0x102987100&gt;</span><br><span class="line">&lt;function random_choice at 0x1029860c0&gt;</span><br><span class="line">&lt;function tit_for_tat at 0x102986e80&gt;</span><br><span class="line">&lt;function always_cooperate at 0x102986f20&gt;</span><br><span class="line">&lt;function always_cooperate at 0x102986f20&gt;</span><br><span class="line">&lt;function always_cooperate at 0x102986f20&gt;</span><br><span class="line">&lt;function always_cooperate at 0x102986f20&gt;</span><br><span class="line">&lt;function random_choice at 0x1029860c0&gt;</span><br><span class="line">&lt;function random_choice at 0x1029860c0&gt;</span><br><span class="line">&lt;function tit_for_tat at 0x102986e80&gt;</span><br><span class="line">&lt;function tit_for_tat at 0x102986e80&gt;</span><br><span class="line">&lt;function tit_for_tat at 0x102986e80&gt;</span><br><span class="line">&lt;function random_choice at 0x1029860c0&gt;</span><br><span class="line">&lt;function tit_for_tat at 0x102986e80&gt;</span><br><span class="line">&lt;function always_cooperate at 0x102986f20&gt;</span><br></pre></td></tr></table></figure>
+
+<p>效果如下，看上去似乎还行，不过为了保险起见，先去掉随机者再观察一下。</p>
+<p><img src="/img/AI/AI%E5%AD%A6%E4%B9%A0/66.png"></p>
+<p>改了一下，这次没问题了，看结果的话就是复读机和永远合作容易活，毕竟永远竞争会内部消耗，接下来就加个 AI 试试。</p>
+<p><img src="/img/AI/AI%E5%AD%A6%E4%B9%A0/67.png"></p>
+<h2 id="强化学习"><a href="#强化学习" class="headerlink" title="强化学习"></a>强化学习</h2><p>仔细想了一下，好像没法让 AI 学策略，学出来也是跟随机者差不多估计，因为状态只有两个，学的也最多是一个不均等的选择概率。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:zzoonng@163.com">Zong</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://zong4.github.io">https://zong4.github.io</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="/img/AI/AI%E5%AD%A6%E4%B9%A0/66.png" data-sites="facebook,twitter,wechat"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/09/05/AI/AI%E5%AD%A6%E4%B9%A0/AI%E5%AD%A6%E4%B9%A016/"><img class="prev-cover" src="/img/AI/AI%E5%AD%A6%E4%B9%A0/52.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Language篇（二），生成并观察注意力热力图</div></div></a></div><div class="next-post pull-right"><a href="/2025/09/05/AI/AI%E5%AD%A6%E4%B9%A0/AI%E5%AD%A6%E4%B9%A018/"><img class="next-cover" src="/img/AI/AI%E5%AD%A6%E4%B9%A0/69.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Neural Networks篇（二），让AI分辨猫和狗并优化</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zong</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zong4"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/54413027" target="_blank" title="Bilibili"><i class="fab fa-bilibili"></i></a><a class="social-icon" href="https://www.youtube.com/@zzoonng" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a><a class="social-icon" href="https://v.douyin.com/ih2EKpjy" target="_blank" title="DouYin"><i class="fab fa-tiktok"></i></a><a class="social-icon" href="https://www.zhihu.com/people/shi-wang-93-56" target="_blank" title="ZhiHu"><i class="fab fa-zhihu"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Hello, this is Zong, who is devoted to share everything. You can contact me with email(zzoonng@163.com) everytime.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%B3%E5%A4%B4%E5%89%AA%E5%88%80%E5%B8%83"><span class="toc-number">2.</span> <span class="toc-text">石头剪刀布</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%96%E7%95%A51"><span class="toc-number">2.1.</span> <span class="toc-text">策略1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%96%E7%95%A52"><span class="toc-number">2.2.</span> <span class="toc-text">策略2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%96%E7%95%A53"><span class="toc-number">2.3.</span> <span class="toc-text">策略3</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%BA%E7%B1%BB%E7%9A%84%E6%9C%AC%E8%B4%A8%E6%98%AF%E5%A4%8D%E8%AF%BB%E6%9C%BA"><span class="toc-number">3.</span> <span class="toc-text">人类的本质是复读机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E5%AD%98%E6%B8%B8%E6%88%8F"><span class="toc-number">3.1.</span> <span class="toc-text">生存游戏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E5%AD%98%E7%AD%96%E7%95%A5"><span class="toc-number">3.2.</span> <span class="toc-text">生存策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F"><span class="toc-number">3.3.</span> <span class="toc-text">模拟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%961"><span class="toc-number">3.4.</span> <span class="toc-text">优化1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%962"><span class="toc-number">3.5.</span> <span class="toc-text">优化2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%963"><span class="toc-number">3.6.</span> <span class="toc-text">优化3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%964"><span class="toc-number">3.7.</span> <span class="toc-text">优化4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.8.</span> <span class="toc-text">强化学习</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2025 By Zong</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><div class="aplayer no-destroy" data-id="897784673" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="1" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/shuoshuo/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

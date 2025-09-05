@@ -1,0 +1,352 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>集成学习，改良随机森林算法，预测缺失数据集 | Zong's blog</title><meta name="keywords" content="集成学习, Boosting, Bagging, 随机森林, 缺失数据集，机器学习"><meta name="author" content="Zong,zzoonng@163.com"><meta name="copyright" content="Zong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言这个专栏的核心是阅读《机器学习》这本书，同时也会结合 Kaggle 等实战项目，加深对机器学习的理解。 这次是第8章，集成学习，用 Kaggle 的泰坦尼克号生存预测来举例，代码见 https:&#x2F;&#x2F;www.kaggle.com&#x2F;code&#x2F;zzoonngk&#x2F;titanic。 定义集成学习（ensemble learning）通过构建并结合多个学习器来完成学习任务，有时也被称为多分类器系统（mul">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集成学习，改良随机森林算法，预测缺失数据集">
+<meta property="og:url" content="http://example.com/2025/09/05/AI/AI%E7%9F%A5%E8%AF%86%E7%82%B9/AI%E7%9F%A5%E8%AF%86%E7%82%B901/index.html">
+<meta property="og:site_name" content="Zong&#39;s blog">
+<meta property="og:description" content="前言这个专栏的核心是阅读《机器学习》这本书，同时也会结合 Kaggle 等实战项目，加深对机器学习的理解。 这次是第8章，集成学习，用 Kaggle 的泰坦尼克号生存预测来举例，代码见 https:&#x2F;&#x2F;www.kaggle.com&#x2F;code&#x2F;zzoonngk&#x2F;titanic。 定义集成学习（ensemble learning）通过构建并结合多个学习器来完成学习任务，有时也被称为多分类器系统（mul">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/AI/AI%E7%9F%A5%E8%AF%86%E7%82%B9/1.png">
+<meta property="article:published_time" content="2025-09-05T08:16:58.181Z">
+<meta property="article:modified_time" content="2025-09-05T08:30:37.416Z">
+<meta property="article:author" content="Zong">
+<meta property="article:tag" content="Zong">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/AI/AI%E7%9F%A5%E8%AF%86%E7%82%B9/1.png"><link rel="shortcut icon" href="/img/favicon_small.png"><link rel="canonical" href="http://example.com/2025/09/05/AI/AI%E7%9F%A5%E8%AF%86%E7%82%B9/AI%E7%9F%A5%E8%AF%86%E7%82%B901/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?7fd6ea50e4716e880e05917bf7f94429";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"templates/search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":730,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":10,"languages":{"author":"Author: Zong","link":"Link: ","source":"Source: Zong's blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '集成学习，改良随机森林算法，预测缺失数据集',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-09-05 10:30:37'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/ideas/"><i class="fa-fw fas fa-book"></i><span> Ideas</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fa-solid fa-feather-pointed"></i><span> Projects</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Zong's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/ideas/"><i class="fa-fw fas fa-book"></i><span> Ideas</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fa-solid fa-feather-pointed"></i><span> Projects</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">集成学习，改良随机森林算法，预测缺失数据集</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon fas fa-history"></i><span class="post-meta-label">Updated</span><time datetime="2025-09-05T08:30:37.416Z" title="Updated 2025-09-05 10:30:37">2025-09-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>6min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="集成学习，改良随机森林算法，预测缺失数据集"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这个专栏的核心是阅读《机器学习》这本书，同时也会结合 Kaggle 等实战项目，加深对机器学习的理解。</p>
+<p>这次是第8章，集成学习，用 Kaggle 的泰坦尼克号生存预测来举例，代码见 <a target="_blank" rel="noopener" href="https://www.kaggle.com/code/zzoonngk/titanic%E3%80%82">https://www.kaggle.com/code/zzoonngk/titanic。</a></p>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>集成学习（ensemble learning）通过构建并结合多个学习器来完成学习任务，有时也被称为多分类器系统（multi-classifier system）、基于委员会的学习（committee-based learning）等，一般可以被简化为如下结构。</p>
+<p><img src="/img/AI/AI%E7%9F%A5%E8%AF%86%E7%82%B9/1.png"></p>
+<pre><code>其中这些个体学习器可以用相同的算法，也可以用不同的算法。
+</code></pre>
+<p>那么集成学习是如何做到比单个学习器更好的呢？来看一组图。</p>
+<p><img src="/img/AI/AI%E7%9F%A5%E8%AF%86%E7%82%B9/2.png"></p>
+<pre><code>这里默认的结合方法是“少数服从多数”，可以发现只有情况a可以集成提升性能。
+</code></pre>
+<p>基于此，我们可以得出集成个体应该“好而不同“，如果大家不好就可能会是情况c，如果大家都好但是一样就可能会是情况b。</p>
+<p>由此引申出了个体学习器的<strong>准确性</strong>与<strong>多样性</strong>。</p>
+<h1 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h1><p>Boosting 是一种串行集成学习方法，核心思路是不断提高个体学习器的准确性。</p>
+<p>算法原理：先从初始训练集训练出一个基学习器，再根据基学习器的表现调整训练集，使得后续的基学习器更关注前面学习器分类错误的样本，最后将所有基学习器进行加权结合。</p>
+<pre><code>具体数学推导的话推荐大家去看书，我现在的水平也解释不太清楚。
+</code></pre>
+<p>Python 实现 AdaBoost 的话也不复杂，核心就这么几句。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建 AdaBoost 分类器</span></span><br><span class="line">base_estimator = DecisionTreeClassifier(max_depth=<span class="number">1</span>)</span><br><span class="line">model = AdaBoostClassifier(estimator=base_estimator, n_estimators=<span class="number">100</span>, random_state=<span class="number">1</span>)</span><br><span class="line">model.fit(X, y)</span><br></pre></td></tr></table></figure>
+
+<pre><code>其中这里的基学习器是二层决策树，总共迭代学习100次，也就是说最后的预测结果是这100个学习器的加权和。
+</code></pre>
+<p>大家也可以试试换别的基学习器，我这边用了二层决策树（上面）和三层决策树（下面），结果如下。</p>
+<!-- ![](/img/AI/AI知识点/3.png) -->
+
+<pre><code>可以发现在这个场景中，二层决策树的效果更好，猜测是在迭代过程中，三层决策树过拟合了，这也说明了为什么 Boosting 适合弱学习器。
+</code></pre>
+<h1 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h1><p>相比于 Boosting 在准确性上下功夫，Bagging 更关注多样性，那么如何实现多样性呢？</p>
+<p>算法原理：通过随机采样训练集，训练出多个基学习器，最后将所有基学习器进行加权结合。</p>
+<pre><code>这里的采样方法是自助采样法（bootstrap sampling），即从训练集中有放回地采样出和原训练集一样大小的新训练集，最合大约有63.2%的样本被采样到。
+</code></pre>
+<p>实现代码都差不多，就换了个名字。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model = BaggingClassifier(estimator=base_classifier, n_estimators=<span class="number">100</span>, random_state=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这次我比对了一下二层，三层，四层，发现三层的效果最好，同样是0.77511。</p>
+<p>值得一提的是由于 Bagging 的采样方法，每个基学习器都是在不同的训练集上训练的，所以可以通过 OOB（Out-of-Bag）误差来评估模型的泛化能力。</p>
+<pre><code>OOB 误差是指在训练过程中，对于每个基学习器，都有一部分样本没有被采样到，这部分样本就是 OOB 样本，可以用来评估模型的泛化能力。
+</code></pre>
+<h1 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h1><p>相比于 Bagging 的样本多样性，随机森林又加了一条：<strong>特征多样性</strong>。</p>
+<p>算法原理：在 Bagging 的基础上，每次训练基学习器时，随机选择一部分特征训练决策树。</p>
+<pre><code>具体每次选几个特征，一般会选 log2(d) 个，其中 d 是特征总数，感觉log2确实是个很神奇的数。
+</code></pre>
+<p>但是决策树的深度毕竟不等于使用的特征数量，所以还是得自己测试。</p>
+<h1 id="结合策略"><a href="#结合策略" class="headerlink" title="结合策略"></a>结合策略</h1><h2 id="平均法-x2F-投票法"><a href="#平均法-x2F-投票法" class="headerlink" title="平均法&#x2F;投票法"></a>平均法&#x2F;投票法</h2><p>其实结合策略我看下来还是最普通的平均法&#x2F;投票法比较好用，因为每个学习器的权重是比较难评估的。</p>
+<pre><code>我想这也是为什么即使再需要多样性，也不会让这些基学习器用不同的算法，因为这样就意味着必须得加权计算了。
+</code></pre>
+<h1 id="学习法"><a href="#学习法" class="headerlink" title="学习法"></a>学习法</h1><p>除此之外就是学习法，有点类似于神经网络，具体思路是通过训练一个元学习器，来学习如何结合多个基学习器。</p>
+<p>大家感兴趣的话可以自行研究，我感觉不如平均法&#x2F;投票法来得直接，搞不好还会过拟合。</p>
+<h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><p>有随机森林，那就会有随机神经网络堆，大家可以自行研究，我这边就不展开了。</p>
+<h1 id="实战优化"><a href="#实战优化" class="headerlink" title="实战优化"></a>实战优化</h1><p>最后来看一下实战，之所以正确率一直上不去，就是因为我们没有用那些<strong>虽然缺失了数据但是很重要的特征</strong>。</p>
+<p>所以我们可以改良随机森林，思路就是在训练时遇到缺失数据就剔除这个样本，预测时遇到缺失数据就用其他学习器的预测结果来投票。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ImprovedRandomForest</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, n_estimators=<span class="number">100</span>, max_depth=<span class="literal">None</span>, random_state=<span class="literal">None</span></span>):</span><br><span class="line">        self.n_estimators = n_estimators</span><br><span class="line">        self.max_depth = max_depth</span><br><span class="line">        self.random_state = random_state</span><br><span class="line">        self.trees = []</span><br><span class="line">        self.used_features = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fit</span>(<span class="params">self, X, y</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(X, pd.DataFrame):</span><br><span class="line">            <span class="comment"># 分离数值类型和布尔类型的列</span></span><br><span class="line">            numerical_cols = X.select_dtypes(include=[np.number]).columns</span><br><span class="line">            boolean_cols = X.select_dtypes(include=[<span class="built_in">bool</span>]).columns</span><br><span class="line">            X_numerical = X[numerical_cols].values</span><br><span class="line">            X_boolean = X[boolean_cols].values</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(y, pd.Series):</span><br><span class="line">            y = y.values</span><br><span class="line">            </span><br><span class="line">        np.random.seed(self.random_state)</span><br><span class="line">        n_samples, n_num_features = X_numerical.shape</span><br><span class="line">        _, n_bool_features = X_boolean.shape</span><br><span class="line">        all_features_count = n_num_features + n_bool_features</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(self.n_estimators):</span><br><span class="line">            <span class="comment"># 随机选择特征，同时考虑数值和布尔特征</span></span><br><span class="line">            feature_indices = np.random.choice(all_features_count, size=<span class="built_in">int</span>(np.sqrt(all_features_count)), replace=<span class="literal">False</span>)</span><br><span class="line">            num_indices = [i <span class="keyword">for</span> i <span class="keyword">in</span> feature_indices <span class="keyword">if</span> i &lt; n_num_features]</span><br><span class="line">            bool_indices = [i - n_num_features <span class="keyword">for</span> i <span class="keyword">in</span> feature_indices <span class="keyword">if</span> i &gt;= n_num_features]</span><br><span class="line"></span><br><span class="line">            X_num_subset = X_numerical[:, num_indices]</span><br><span class="line">            X_bool_subset = X_boolean[:, bool_indices]</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 检查数值特征是否有缺失值</span></span><br><span class="line">            <span class="keyword">if</span> num_indices:</span><br><span class="line">                missing_mask_num = np.isnan(X_num_subset).<span class="built_in">any</span>(axis=<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                missing_mask_num = np.zeros(n_samples, dtype=<span class="built_in">bool</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 布尔特征通常无缺失值，这里假设无缺失</span></span><br><span class="line">            missing_mask_bool = np.zeros(n_samples, dtype=<span class="built_in">bool</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 剔除包含缺失值的行</span></span><br><span class="line">            missing_mask = missing_mask_num | missing_mask_bool</span><br><span class="line">            <span class="keyword">if</span> missing_mask.<span class="built_in">any</span>():</span><br><span class="line">                X_num_clean = X_num_subset[~missing_mask]</span><br><span class="line">                X_bool_clean = X_bool_subset[~missing_mask]</span><br><span class="line">                X_clean = np.hstack((X_num_clean, X_bool_clean))</span><br><span class="line">                y_clean = y[~missing_mask]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                X_clean = np.hstack((X_num_subset, X_bool_subset))</span><br><span class="line">                y_clean = y</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 训练决策树</span></span><br><span class="line">            tree = DecisionTreeClassifier(max_depth=self.max_depth)</span><br><span class="line">            tree.fit(X_clean, y_clean)</span><br><span class="line">            self.trees.append(tree)</span><br><span class="line">            self.used_features.append(feature_indices)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">predict</span>(<span class="params">self, X</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(X, pd.DataFrame):</span><br><span class="line">            <span class="comment"># 分离数值类型和布尔类型的列</span></span><br><span class="line">            numerical_cols = X.select_dtypes(include=[np.number]).columns</span><br><span class="line">            boolean_cols = X.select_dtypes(include=[<span class="built_in">bool</span>]).columns</span><br><span class="line">            X_numerical = X[numerical_cols].values</span><br><span class="line">            X_boolean = X[boolean_cols].values</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 初始化预测结果矩阵，初始值都设为 np.nan</span></span><br><span class="line">        n_samples = X_numerical.shape[<span class="number">0</span>]</span><br><span class="line">        predictions = np.full((n_samples, self.n_estimators), np.nan)</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(self.n_estimators):</span><br><span class="line">            feature_indices = self.used_features[i]</span><br><span class="line">            num_indices = [idx <span class="keyword">for</span> idx <span class="keyword">in</span> feature_indices <span class="keyword">if</span> idx &lt; <span class="built_in">len</span>(numerical_cols)]</span><br><span class="line">            bool_indices = [idx - <span class="built_in">len</span>(numerical_cols) <span class="keyword">for</span> idx <span class="keyword">in</span> feature_indices <span class="keyword">if</span> idx &gt;= <span class="built_in">len</span>(numerical_cols)]</span><br><span class="line">    </span><br><span class="line">            <span class="keyword">for</span> sample_idx <span class="keyword">in</span> <span class="built_in">range</span>(n_samples):</span><br><span class="line">                sample_num = X_numerical[sample_idx, num_indices]</span><br><span class="line">                sample_bool = X_boolean[sample_idx, bool_indices]</span><br><span class="line">    </span><br><span class="line">                <span class="comment"># 检查数值特征是否有缺失值</span></span><br><span class="line">                has_missing = np.isnan(sample_num).<span class="built_in">any</span>() <span class="keyword">if</span> num_indices <span class="keyword">else</span> <span class="literal">False</span></span><br><span class="line">    </span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> has_missing:</span><br><span class="line">                    sample = np.hstack((sample_num, sample_bool)).reshape(<span class="number">1</span>, -<span class="number">1</span>)</span><br><span class="line">                    prediction = self.trees[i].predict(sample)</span><br><span class="line">                    predictions[sample_idx, i] = prediction[<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line">        final_predictions = []</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> predictions:</span><br><span class="line">            valid_predictions = row[~np.isnan(row)]</span><br><span class="line">            <span class="keyword">if</span> valid_predictions.size &gt; <span class="number">0</span>:</span><br><span class="line">                final_predictions.append(np.bincount(valid_predictions.astype(<span class="built_in">int</span>)).argmax())</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">return</span> np.array(final_predictions)</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:zzoonng@163.com">Zong</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://zong4.github.io">https://zong4.github.io</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="/img/AI/AI%E7%9F%A5%E8%AF%86%E7%82%B9/1.png" data-sites="facebook,twitter,wechat"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/09/05/AI/AI%E7%9F%A5%E8%AF%86%E7%82%B9/AI%E7%9F%A5%E8%AF%86%E7%82%B904/"><img class="prev-cover" src="/img/AI/AI%E7%9F%A5%E8%AF%86%E7%82%B9/7.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">交叉熵损失函数的前世今生</div></div></a></div><div class="next-post pull-right"><a href="/2025/09/05/AI/AI%E7%9F%A5%E8%AF%86%E7%82%B9/AI%E7%9F%A5%E8%AF%86%E7%82%B908/"><img class="next-cover" src="/img/AI/AI%E7%9F%A5%E8%AF%86%E7%82%B9/9.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">如何从RNN走向LSTM和GRU</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zong</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zong4"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/54413027" target="_blank" title="Bilibili"><i class="fab fa-bilibili"></i></a><a class="social-icon" href="https://www.youtube.com/@zzoonng" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a><a class="social-icon" href="https://v.douyin.com/ih2EKpjy" target="_blank" title="DouYin"><i class="fab fa-tiktok"></i></a><a class="social-icon" href="https://www.zhihu.com/people/shi-wang-93-56" target="_blank" title="ZhiHu"><i class="fab fa-zhihu"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Hello, this is Zong, who is devoted to share everything. You can contact me with email(zzoonng@163.com) everytime.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Boosting"><span class="toc-number">3.</span> <span class="toc-text">Boosting</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bagging"><span class="toc-number">4.</span> <span class="toc-text">Bagging</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97"><span class="toc-number">5.</span> <span class="toc-text">随机森林</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E5%90%88%E7%AD%96%E7%95%A5"><span class="toc-number">6.</span> <span class="toc-text">结合策略</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E5%9D%87%E6%B3%95-x2F-%E6%8A%95%E7%A5%A8%E6%B3%95"><span class="toc-number">6.1.</span> <span class="toc-text">平均法&#x2F;投票法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E6%B3%95"><span class="toc-number">7.</span> <span class="toc-text">学习法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%A9%E5%B1%95"><span class="toc-number">8.</span> <span class="toc-text">扩展</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E4%BC%98%E5%8C%96"><span class="toc-number">9.</span> <span class="toc-text">实战优化</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2025 By Zong</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><div class="aplayer no-destroy" data-id="897784673" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="1" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/shuoshuo/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

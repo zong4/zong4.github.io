@@ -1,0 +1,496 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>游戏机制设计师详解 | Zong's blog</title><meta name="keywords" content="Zong"><meta name="author" content="Zong,zzoonng@163.com"><meta name="copyright" content="Zong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1 构建作品集与在线影响力   在GitHub或ArtStation发布项目代码与设计文档，撰写技术博客分析经典游戏机制（如《塞尔达》的物理交互、《文明》的资源平衡），吸引潜在雇主注意。    21. 理论基础：从设计原则到数学模型 核心概念   推荐学习材料   搜索到的《游戏平衡性设计原则》PPT（网页2）详细拆解了平衡性设计的方法论，如通过玩家反馈、数据分析和A&#x2F;B测试发现问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="游戏机制设计师详解">
+<meta property="og:url" content="http://example.com/2025/09/05/%E6%B8%B8%E6%88%8F/%E6%9C%BA%E5%88%B6/%E6%B8%B8%E6%88%8F%E6%9C%BA%E5%88%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Zong&#39;s blog">
+<meta property="og:description" content="1 构建作品集与在线影响力   在GitHub或ArtStation发布项目代码与设计文档，撰写技术博客分析经典游戏机制（如《塞尔达》的物理交互、《文明》的资源平衡），吸引潜在雇主注意。    21. 理论基础：从设计原则到数学模型 核心概念   推荐学习材料   搜索到的《游戏平衡性设计原则》PPT（网页2）详细拆解了平衡性设计的方法论，如通过玩家反馈、数据分析和A&#x2F;B测试发现问题。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/pictures/wolp/1.jpg">
+<meta property="article:published_time" content="2025-09-05T08:21:06.605Z">
+<meta property="article:modified_time" content="2025-09-05T08:34:59.875Z">
+<meta property="article:author" content="Zong">
+<meta property="article:tag" content="Zong">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/pictures/wolp/1.jpg"><link rel="shortcut icon" href="/img/favicon_small.png"><link rel="canonical" href="http://example.com/2025/09/05/%E6%B8%B8%E6%88%8F/%E6%9C%BA%E5%88%B6/%E6%B8%B8%E6%88%8F%E6%9C%BA%E5%88%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E8%AF%A6%E8%A7%A3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?7fd6ea50e4716e880e05917bf7f94429";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"templates/search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":730,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":10,"languages":{"author":"Author: Zong","link":"Link: ","source":"Source: Zong's blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '游戏机制设计师详解',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-09-05 10:34:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/ideas/"><i class="fa-fw fas fa-book"></i><span> Ideas</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fa-solid fa-feather-pointed"></i><span> Projects</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Zong's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/ideas/"><i class="fa-fw fas fa-book"></i><span> Ideas</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fa-solid fa-feather-pointed"></i><span> Projects</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">游戏机制设计师详解</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon fas fa-history"></i><span class="post-meta-label">Updated</span><time datetime="2025-09-05T08:34:59.875Z" title="Updated 2025-09-05 10:34:59">2025-09-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B8%B8%E6%88%8F/">游戏</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B8%B8%E6%88%8F/%E6%9C%BA%E5%88%B6/">机制</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>7min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="游戏机制设计师详解"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><ol>
+<li><strong>构建作品集与在线影响力</strong>  <ul>
+<li>在GitHub或ArtStation发布项目代码与设计文档，撰写技术博客分析经典游戏机制（如《塞尔达》的物理交互、《文明》的资源平衡），吸引潜在雇主注意。</li>
+</ul>
+</li>
+</ol>
+<h1 id="2"><a href="#2" class="headerlink" title="2"></a>2</h1><h4 id="1-理论基础：从设计原则到数学模型"><a href="#1-理论基础：从设计原则到数学模型" class="headerlink" title="1. 理论基础：从设计原则到数学模型"></a>1. <strong>理论基础：从设计原则到数学模型</strong></h4><ul>
+<li><strong>核心概念</strong>  </li>
+<li><strong>推荐学习材料</strong>  <ul>
+<li>搜索到的《游戏平衡性设计原则》PPT（网页2）详细拆解了平衡性设计的方法论，如通过玩家反馈、数据分析和A&#x2F;B测试发现问题。</li>
+<li>《游戏设计心得——实现游戏平衡性的技巧》（网页8）提出“模块化设计”和“复杂性控制”原则，例如将游戏要素功能单一化以简化调整流程。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-技术工具：数据分析与快速迭代"><a href="#2-技术工具：数据分析与快速迭代" class="headerlink" title="2. 技术工具：数据分析与快速迭代"></a>2. <strong>技术工具：数据分析与快速迭代</strong></h4><ul>
+<li><strong>数据分析工具</strong><br>学习使用游戏引擎内置的Analytics工具（如Unity Analytics）或第三方平台（如GameAnalytics），分析玩家行为数据（如胜率、资源消耗、流失节点），定位平衡问题。</li>
+<li><strong>数学建模工具</strong><br>结合计算机背景，用Excel或Python建立平衡性模型。例如，通过马尔可夫链模拟玩家决策路径，或利用博弈论优化多人对战的经济系统。</li>
+</ul>
+<h4 id="3-实践方法：从原型到测试"><a href="#3-实践方法：从原型到测试" class="headerlink" title="3. 实践方法：从原型到测试"></a>3. <strong>实践方法：从原型到测试</strong></h4><ul>
+<li><strong>小型项目实践</strong><br>设计一款简单游戏（如卡牌对战或平台跳跃），聚焦单一机制（如技能冷却时间或伤害数值）的平衡性调整。记录每次迭代的数据变化和玩家反馈。</li>
+<li><strong>经典案例拆解</strong><br>分析成功游戏的平衡策略：<ul>
+<li>《暗黑破坏神2》通过装备掉落率的“抽奖式设计”维持玩家动力。</li>
+<li>《AFK Arena》通过简化策略层级（如站位调整）实现“轻松挂机”的核心体验。</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-行业资源与社区参与"><a href="#4-行业资源与社区参与" class="headerlink" title="4. 行业资源与社区参与"></a>4. <strong>行业资源与社区参与</strong></h4><ul>
+<li><strong>在线课程与论坛</strong><br>关注GDC（游戏开发者大会）演讲，如《平衡性设计的艺术与科学》（Art and Science of Game Balance）。参与Reddit的r&#x2F;gamedesign或TIGSource论坛讨论实际案例。</li>
+<li><strong>书籍延伸阅读</strong>  <ul>
+<li>《游戏机制：高级游戏设计技术》（Game Mechanics: Advanced Game Design）：系统讲解机制与平衡的关系。</li>
+<li>《平衡之道：游戏设计中的数学与心理学》（Balancing Game Design）：结合数学建模与玩家心理分析。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="三、如何结合哥德堡大学资源？"><a href="#三、如何结合哥德堡大学资源？" class="headerlink" title="三、如何结合哥德堡大学资源？"></a>三、如何结合哥德堡大学资源？</h3><ol>
+<li><strong>选修相关课程</strong><br>虽然课程未直接涉及平衡性，但可旁听“系统设计”“玩家心理学”或“人工智能与游戏代理”课程，理解底层逻辑。</li>
+</ol>
+<hr>
+<h3 id="四、长期能力提升建议"><a href="#四、长期能力提升建议" class="headerlink" title="四、长期能力提升建议"></a>四、长期能力提升建议</h3><ul>
+<li><strong>跨学科知识融合</strong><br>学习经济学（如供需模型）和心理学（如玩家动机理论），提升对平衡性设计的宏观把控。</li>
+</ul>
+<hr>
+<h1 id="3"><a href="#3" class="headerlink" title="3"></a>3</h1><hr>
+<h3 id="一、理解「机制创新」的本质"><a href="#一、理解「机制创新」的本质" class="headerlink" title="一、理解「机制创新」的本质"></a><strong>一、理解「机制创新」的本质</strong></h3><ol>
+<li><p><strong>机制≠规则堆砌，而是「交互逻辑」的质变</strong>  </p>
+<ul>
+<li><strong>核心差异</strong>：传统机制优化是改良（如调整技能数值），创新机制是颠覆（如《Superhot》的“时间随动作流动”）。  </li>
+<li><strong>关键问题</strong>：如何用机制创造玩家未曾体验过的认知冲突？例如《The Witness》通过环境与谜题一体化设计，重构玩家对“解谜”的认知。</li>
+</ul>
+</li>
+<li><p><strong>创新机制的分类与方向</strong>  </p>
+<ul>
+<li><strong>物理交互创新</strong>：如《Human: Fall Flat》的软体物理、《Teardown》的体素破坏。  </li>
+<li><strong>规则系统创新</strong>：如《Loop Hero》的循环世界生成规则、《Turing Complete》用游戏机制教授计算机原理。  </li>
+<li><strong>叙事与机制融合</strong>：如《Her Story》的碎片化搜索叙事、《Inscryption》的卡牌与Meta叙事结合。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="二、系统性学习路径"><a href="#二、系统性学习路径" class="headerlink" title="二、系统性学习路径"></a><strong>二、系统性学习路径</strong></h3><h4 id="1-创意方法论：从灵感捕捉到逻辑闭环"><a href="#1-创意方法论：从灵感捕捉到逻辑闭环" class="headerlink" title="1. 创意方法论：从灵感捕捉到逻辑闭环"></a><strong>1. 创意方法论：从灵感捕捉到逻辑闭环</strong></h4><ul>
+<li><strong>逆向设计法</strong>：从目标体验反推机制。例如：  <ul>
+<li>想创造“失控感”→ 设计角色移动速度随玩家操作失误指数级增长（类似《Getting Over It》）。  </li>
+<li>想传递“协作≠信任”→ 设计双角色共享生命值但目标冲突（如《Keep Talking and Nobody Explodes》）。</li>
+</ul>
+</li>
+<li><strong>跨界移植法</strong>：  <ul>
+<li>将现实科学原理转化为机制：如量子纠缠（《Quantum Chess》）、分形几何（《Miegakure》的4D空间）。  </li>
+<li>其他艺术形式启发：如戏剧的“第四面墙”打破（《Undertale》《Doki Doki Literature Club》）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-工具与原型开发"><a href="#2-工具与原型开发" class="headerlink" title="2. 工具与原型开发"></a><strong>2. 工具与原型开发</strong></h4><ul>
+<li><strong>快速原型工具链</strong>：  <ul>
+<li><strong>Unity&#x2F;Unreal</strong>：适合复杂物理或AI驱动的机制（如《Boneworks》的拟真物理）。  </li>
+<li><strong>Godot</strong>：开源引擎，适合实验性机制（如《Cruelty Squad》的怪异交互逻辑）。</li>
+</ul>
+</li>
+<li><strong>编程能力的关键作用</strong>：  <ul>
+<li>计算机背景是你的优势！用代码实现非常规交互，例如：  <ul>
+<li>修改引擎底层物理系统（如《Besiege》的零件力学模拟）。  </li>
+<li>开发自定义编辑器工具（如《Minecraft》红石系统的可视化逻辑设计）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-理论框架与案例分析"><a href="#3-理论框架与案例分析" class="headerlink" title="3. 理论框架与案例分析"></a><strong>3. 理论框架与案例分析</strong></h4><ul>
+<li><strong>必读书籍</strong>：  <ul>
+<li>《<em>Advanced Game Design: A Systems Approach</em>》（Michael Sellers）：用系统思维解构机制创新，如“涌现型玩法”设计。</li>
+</ul>
+</li>
+<li><strong>经典案例拆解</strong>：  <ul>
+<li>研究独立游戏神作：如《The Return of the Obra Dinn》（时间回溯推理）、《Outer Wilds》（开放宇宙时间循环）。  </li>
+<li>分析失败案例：如《Anthem》飞行机制与关卡设计割裂的教训。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="三、实践策略：从实验室到行业"><a href="#三、实践策略：从实验室到行业" class="headerlink" title="三、实践策略：从实验室到行业"></a><strong>三、实践策略：从实验室到行业</strong></h3><h4 id="1-学术资源结合"><a href="#1-学术资源结合" class="headerlink" title="1. 学术资源结合"></a><strong>1. 学术资源结合</strong></h4><ul>
+<li>利用哥德堡大学的<strong>AI与游戏代理研究</strong>：探索AI如何生成或辅助机制设计（如用遗传算法迭代玩法原型）。  </li>
+<li>选修<strong>认知科学&#x2F;交互设计课程</strong>：理解人类认知边界，设计反直觉机制（如《Stephen’s Sausage Roll》的反转视角解谜）。</li>
+</ul>
+<h4 id="2-项目开发重点"><a href="#2-项目开发重点" class="headerlink" title="2. 项目开发重点"></a><strong>2. 项目开发重点</strong></h4><ul>
+<li><strong>Micro-Prototype（微型原型）</strong>：<br>每周用48小时开发一个极端简化的机制原型（例如：仅用“重力反转+时间倒流”两个机制构建平台跳跃游戏）。  </li>
+<li><strong>玩家认知测试</strong>：<br>记录玩家首次接触机制时的“顿悟时刻”（Aha! Moment），优化引导设计（如《The Witness》的环境暗示教学）。</li>
+</ul>
+<hr>
+<h3 id="四、行业突破方向"><a href="#四、行业突破方向" class="headerlink" title="四、行业突破方向"></a><strong>四、行业突破方向</strong></h3><ol>
+<li><p><strong>技术驱动型创新</strong>  </p>
+<ul>
+<li>结合你的计算机背景，探索：  <ul>
+<li><strong>程序化生成机制</strong>（如《Caves of Qud》用算法生成种族&#x2F;技能组合）。  </li>
+<li><strong>ML-driven机制</strong>：让AI基于玩家行为动态生成新规则（如《AI Dungeon》的开放式叙事）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>叙事与机制融合实验</strong>  </p>
+<ul>
+<li>参考《Disco Elysium》：技能系统直接影响叙事分支，而非单纯数值加成。</li>
+</ul>
+</li>
+<li><p><strong>非传统交互硬件</strong>  </p>
+<ul>
+<li>利用北欧的AR&#x2F;VR产业优势，设计基于空间计算的新机制（如《Tea For God》的无限行走算法）。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="五、作品集与求职策略"><a href="#五、作品集与求职策略" class="headerlink" title="五、作品集与求职策略"></a><strong>五、作品集与求职策略</strong></h3><ul>
+<li><strong>作品集结构建议</strong>：  <ol>
+<li><strong>核心机制原型</strong>（附可执行文件+设计文档）：展示从概念到落地的完整流程。  </li>
+<li><strong>跨界项目</strong>：如用游戏机制模拟生物学现象（吸引关注新兴领域的团队）。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3 id="关键提醒"><a href="#关键提醒" class="headerlink" title="关键提醒"></a><strong>关键提醒</strong></h3><ul>
+<li><strong>避免“为了创新而创新”</strong>：机制需服务于核心体验（如《Death Stranding》的“连接”机制与孤独感主题高度契合）。</li>
+</ul>
+<ol>
+<li>加入Itch.io的“Experimental Gameplay”社群，每周分析一个前沿案例。<br>你的计算机背景将让你在实现疯狂创意时更具优势——<strong>用代码打破想象的边界</strong>。</li>
+</ol>
+<h1 id="4"><a href="#4" class="headerlink" title="4"></a>4</h1><hr>
+<h3 id="一、系统性学习资源推荐"><a href="#一、系统性学习资源推荐" class="headerlink" title="一、系统性学习资源推荐"></a>一、系统性学习资源推荐</h3><h4 id="1-行业权威平台与课程"><a href="#1-行业权威平台与课程" class="headerlink" title="1. 行业权威平台与课程"></a>1. <strong>行业权威平台与课程</strong></h4><ul>
+<li><strong>GDC（游戏开发者大会）演讲</strong>：GDC Vault提供历年演讲视频，搜索关键词“Innovative Mechanics”或“Experimental Design”，例如《Baba Is You》开发者解析规则重构逻辑的演讲。</li>
+<li><strong>书籍延伸</strong>：<ul>
+<li>《<em>Rules of Play</em>》：从规则层解构机制设计的理论框架（如“涌现型玩法”设计）。</li>
+<li>《<em>Advanced Game Design: A Systems Approach</em>》：系统思维拆解创新机制案例（如《Outer Wilds》的时间循环设计）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-开发者社区与论坛"><a href="#2-开发者社区与论坛" class="headerlink" title="2. 开发者社区与论坛"></a>2. <strong>开发者社区与论坛</strong></h4><ul>
+<li><strong>Reddit&#x2F;r&#x2F;gamedesign</strong>：讨论前沿机制设计案例，例如《Tunic》的逆向引导设计。</li>
+<li><strong>TIGSource</strong>：独立开发者聚集地，分享原型开发经验与失败教训。</li>
+<li><strong>Itch.io的Experimental Gameplay社群</strong>：每周发布极端实验性游戏原型，适合快速学习。</li>
+</ul>
+<h4 id="3-学术与产业结合资源"><a href="#3-学术与产业结合资源" class="headerlink" title="3. 学术与产业结合资源"></a>3. <strong>学术与产业结合资源</strong></h4><ul>
+<li><strong>Indienova平台</strong>：提供独立游戏开发日志，分析《蒸汽迷域：循环梦魇》等作品的超现实叙事与机制融合逻辑。</li>
+</ul>
+<hr>
+<h3 id="二、寻找新颖机制游戏的渠道"><a href="#二、寻找新颖机制游戏的渠道" class="headerlink" title="二、寻找新颖机制游戏的渠道"></a>二、寻找新颖机制游戏的渠道</h3><h4 id="1-独立游戏平台与展会"><a href="#1-独立游戏平台与展会" class="headerlink" title="1. 独立游戏平台与展会"></a>1. <strong>独立游戏平台与展会</strong></h4><ul>
+<li><strong>Itch.io</strong>：主打实验性游戏，筛选“Innovative Mechanics”标签，例如《Viewfinder》的摄影重构空间机制。</li>
+<li><strong>Steam独立游戏专区</strong>：关注“新品与热门商品”榜单，如2024年黑马《忍者明：悟》的双瞬移解谜机制。</li>
+<li><strong>北欧本地活动</strong>：<ul>
+<li><strong>Nordic Game Jam</strong>：限时开发活动，诞生过《Hollow Knight》等作品的早期原型。</li>
+<li><strong>Swedish Game Awards</strong>：展示北欧学生团队的创新作品，如基于AI动态调整规则的策略游戏。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-云游戏与试玩平台"><a href="#2-云游戏与试玩平台" class="headerlink" title="2. 云游戏与试玩平台"></a>2. <strong>云游戏与试玩平台</strong></h4><ul>
+<li><strong>Xbox Game Pass</strong>：包含大量独立游戏，如《Tunic》《Death’s Door》的机制拆解学习。</li>
+</ul>
+<h4 id="3-奖项与榜单追踪"><a href="#3-奖项与榜单追踪" class="headerlink" title="3. 奖项与榜单追踪"></a>3. <strong>奖项与榜单追踪</strong></h4><ul>
+<li><strong>IndieCade与IGF（独立游戏节）</strong>：历年获奖作品（如《Return of the Obra Dinn》）是机制创新的标杆。</li>
+<li><strong>iOS&#x2F;Google Play独立游戏榜单</strong>：关注《光注：黑暗中的光芒》等小众高分作品的光影交互设计。</li>
+</ul>
+<h4 id="4-数据分析与案例研究"><a href="#4-数据分析与案例研究" class="headerlink" title="4. 数据分析与案例研究"></a>4. <strong>数据分析与案例研究</strong></h4><ul>
+<li><strong>Deconstructor of Fun</strong>：分析《Pearl Gem》等游戏的机制与商业化平衡策略，学习如何通过“卷心菜式球体”设计降低上手难度。</li>
+<li><strong>GameAnalytics</strong>：研究热门游戏的玩家行为数据，定位机制设计的留存率拐点。</li>
+</ul>
+<hr>
+<h3 id="三、实践与行业联动策略"><a href="#三、实践与行业联动策略" class="headerlink" title="三、实践与行业联动策略"></a>三、实践与行业联动策略</h3><ol>
+<li><strong>逆向工程与拆解</strong>  <ul>
+<li>选择一款小众游戏（如《Loop Hero》的循环生成规则），用Unity&#x2F;Unreal重建其核心机制，记录设计瓶颈与解决方案。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="四、长期跟踪与迭代建议"><a href="#四、长期跟踪与迭代建议" class="headerlink" title="四、长期跟踪与迭代建议"></a>四、长期跟踪与迭代建议</h3><ul>
+<li><p><strong>跨界灵感采集</strong>：关注非游戏领域（如交互艺术、建筑学），例如将分形几何转化为关卡生成算法。</p>
+</li>
+<li><p><strong>主动测试与反馈</strong>：将试玩笔记发布至TIGSource论坛，吸引开发者讨论，形成双向学习。</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:zzoonng@163.com">Zong</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://zong4.github.io">https://zong4.github.io</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="/img/pictures/wolp/1.jpg" data-sites="facebook,twitter,wechat"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/09/05/%E6%B8%B8%E6%88%8F/%E6%9C%BA%E5%88%B6/SuperHot/1TimeManipulate/"><img class="prev-cover" src="/img/%E6%B8%B8%E6%88%8F/%E6%9C%BA%E5%88%B6/SuperHot/1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Time Manipulate</div></div></a></div><div class="next-post pull-right"><a href="/2025/09/05/%E6%B8%B8%E6%88%8F/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%AD%A6%E4%B9%A0/"><img class="next-cover" src="/img/%E6%B8%B8%E6%88%8F/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E5%AD%A6%E4%B9%A0/Rasterization.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Games101学习笔记</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zong</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zong4"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/54413027" target="_blank" title="Bilibili"><i class="fab fa-bilibili"></i></a><a class="social-icon" href="https://www.youtube.com/@zzoonng" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a><a class="social-icon" href="https://v.douyin.com/ih2EKpjy" target="_blank" title="DouYin"><i class="fab fa-tiktok"></i></a><a class="social-icon" href="https://www.zhihu.com/people/shi-wang-93-56" target="_blank" title="ZhiHu"><i class="fab fa-zhihu"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Hello, this is Zong, who is devoted to share everything. You can contact me with email(zzoonng@163.com) everytime.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1"><span class="toc-number">1.</span> <span class="toc-text">1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2"><span class="toc-number">2.</span> <span class="toc-text">2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80%EF%BC%9A%E4%BB%8E%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99%E5%88%B0%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">1. 理论基础：从设计原则到数学模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%8A%80%E6%9C%AF%E5%B7%A5%E5%85%B7%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E5%BF%AB%E9%80%9F%E8%BF%AD%E4%BB%A3"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">2. 技术工具：数据分析与快速迭代</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%9E%E8%B7%B5%E6%96%B9%E6%B3%95%EF%BC%9A%E4%BB%8E%E5%8E%9F%E5%9E%8B%E5%88%B0%E6%B5%8B%E8%AF%95"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">3. 实践方法：从原型到测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E8%A1%8C%E4%B8%9A%E8%B5%84%E6%BA%90%E4%B8%8E%E7%A4%BE%E5%8C%BA%E5%8F%82%E4%B8%8E"><span class="toc-number">2.0.0.4.</span> <span class="toc-text">4. 行业资源与社区参与</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A6%82%E4%BD%95%E7%BB%93%E5%90%88%E5%93%A5%E5%BE%B7%E5%A0%A1%E5%A4%A7%E5%AD%A6%E8%B5%84%E6%BA%90%EF%BC%9F"><span class="toc-number">2.0.1.</span> <span class="toc-text">三、如何结合哥德堡大学资源？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%95%BF%E6%9C%9F%E8%83%BD%E5%8A%9B%E6%8F%90%E5%8D%87%E5%BB%BA%E8%AE%AE"><span class="toc-number">2.0.2.</span> <span class="toc-text">四、长期能力提升建议</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3"><span class="toc-number">3.</span> <span class="toc-text">3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%90%86%E8%A7%A3%E3%80%8C%E6%9C%BA%E5%88%B6%E5%88%9B%E6%96%B0%E3%80%8D%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="toc-number">3.0.1.</span> <span class="toc-text">一、理解「机制创新」的本质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%B3%BB%E7%BB%9F%E6%80%A7%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84"><span class="toc-number">3.0.2.</span> <span class="toc-text">二、系统性学习路径</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%88%9B%E6%84%8F%E6%96%B9%E6%B3%95%E8%AE%BA%EF%BC%9A%E4%BB%8E%E7%81%B5%E6%84%9F%E6%8D%95%E6%8D%89%E5%88%B0%E9%80%BB%E8%BE%91%E9%97%AD%E7%8E%AF"><span class="toc-number">3.0.2.1.</span> <span class="toc-text">1. 创意方法论：从灵感捕捉到逻辑闭环</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%B7%A5%E5%85%B7%E4%B8%8E%E5%8E%9F%E5%9E%8B%E5%BC%80%E5%8F%91"><span class="toc-number">3.0.2.2.</span> <span class="toc-text">2. 工具与原型开发</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E7%90%86%E8%AE%BA%E6%A1%86%E6%9E%B6%E4%B8%8E%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90"><span class="toc-number">3.0.2.3.</span> <span class="toc-text">3. 理论框架与案例分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E8%B7%B5%E7%AD%96%E7%95%A5%EF%BC%9A%E4%BB%8E%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%88%B0%E8%A1%8C%E4%B8%9A"><span class="toc-number">3.0.3.</span> <span class="toc-text">三、实践策略：从实验室到行业</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%AD%A6%E6%9C%AF%E8%B5%84%E6%BA%90%E7%BB%93%E5%90%88"><span class="toc-number">3.0.3.1.</span> <span class="toc-text">1. 学术资源结合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E9%87%8D%E7%82%B9"><span class="toc-number">3.0.3.2.</span> <span class="toc-text">2. 项目开发重点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%A1%8C%E4%B8%9A%E7%AA%81%E7%A0%B4%E6%96%B9%E5%90%91"><span class="toc-number">3.0.4.</span> <span class="toc-text">四、行业突破方向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BD%9C%E5%93%81%E9%9B%86%E4%B8%8E%E6%B1%82%E8%81%8C%E7%AD%96%E7%95%A5"><span class="toc-number">3.0.5.</span> <span class="toc-text">五、作品集与求职策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E6%8F%90%E9%86%92"><span class="toc-number">3.0.6.</span> <span class="toc-text">关键提醒</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4"><span class="toc-number">4.</span> <span class="toc-text">4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%B3%BB%E7%BB%9F%E6%80%A7%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90%E6%8E%A8%E8%8D%90"><span class="toc-number">4.0.1.</span> <span class="toc-text">一、系统性学习资源推荐</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%A1%8C%E4%B8%9A%E6%9D%83%E5%A8%81%E5%B9%B3%E5%8F%B0%E4%B8%8E%E8%AF%BE%E7%A8%8B"><span class="toc-number">4.0.1.1.</span> <span class="toc-text">1. 行业权威平台与课程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%BC%80%E5%8F%91%E8%80%85%E7%A4%BE%E5%8C%BA%E4%B8%8E%E8%AE%BA%E5%9D%9B"><span class="toc-number">4.0.1.2.</span> <span class="toc-text">2. 开发者社区与论坛</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AD%A6%E6%9C%AF%E4%B8%8E%E4%BA%A7%E4%B8%9A%E7%BB%93%E5%90%88%E8%B5%84%E6%BA%90"><span class="toc-number">4.0.1.3.</span> <span class="toc-text">3. 学术与产业结合资源</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AF%BB%E6%89%BE%E6%96%B0%E9%A2%96%E6%9C%BA%E5%88%B6%E6%B8%B8%E6%88%8F%E7%9A%84%E6%B8%A0%E9%81%93"><span class="toc-number">4.0.2.</span> <span class="toc-text">二、寻找新颖机制游戏的渠道</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F%E5%B9%B3%E5%8F%B0%E4%B8%8E%E5%B1%95%E4%BC%9A"><span class="toc-number">4.0.2.1.</span> <span class="toc-text">1. 独立游戏平台与展会</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BA%91%E6%B8%B8%E6%88%8F%E4%B8%8E%E8%AF%95%E7%8E%A9%E5%B9%B3%E5%8F%B0"><span class="toc-number">4.0.2.2.</span> <span class="toc-text">2. 云游戏与试玩平台</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%A5%96%E9%A1%B9%E4%B8%8E%E6%A6%9C%E5%8D%95%E8%BF%BD%E8%B8%AA"><span class="toc-number">4.0.2.3.</span> <span class="toc-text">3. 奖项与榜单追踪</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%A1%88%E4%BE%8B%E7%A0%94%E7%A9%B6"><span class="toc-number">4.0.2.4.</span> <span class="toc-text">4. 数据分析与案例研究</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E8%B7%B5%E4%B8%8E%E8%A1%8C%E4%B8%9A%E8%81%94%E5%8A%A8%E7%AD%96%E7%95%A5"><span class="toc-number">4.0.3.</span> <span class="toc-text">三、实践与行业联动策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%95%BF%E6%9C%9F%E8%B7%9F%E8%B8%AA%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%BB%BA%E8%AE%AE"><span class="toc-number">4.0.4.</span> <span class="toc-text">四、长期跟踪与迭代建议</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2025 By Zong</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><div class="aplayer no-destroy" data-id="897784673" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="1" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/shuoshuo/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Language篇（一），让模型理解语法和语义 | Zong's blog</title><meta name="keywords" content="人工智能，机器学习，深度学习，学习AI，Language篇，上下文无关语法，词袋模型，朴素贝叶斯，独热编码，Word2Vec，语法，语义，大语言模型，自然语言处理，NLP"><meta name="author" content="Zong,zzoonng@163.com"><meta name="copyright" content="Zong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言哈哈哈，终于来到我的专业领域了，完整代码见 https:&#x2F;&#x2F;github.com&#x2F;zong4&#x2F;AILearning。 语法大语言模型主要是需要解决两个问题，首先就是语法。 马尔可夫链那其中一种解决方法我们之前试过了，没错，就是当时用马尔可夫链生成福尔摩斯故事。 它的本质就是通过每组词的转移概率来分析语法，同时也可以起到预测下一组词的作用。 上下文无关语法除此之外我们也可以主动给 AI 提供语法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Language篇（一），让模型理解语法和语义">
+<meta property="og:url" content="http://example.com/2025/09/05/AI/AI%E5%AD%A6%E4%B9%A0/AI%E5%AD%A6%E4%B9%A015/index.html">
+<meta property="og:site_name" content="Zong&#39;s blog">
+<meta property="og:description" content="前言哈哈哈，终于来到我的专业领域了，完整代码见 https:&#x2F;&#x2F;github.com&#x2F;zong4&#x2F;AILearning。 语法大语言模型主要是需要解决两个问题，首先就是语法。 马尔可夫链那其中一种解决方法我们之前试过了，没错，就是当时用马尔可夫链生成福尔摩斯故事。 它的本质就是通过每组词的转移概率来分析语法，同时也可以起到预测下一组词的作用。 上下文无关语法除此之外我们也可以主动给 AI 提供语法">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/AI/AI%E5%AD%A6%E4%B9%A0/52.png">
+<meta property="article:published_time" content="2025-09-05T08:16:23.318Z">
+<meta property="article:modified_time" content="2025-09-05T08:30:12.208Z">
+<meta property="article:author" content="Zong">
+<meta property="article:tag" content="Zong">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/AI/AI%E5%AD%A6%E4%B9%A0/52.png"><link rel="shortcut icon" href="/img/favicon_small.png"><link rel="canonical" href="http://example.com/2025/09/05/AI/AI%E5%AD%A6%E4%B9%A0/AI%E5%AD%A6%E4%B9%A015/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?7fd6ea50e4716e880e05917bf7f94429";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"templates/search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":730,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":10,"languages":{"author":"Author: Zong","link":"Link: ","source":"Source: Zong's blog","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Language篇（一），让模型理解语法和语义',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-09-05 10:30:12'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/ideas/"><i class="fa-fw fas fa-book"></i><span> Ideas</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fa-solid fa-feather-pointed"></i><span> Projects</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Zong's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/ideas/"><i class="fa-fw fas fa-book"></i><span> Ideas</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fa-solid fa-feather-pointed"></i><span> Projects</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Language篇（一），让模型理解语法和语义</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon fas fa-history"></i><span class="post-meta-label">Updated</span><time datetime="2025-09-05T08:30:12.208Z" title="Updated 2025-09-05 10:30:12">2025-09-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/">大语言模型</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>5min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Language篇（一），让模型理解语法和语义"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>哈哈哈，终于来到我的专业领域了，完整代码见 <a target="_blank" rel="noopener" href="https://github.com/zong4/AILearning%E3%80%82">https://github.com/zong4/AILearning。</a></p>
+<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><p>大语言模型主要是需要解决两个问题，首先就是语法。</p>
+<h2 id="马尔可夫链"><a href="#马尔可夫链" class="headerlink" title="马尔可夫链"></a>马尔可夫链</h2><p>那其中一种解决方法我们之前试过了，没错，就是当时用马尔可夫链生成福尔摩斯故事。</p>
+<p>它的本质就是通过每组词的转移概率来分析语法，同时也可以起到预测下一组词的作用。</p>
+<h2 id="上下文无关语法"><a href="#上下文无关语法" class="headerlink" title="上下文无关语法"></a>上下文无关语法</h2><p>除此之外我们也可以主动给 AI 提供语法，任何文本都可以用下面的语法树来表示。</p>
+<p><img src="/img/AI/AI%E5%AD%A6%E4%B9%A0/52.png"></p>
+<p>不过这棵比较简单，实际情况遇到长难句会非常复杂，给大家看一句。</p>
+<p><img src="/img/AI/AI%E5%AD%A6%E4%B9%A0/53.png"></p>
+<p>我输入的语法模型是这样的，不知道有没有穷尽，但是至少也分析出来了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">TERMINALS = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">Adj -&gt; &quot;country&quot; | &quot;dreadful&quot; | &quot;enigmatical&quot; | &quot;little&quot; | &quot;moist&quot; | &quot;red&quot;</span></span><br><span class="line"><span class="string">Adv -&gt; &quot;down&quot; | &quot;here&quot; | &quot;never&quot;</span></span><br><span class="line"><span class="string">Conj -&gt; &quot;and&quot; | &quot;until&quot;</span></span><br><span class="line"><span class="string">Det -&gt; &quot;a&quot; | &quot;an&quot; | &quot;his&quot; | &quot;my&quot; | &quot;the&quot;</span></span><br><span class="line"><span class="string">N -&gt; &quot;armchair&quot; | &quot;companion&quot; | &quot;day&quot; | &quot;door&quot; | &quot;hand&quot; | &quot;he&quot; | &quot;himself&quot;</span></span><br><span class="line"><span class="string">N -&gt; &quot;holmes&quot; | &quot;home&quot; | &quot;i&quot; | &quot;mess&quot; | &quot;paint&quot; | &quot;palm&quot; | &quot;pipe&quot; | &quot;she&quot;</span></span><br><span class="line"><span class="string">N -&gt; &quot;smile&quot; | &quot;thursday&quot; | &quot;walk&quot; | &quot;we&quot; | &quot;word&quot;</span></span><br><span class="line"><span class="string">P -&gt; &quot;at&quot; | &quot;before&quot; | &quot;in&quot; | &quot;of&quot; | &quot;on&quot; | &quot;to&quot;</span></span><br><span class="line"><span class="string">V -&gt; &quot;arrived&quot; | &quot;came&quot; | &quot;chuckled&quot; | &quot;had&quot; | &quot;lit&quot; | &quot;said&quot; | &quot;sat&quot;</span></span><br><span class="line"><span class="string">V -&gt; &quot;smiled&quot; | &quot;tell&quot; | &quot;were&quot;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">NONTERMINALS = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">S -&gt; NP VP | S ConjP S | S PP S</span></span><br><span class="line"><span class="string">NP -&gt; N | Det NP | AdjP NP</span></span><br><span class="line"><span class="string">VP -&gt; V | Adv VP | VP Adv | VP PP | VP NP | VP Conj VP</span></span><br><span class="line"><span class="string">ConjP -&gt; Conj | Conj NP | Conj VP</span></span><br><span class="line"><span class="string">PP -&gt; P NP | P S</span></span><br><span class="line"><span class="string">AdjP -&gt; Adj | Adj AdjP</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="语义"><a href="#语义" class="headerlink" title="语义"></a>语义</h1><p>没有语义那么语言也就没有了灵魂，就像之前福尔摩斯的生成文章一样，看着好像说了很多，但其实什么也没说。</p>
+<h2 id="词袋模型"><a href="#词袋模型" class="headerlink" title="词袋模型"></a>词袋模型</h2><p>Bag-of-words 是一种将文本表示为无序单词集合的模型，此模型忽略语法，仅考虑句子中单词的含义。此方法在某些分类任务中非常有用，例如分类垃圾邮件。</p>
+<p>具体的话就是说我这句话里正向词多就正向，负向词多情绪就是负向的。</p>
+<p>那比如 ”我又开心又伤心“，那开心是正向，伤心是负向，正负各一个，这句话就是中性的了，除非我给某一个加个非常，很之类的。</p>
+<h2 id="朴素贝叶斯"><a href="#朴素贝叶斯" class="headerlink" title="朴素贝叶斯"></a>朴素贝叶斯</h2><p>朴素贝叶斯是一种可用于词袋模型的情绪分析的技术，对于一句话判断为某种情绪的概率我们可以用如下公式表示。</p>
+<p><img src="/img/AI/AI%E5%AD%A6%E4%B9%A0/54.png"></p>
+<p>其中 b 代表情绪，a 代表那句话。</p>
+<p>举个例子，”我的孙子爱它“，如果想计算它表达积极情绪的概率，就可以转为计算它们的联合概率，即。</p>
+<p>$$P(正向，“我的”，“孙子”，“爱”，“它”) * P(正向)$$</p>
+<p>但是，计算这个联合概率很复杂，因为每个单词的概率都取决于它前面的单词的概率，它要求我们计算 P(正) * P(“我的” | 正) * P(“孙” | 正，“我的”) * P(爱 | 正，“我的”，“孙子”) * P(“它” | 正，”我的“，“孙子”，“爱”)。</p>
+<p>不过我们可以不考虑语法，也就是假设每个单词的概率独立于其他单词，也能得到不错的效果。</p>
+<p>$$P(积极) * P(“我的” | 积极) * P(“孙子” | 积极) * P(“爱” | 积极) * P(“它” | 积极)$$</p>
+<p>这并不难计算，其中 P(正) &#x3D; 所有正样本数除以总样本数，P(“爱” | 正向) 等于带有单词 “爱” 的正样本数除以正样本数，具体如下。</p>
+<p><img src="/img/AI/AI%E5%AD%A6%E4%B9%A0/55.png"></p>
+<p>朴素贝叶斯的优势在于，它对一种句子中出现频率高于另一种句子的单词敏感。在我们的例子中，“爱” 这个词在肯定句中出现的频率要高得多，这使得整个句子更有可能是正面的而不是负面的。</p>
+<h1 id="单词表示"><a href="#单词表示" class="headerlink" title="单词表示"></a>单词表示</h1><h2 id="独热编码"><a href="#独热编码" class="headerlink" title="独热编码"></a>独热编码</h2><p>在独热编码中，每个单词都用一个向量表示，该向量由与我们拥有的单词一样多的值组成，除了向量中等于 1 的单个值外，所有其他值都等于 0。</p>
+<p>例如，“他写了一本书” 可以表示为四个向量。</p>
+<ol>
+<li>[1, 0, 0, 0]（他）。</li>
+<li>[0, 1, 0, 0]（写了）。</li>
+<li>[0, 0, 1, 0]（一本）。</li>
+<li>[0, 0, 0, 1]（书）。</li>
+</ol>
+<p>但是当单词多起来之后，我们就很难用这种方法来表示了。</p>
+<p>而且这种方法有个最致命的问题，就是没办法表示一些类似的单词，比如早饭和中饭两个词之间的距离，肯定应该比早饭和游泳之间的距离短。</p>
+<p>再比如说如下图，男人到国王的距离应该是与女人到皇后的距离相等的，但是这些都不能在独热编码中体现出来。</p>
+<p><img src="/img/AI/AI%E5%AD%A6%E4%B9%A0/56.png"></p>
+<h2 id="Word2Vec"><a href="#Word2Vec" class="headerlink" title="Word2Vec"></a>Word2Vec</h2><p>所以我们应该用更加小的维度，将它们表示成几个不同的数字，比如上面的例子，我们可以重新表示为。</p>
+<ol>
+<li>[-0.34, -0.08, 0.02, -0.18, …]（他）。</li>
+<li>[-0.27, 0.40, 0.00, -0.65, …]（写了）。</li>
+<li>[-0.12, -0.25, 0.29, -0.09, …]（一本）。</li>
+<li>[-0.23, -0.16, -0.05, -0.57, …]（书）。</li>
+</ol>
+<p>Word2Vec 是一种用于生成单词的分布式表示的算法。它通过 Skip-Gram 架构来实现这一点，Skip-Gram 架构是一种神经网络架构，用于在给定目标词的情况下预测上下文。</p>
+<p><img src="/img/AI/AI%E5%AD%A6%E4%B9%A0/57.png"></p>
+<p>在此体系结构中，神经网络的每个目标单词都有一个输入单元。较小的单个隐藏层（例如50&#x2F;100个单位）将生成表示单词的分布式表示的值，输出层将生成可能出现在与目标单词相似的上下文中的单词，而 Word2Vec 就是整个网络的副产物，它可以将任意一个单词表示成特定的向量。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>你能觉得关键看完还是不知道 AI 怎么就理解语意了，但是其实有上面的知识就足够了。</p>
+<p>AI 已经能够补全你的想法了，也能够知道相似词，甚至能够回答问题（这个明天讲），所以说它理解了吗？我也不清楚，学界也还有争论，但是至少看上去理解了。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:zzoonng@163.com">Zong</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://zong4.github.io">https://zong4.github.io</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="/img/AI/AI%E5%AD%A6%E4%B9%A0/52.png" data-sites="facebook,twitter,wechat"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/09/05/AI/AI%E5%AD%A6%E4%B9%A0/AI%E5%AD%A6%E4%B9%A014/"><img class="prev-cover" src="/img/AI/AI%E5%AD%A6%E4%B9%A0/38.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Neural Networks篇（一），理解模型的结构并实战</div></div></a></div><div class="next-post pull-right"><a href="/2025/09/05/AI/AI%E5%AD%A6%E4%B9%A0/AI%E5%AD%A6%E4%B9%A016/"><img class="next-cover" src="/img/AI/AI%E5%AD%A6%E4%B9%A0/52.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Language篇（二），生成并观察注意力热力图</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zong</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zong4"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/54413027" target="_blank" title="Bilibili"><i class="fab fa-bilibili"></i></a><a class="social-icon" href="https://www.youtube.com/@zzoonng" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a><a class="social-icon" href="https://v.douyin.com/ih2EKpjy" target="_blank" title="DouYin"><i class="fab fa-tiktok"></i></a><a class="social-icon" href="https://www.zhihu.com/people/shi-wang-93-56" target="_blank" title="ZhiHu"><i class="fab fa-zhihu"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Hello, this is Zong, who is devoted to share everything. You can contact me with email(zzoonng@163.com) everytime.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E9%93%BE"><span class="toc-number">2.1.</span> <span class="toc-text">马尔可夫链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E8%AF%AD%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">上下文无关语法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%AD%E4%B9%89"><span class="toc-number">3.</span> <span class="toc-text">语义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%8D%E8%A2%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">词袋模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF"><span class="toc-number">3.2.</span> <span class="toc-text">朴素贝叶斯</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%95%E8%AF%8D%E8%A1%A8%E7%A4%BA"><span class="toc-number">4.</span> <span class="toc-text">单词表示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8B%AC%E7%83%AD%E7%BC%96%E7%A0%81"><span class="toc-number">4.1.</span> <span class="toc-text">独热编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Word2Vec"><span class="toc-number">4.2.</span> <span class="toc-text">Word2Vec</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-number">5.</span> <span class="toc-text">后记</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2025 By Zong</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><div class="aplayer no-destroy" data-id="897784673" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="1" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/shuoshuo/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
