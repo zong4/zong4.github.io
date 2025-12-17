@@ -4,11 +4,32 @@
   
     
     <entry>
+      <title>Peng-Win</title>
+      <link href="/2025/12/17/Prototypes/Peng-Win/"/>
+      <url>/2025/12/17/Prototypes/Peng-Win/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Peng-Win"><a href="#Peng-Win" class="headerlink" title="Peng-Win"></a><a href="https://scariett77.itch.io/peng-win">Peng-Win</a></h1><p>A Sokoban-style puzzle game come from <em>the Xmas Game Jam 2025</em> in 48 hours, with the theme “Winter Wonderland”.</p><p>You can download and play it here: <a href="https://scariett77.itch.io/peng-win">https://scariett77.itch.io/peng-win</a>. Feel free to give us feedbacks!</p><p><img src="/img/Peng-Win/Level1.png"></p><p><img src="/img/Peng-Win/Level2.png"></p><p><img src="/img/Peng-Win/Level3.png"></p><p><img src="/img/Peng-Win/Level4.png"></p><p><img src="/img/Peng-Win/Level5.png"></p><p><img src="/img/Peng-Win/Level6.png"></p><p><img src="/img/Peng-Win/Level7.png"></p><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>In a Winter Wonderland covered in snow and ice, Santa’s sleigh has a problem — it needs penguins to pull it.</p><p>This is a 2.5D grid-based puzzle game where you play as Santa Claus, navigating snowy tiles, slippery ice, and frozen water. Your goal is simple: kick penguins into Santa’s sleigh so they can help power the journey forward.</p><p>Penguins are the key to every puzzle. Once kicked, they slide uncontrollably across ice and water until they hit an obstacle or land perfectly inside the sleigh. You must carefully plan your position and timing to predict where each penguin will end up.</p><p>The levels also include pushable boxes that support the puzzles by blocking paths, filling gaps, or shaping movement — but the focus is always on mastering penguin movement.</p><p>With simple controls, playful physics, and a cheerful winter atmosphere, the game turns lighthearted ideas into surprisingly thoughtful challenges.</p><p>Line up your kick, watch the penguins slide, and help Santa continue his snowy voyage.</p><h1 id="Reflections"><a href="#Reflections" class="headerlink" title="Reflections"></a>Reflections</h1><p>Compared to last time, we didn’t choose an idea that required a lot of visual effects, so we could focus more on gameplay and level design.</p><p>We managed to complete a total of 7 levels in 48 hours — we deserve a reward!</p><p><img src="/img/Peng-Win/Reward.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Games </category>
+          
+          <category> Prototypes </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Who Are You?</title>
       <link href="/2025/12/17/Prototypes/WhoAreYou/"/>
       <url>/2025/12/17/Prototypes/WhoAreYou/</url>
       
-        <content type="html"><![CDATA[<h1 id="Who-Are-You"><a href="#Who-Are-You" class="headerlink" title="Who Are You?"></a><a href="https://scariett77.itch.io/whoareyou">Who Are You?</a></h1><p>A short narrative exploration game come from <em>the Spooky Jam 2025</em> in 48 hours, with the theme “Cosmic Horror”.</p><p>You can download and play it here: <a href="https://scariett77.itch.io/whoareyou">https://scariett77.itch.io/whoareyou</a>. Feel free to give us feedbacks!</p><p><img src="/img/Games/WhoAreYou.png"></p><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>The only thing player can do is answer questions. Through this, players will gradually understand who they are.</p><h1 id="For-who-didn’t-understand-the-game"><a href="#For-who-didn’t-understand-the-game" class="headerlink" title="For who didn’t understand the game"></a>For who didn’t understand the game</h1><details><summary>Click to reveal</summary><p>An unknown entity tries to obtain your information through the questionaire.</p><p>It captures you and forces you to see the questions.</p><p>It peers into your mind through its tendrils and types the answers for you.</p><p>In the end, it will know who you are — and then become you.</p><p>So, who are you?</p></details><h1 id="Reflections"><a href="#Reflections" class="headerlink" title="Reflections"></a>Reflections</h1><p>To be honest, this was my first time seriously participating in a game jam, and also my first time working as a technical artist in a team.</p><p>Due to limited time and experience, it was difficult for us to express everything clearly. For example, we don’t have an ugly monster or a more obvious effect to show how the entity becomes you.</p><p>What’s more, the gameplay maybe a little bit boring.</p><p>However, I believe the next one will be better!</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="Who-Are-You"><a href="#Who-Are-You" class="headerlink" title="Who Are You?"></a><a href="https://scariett77.itch.io/whoareyou">Who Are You?</a></h1><p>A short narrative exploration game come from <em>the Spooky Jam 2025</em> in 48 hours, with the theme “Cosmic Horror”.</p><p>You can download and play it here: <a href="https://scariett77.itch.io/whoareyou">https://scariett77.itch.io/whoareyou</a>. Feel free to give us feedbacks!</p><p><img src="/img/WhoAreYou/WhoAreYou.png"></p><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>The only thing player can do is answer questions. Through this, players will gradually understand who they are.</p><h1 id="For-who-didn’t-understand-the-game"><a href="#For-who-didn’t-understand-the-game" class="headerlink" title="For who didn’t understand the game"></a>For who didn’t understand the game</h1><details><summary>Click to reveal</summary><p>An unknown entity tries to obtain your information through the questionaire.</p><p>It captures you and forces you to see the questions.</p><p>It peers into your mind through its tendrils and types the answers for you.</p><p>In the end, it will know who you are — and then become you.</p><p>So, who are you?</p></details><h1 id="Reflections"><a href="#Reflections" class="headerlink" title="Reflections"></a>Reflections</h1><p>To be honest, this was my first time seriously participating in a game jam, and also my first time working as a technical artist in a team.</p><p>Due to limited time and experience, it was difficult for us to express everything clearly. For example, we don’t have an ugly monster or a more obvious effect to show how the entity becomes you.</p><p>What’s more, the gameplay maybe a little bit boring.</p><p>However, I believe the next one will be better!</p>]]></content>
       
       
       <categories>
