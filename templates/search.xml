@@ -4,18 +4,18 @@
   
     
     <entry>
-      <title>Peng-Win!</title>
-      <link href="/2025/12/17/Prototypes/Peng-Win/"/>
-      <url>/2025/12/17/Prototypes/Peng-Win/</url>
+      <title>Bomber</title>
+      <link href="/2026/01/01/Mechanics/Bomber/"/>
+      <url>/2026/01/01/Mechanics/Bomber/</url>
       
-        <content type="html"><![CDATA[<h1 id="Peng-Win"><a href="#Peng-Win" class="headerlink" title="Peng-Win"></a><a href="https://scariett77.itch.io/peng-win">Peng-Win</a></h1><p>A Sokoban-style puzzle game come from <em>the Xmas Game Jam 2025</em> in 48 hours, with the theme “Winter Wonderland”.</p><p>You can download and play it here: <a href="https://scariett77.itch.io/peng-win">https://scariett77.itch.io/peng-win</a>. Feel free to give us feedbacks!</p><p><img src="/img/Peng-Win/Level1.png"></p><p><img src="/img/Peng-Win/Level2.png"></p><p><img src="/img/Peng-Win/Level3.png"></p><p><img src="/img/Peng-Win/Level4.png"></p><p><img src="/img/Peng-Win/Level5.png"></p><p><img src="/img/Peng-Win/Level6.png"></p><p><img src="/img/Peng-Win/Level7.png"></p><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>In a Winter Wonderland covered in snow and ice, Santa’s sleigh has a problem — it needs penguins to pull it.</p><p>This is a 2.5D grid-based puzzle game where you play as Santa Claus, navigating snowy tiles, slippery ice, and frozen water. Your goal is simple: kick penguins into Santa’s sleigh so they can help power the journey forward.</p><p>Penguins are the key to every puzzle. Once kicked, they slide uncontrollably across ice and water until they hit an obstacle or land perfectly inside the sleigh. You must carefully plan your position and timing to predict where each penguin will end up.</p><p>The levels also include pushable boxes that support the puzzles by blocking paths, filling gaps, or shaping movement — but the focus is always on mastering penguin movement.</p><p>With simple controls, playful physics, and a cheerful winter atmosphere, the game turns lighthearted ideas into surprisingly thoughtful challenges.</p><p>Line up your kick, watch the penguins slide, and help Santa continue his snowy voyage.</p><h1 id="Reflections"><a href="#Reflections" class="headerlink" title="Reflections"></a>Reflections</h1><p>Compared to last time, we didn’t choose an idea that required a lot of visual effects, so we could focus more on gameplay and level design.</p><p>We managed to complete a total of 7 levels in 48 hours — we deserve a reward!</p><p><img src="/img/Peng-Win/Reward.png"></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="Bomber-Mechanic"><a href="#Bomber-Mechanic" class="headerlink" title="Bomber Mechanic"></a>Bomber Mechanic</h1><p>A physics-based platformer where you <strong>are the bomb</strong> — using explosive recoil to <strong>jump</strong>, <strong>double-jump</strong>, and <strong>propel</strong> yourself through the level.</p><p><img src="/img/Mechanics/Bomber.gif"></p><p>The video tutorial of the <strong>Bomber</strong> mechanic can be found <a href="https://www.youtube.com/watch?v=5ABBmCkShY4">here</a> and chinese version <a href="https://www.bilibili.com/video/BV1qbeezcEaT">here</a>.</p><p>The source code is available on <a href="https://github.com/zong4/GameMechanics">GitHub</a>.</p>]]></content>
       
       
       <categories>
           
           <category> Games </category>
           
-          <category> Prototypes </category>
+          <category> Mechanics </category>
           
       </categories>
       
@@ -25,37 +25,18 @@
     
     
     <entry>
-      <title>Who Are You?</title>
-      <link href="/2025/12/17/Prototypes/WhoAreYou/"/>
-      <url>/2025/12/17/Prototypes/WhoAreYou/</url>
+      <title>Super Hot</title>
+      <link href="/2026/01/01/Mechanics/SuperHot/"/>
+      <url>/2026/01/01/Mechanics/SuperHot/</url>
       
-        <content type="html"><![CDATA[<h1 id="Who-Are-You"><a href="#Who-Are-You" class="headerlink" title="Who Are You?"></a><a href="https://scariett77.itch.io/whoareyou">Who Are You?</a></h1><p>A short narrative exploration game come from <em>the Spooky Jam 2025</em> in 48 hours, with the theme “Cosmic Horror”.</p><p>You can download and play it here: <a href="https://scariett77.itch.io/whoareyou">https://scariett77.itch.io/whoareyou</a>. Feel free to give us feedbacks!</p><p><img src="/img/WhoAreYou/WhoAreYou.png"></p><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>The only thing player can do is answer questions. Through this, players will gradually understand who they are.</p><h1 id="For-who-didn’t-understand-the-game"><a href="#For-who-didn’t-understand-the-game" class="headerlink" title="For who didn’t understand the game"></a>For who didn’t understand the game</h1><details><summary>Click to reveal</summary><p>An unknown entity tries to obtain your information through the questionaire.</p><p>It captures you and forces you to see the questions.</p><p>It peers into your mind through its tendrils and types the answers for you.</p><p>In the end, it will know who you are — and then become you.</p><p>So, who are you?</p></details><h1 id="Reflections"><a href="#Reflections" class="headerlink" title="Reflections"></a>Reflections</h1><p>To be honest, this was my first time seriously participating in a game jam, and also my first time working as a technical artist in a team.</p><p>Due to limited time and experience, it was difficult for us to express everything clearly. For example, we don’t have an ugly monster or a more obvious effect to show how the entity becomes you.</p><p>What’s more, the gameplay maybe a little bit boring.</p><p>However, I believe the next one will be better!</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="Super-Hot-Mechanic"><a href="#Super-Hot-Mechanic" class="headerlink" title="Super Hot Mechanic"></a>Super Hot Mechanic</h1><p>A Unity recreation of <strong>SuperHot’s</strong> core experience — where <strong>time only moves when you move</strong>. Rebuilt from scratch to replicate its <strong>time manipulation</strong> and <strong>combat replay</strong> mechanics, delivering the signature “time as a weapon” tactical shooter experience.</p><p><img src="/img/Mechanics/SuperHot.gif"></p><p>The video tutorial of the <strong>Super Hot</strong> mechanic can be found <a href="https://www.youtube.com/watch?v=UpLLqT7HSuo">here</a> and chinese version <a href="https://www.bilibili.com/video/BV1ndbhz7E3M/">here</a>.</p><p>The source code is available on <a href="https://github.com/zong4/GameMechanics">GitHub</a>.</p>]]></content>
       
       
       <categories>
           
           <category> Games </category>
           
-          <category> Prototypes </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Where is my life? 我的人生在哪里</title>
-      <link href="/2025/09/05/Life/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F/"/>
-      <url>/2025/09/05/Life/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F/</url>
-      
-        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>他，23岁，一事无成，但是找到了自己的路。</p><p>很久没有写文章了，前段时间一直很迷茫，我总是想为我所做的事情赋予一些意义，说服我自己去完成它，真让我感觉非常痛苦。</p><p>明知它是没有意义的，但我却要不停的相信它是有意义的，这甚至让我有点精神分裂。</p><p>直到昨天，我洗澡的时候在想，为什么我不干脆直接承认所有的一切都是无意义的呢？</p><p>将我的人生比作游戏，不断地发起挑战。</p><p>也许这样的人生态度可以支撑我走的更远。</p><p>这不禁让我想起了《西西弗斯神话》，加缪说我们应该想象西西弗斯是快乐的，在那一刻我终于理解了他，西西弗斯应该是快乐的，他也许就在不断地挑战着他自己。</p><p>更快，更高，更持久。</p><p>从今年2月到现在，9个月的时光，我一直在思考这个问题，很庆幸我现在终于有了自己的答案，终于可以更加坦然的面对自己。</p><p>为了纪念，于第二天（2024&#x2F;11&#x2F;15）写下这篇文章，同时也会在今年将其做成视频，希望能给有相同困境的朋友们一些启发。</p><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>What is the meaning of life? Everyone has their own answers, maybe eating everything, traveling around the world or just be a common and common person.</p><p>人生的意义是什么？我想每个人都有各自的答案：吃遍天下美食？旅游？事业？老有所终……</p><p>However, if i ask you does the life really has its meaning? Can you answer the same as you last reply?</p><p>但是如果换个问题，人生真的有意义吗？现在又还有多少人能做出与上个问题相同的回答呢？</p><p>当人生有意义这个大前提被移除，我们才能真正直面自己的人生，去思考我们所向往的人生意义是否真的是我们所向往的，还是说只是在活出别人向往的人生。</p><p>There is only one heroism in the world: to love life after having understood its true meaning.</p><p>正如罗曼罗兰所说，世界上只有一种真正的英雄主义，那就是在认清了生活的真相后还依然热爱它。</p><p>The only real thing in our lives is there is no meaning and only after you accept this terrible truth, you can find you own spirt.</p><p>同样的，也许只有当我们承认了人生的无意义，才能活出真正的人生。</p><p>Holy shit, 你知道承认人生的无意义意味着什么吗，这甚至在说我敲下这篇文章，你观看这个视频都是在浪费时间，根本就没有意义！</p><p>确实，承认人生的无意义是一件非常非常困难的事情，它会让你茫然，不知所措，甚至是恐惧，但是其实强迫自己，让自己坚信人生是有意义的又何尝不是一种酷刑。</p><p>不过我们还有一味解药，就是游戏人生，此游戏人生非彼游戏人生。</p><p>此游戏人生是要你像玩游戏一样过人生。</p><p>其实如果我们认真思考游戏，就会发现游戏也是无意义的，俄罗斯方块里的分数有什么意义吗，无伤通关Boss然后呢，包括我最爱的LOL，就算我有一天打到了王者又能怎么样呢？</p><p>但是我们为什么如此热衷于游戏呢？</p><p>其实，如果你读过游戏设计相关的书籍，你就会发现，游戏拆解到最后不过是，一个目标，一段曲折或者说是一场挑战。</p><p>所以，以自我为中心，尝试用挑战填满人生，不断地欢愉自己，这是人类在对抗荒谬时最后的倔强。</p><p>我想西西弗斯确实是快乐的。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Life </category>
+          <category> Mechanics </category>
           
       </categories>
       
