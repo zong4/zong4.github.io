@@ -4,7 +4,28 @@
   
     
     <entry>
-      <title>Bomber</title>
+      <title>Minecraft Recreation</title>
+      <link href="/2026/01/01/Mechanics/Minecraft/"/>
+      <url>/2026/01/01/Mechanics/Minecraft/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Minecraft-Mechanic"><a href="#Minecraft-Mechanic" class="headerlink" title="Minecraft Mechanic"></a>Minecraft Mechanic</h1><p>A reimagining of <strong>Minecraft’s</strong> procedural world generation powered by 5-dimensional <strong>Perlin Noise</strong>.</p><p><img src="/img/Mechanics/MC.png"></p><p>The video tutorial of the <strong>Minecraft</strong> mechanic can be found <a href="">here</a> and chinese version <a href="https://www.bilibili.com/video/BV1hQhkziEq9">here</a>.</p><p>The source code is available on <a href="https://github.com/zong4/GameMechanics">GitHub</a>.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Games </category>
+          
+          <category> Mechanics </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bomber, inspired by Öoo</title>
       <link href="/2026/01/01/Mechanics/Bomber/"/>
       <url>/2026/01/01/Mechanics/Bomber/</url>
       
@@ -25,11 +46,11 @@
     
     
     <entry>
-      <title>Super Hot</title>
+      <title>SuperHot Recreation</title>
       <link href="/2026/01/01/Mechanics/SuperHot/"/>
       <url>/2026/01/01/Mechanics/SuperHot/</url>
       
-        <content type="html"><![CDATA[<h1 id="Super-Hot-Mechanic"><a href="#Super-Hot-Mechanic" class="headerlink" title="Super Hot Mechanic"></a>Super Hot Mechanic</h1><p>A Unity recreation of <strong>SuperHot’s</strong> core experience — where <strong>time only moves when you move</strong>. Rebuilt from scratch to replicate its <strong>time manipulation</strong> and <strong>combat replay</strong> mechanics, delivering the signature “time as a weapon” tactical shooter experience.</p><p><img src="/img/Mechanics/SuperHot.gif"></p><p>The video tutorial of the <strong>Super Hot</strong> mechanic can be found <a href="https://www.youtube.com/watch?v=UpLLqT7HSuo">here</a> and chinese version <a href="https://www.bilibili.com/video/BV1ndbhz7E3M/">here</a>.</p><p>The source code is available on <a href="https://github.com/zong4/GameMechanics">GitHub</a>.</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="SuperHot-Mechanic"><a href="#SuperHot-Mechanic" class="headerlink" title="SuperHot Mechanic"></a>SuperHot Mechanic</h1><p>A Unity recreation of <strong>SuperHot’s</strong> core experience — where <strong>time only moves when you move</strong>. Rebuilt from scratch to replicate its <strong>time manipulation</strong> and <strong>combat replay</strong> mechanics, delivering the signature “time as a weapon” tactical shooter experience.</p><p><img src="/img/Mechanics/SuperHot.gif"></p><p>The video tutorial of the <strong>Super Hot</strong> mechanic can be found <a href="https://www.youtube.com/watch?v=UpLLqT7HSuo">here</a> and chinese version <a href="https://www.bilibili.com/video/BV1ndbhz7E3M/">here</a>.</p><p>The source code is available on <a href="https://github.com/zong4/GameMechanics">GitHub</a>.</p>]]></content>
       
       
       <categories>
